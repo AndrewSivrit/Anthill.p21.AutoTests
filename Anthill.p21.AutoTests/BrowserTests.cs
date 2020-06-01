@@ -1076,8 +1076,8 @@ namespace Selenium.Test
         public void AddToCartStep02()
         {
 
-            UITest(() =>
-            {
+           // UITest(() =>
+           // {
                 helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
                 helperTest.waitElementId(driver, 60, "toggleQuickOrder");
@@ -1116,7 +1116,7 @@ namespace Selenium.Test
                 helperTest.InputStringId(driver, "patient 1", "patient_id_in_cart0");
                 helperTest.InputStringId(driver, "test notes for 993640", "notes_in_cart0");
 
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+           // }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
         //[Test]
@@ -1650,8 +1650,8 @@ namespace Selenium.Test
         [Test]
         public void AddToCartStep13()
         {
-            UITest(() =>
-            {
+           // UITest(() =>
+           // {
                 helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
                 helperTest.waitElementId(driver, 60, "toggleQuickOrder");
@@ -1689,7 +1689,7 @@ namespace Selenium.Test
                 // wtite descr
                 helperTest.InputStringId(driver, "patient 12", "patient_id_in_cart0");
                 helperTest.InputStringId(driver, "test notes for item 60SL", "notes_in_cart0");
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            //}, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
 
         }
 
@@ -1791,8 +1791,8 @@ namespace Selenium.Test
         [Test]
         public void AddToCartStep16()
         {
-            UITest(() =>
-            {
+            //UITest(() =>
+            //{
                 helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
                 helperTest.waitElementId(driver, 60, "toggleQuickOrder");
@@ -1837,14 +1837,14 @@ namespace Selenium.Test
                 helperTest.InputStringId(driver, "2", "qty-in-cart0");
 
                 Thread.Sleep(5000);
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+           // }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
         [Test]
         public void AddToCartStep17()
 {
-            UITest(() =>
-            {
+            //UITest(() =>
+            //{
                 helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
                 helperTest.waitElementId(driver, 60, "toggleQuickOrder");
@@ -1886,7 +1886,7 @@ namespace Selenium.Test
                 helperTest.InputStringId(driver, "test notes for item 993740", "notes_in_cart0");
 
                 Thread.Sleep(5000);
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+           // }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
         ////[Test]
