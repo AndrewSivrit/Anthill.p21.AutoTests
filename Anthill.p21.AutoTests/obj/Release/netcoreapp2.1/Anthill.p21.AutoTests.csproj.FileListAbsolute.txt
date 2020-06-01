@@ -27,3 +27,4 @@ C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Release\netcorea
 C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Release\netcoreapp2.1\Anthill.p21.AutoTests.AssemblyInfo.cs
 C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Release\netcoreapp2.1\Anthill.p21.AutoTests.dll
 C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Release\netcoreapp2.1\Anthill.p21.AutoTests.pdb
+C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Release\netcoreapp2.1\Anthill.p21.AutoTests.csprojAssemblyReference.cache
