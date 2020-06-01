@@ -65,7 +65,7 @@ namespace Selenium.Test
         {
 
             var directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            var pathDrivers = directory + "/../../../drivers";
+            var pathDrivers = directory + "";
             mainURL = mainURLs + "";
             homeUrl = mainURLs + "home";
             authUrl = mainURLs + "auth/login";
