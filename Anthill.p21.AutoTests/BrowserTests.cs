@@ -1072,7 +1072,7 @@ namespace Selenium.Test
 
         }
 
-        [Test]
+        //[Test]
         public void AddToCartStep02()
         {
 
@@ -1788,7 +1788,7 @@ namespace Selenium.Test
             }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
-        [Test]
+        //[Test]
         public void AddToCartStep16()
         {
             //UITest(() =>
