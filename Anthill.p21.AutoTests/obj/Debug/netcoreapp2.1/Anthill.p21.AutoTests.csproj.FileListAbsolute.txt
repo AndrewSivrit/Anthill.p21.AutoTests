@@ -1,0 +1,15 @@
+C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Debug\netcoreapp2.1\Anthill.p21.AutoTests.csprojAssemblyReference.cache
+C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Debug\netcoreapp2.1\Anthill.p21.AutoTests.csproj.CoreCompileInputs.cache
+C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Debug\netcoreapp2.1\Anthill.p21.AutoTests.AssemblyInfoInputs.cache
+C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Debug\netcoreapp2.1\Anthill.p21.AutoTests.AssemblyInfo.cs
+C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Debug\netcoreapp2.1\NUnit3.TestAdapter.dll
+C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Debug\netcoreapp2.1\NUnit3.TestAdapter.pdb
+C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Debug\netcoreapp2.1\nunit.engine.netstandard.dll
+C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Debug\netcoreapp2.1\Mono.Cecil.dll
+C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Debug\netcoreapp2.1\Anthill.p21.AutoTests.deps.json
+C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Debug\netcoreapp2.1\Anthill.p21.AutoTests.runtimeconfig.json
+C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Debug\netcoreapp2.1\Anthill.p21.AutoTests.runtimeconfig.dev.json
+C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Debug\netcoreapp2.1\Anthill.p21.AutoTests.dll
+C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Debug\netcoreapp2.1\Anthill.p21.AutoTests.pdb
+C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Debug\netcoreapp2.1\Anthill.p21.AutoTests.dll
+C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Debug\netcoreapp2.1\Anthill.p21.AutoTests.pdb

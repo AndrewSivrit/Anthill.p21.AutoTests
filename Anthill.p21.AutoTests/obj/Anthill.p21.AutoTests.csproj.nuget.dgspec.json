@@ -1,0 +1,80 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Andrew\\Desktop\\selenium-cshap-sample-master_core\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Andrew\\Desktop\\selenium-cshap-sample-master_core\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Andrew\\Desktop\\selenium-cshap-sample-master_core\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj",
+        "projectName": "Anthill.p21.AutoTests",
+        "projectPath": "C:\\Users\\Andrew\\Desktop\\selenium-cshap-sample-master_core\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj",
+        "packagesPath": "C:\\Users\\Andrew\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Andrew\\Desktop\\selenium-cshap-sample-master_core\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Andrew\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Work\\v2_backend\\Anthill.p21\\packages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[15.8.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[3.10.0, )"
+            },
+            "Selenium.Support": {
+              "target": "Package",
+              "version": "[3.141.0, )"
+            },
+            "Selenium.WebDriver": {
+              "target": "Package",
+              "version": "[3.141.0, )"
+            },
+            "nunit": {
+              "target": "Package",
+              "version": "[3.10.1, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}
