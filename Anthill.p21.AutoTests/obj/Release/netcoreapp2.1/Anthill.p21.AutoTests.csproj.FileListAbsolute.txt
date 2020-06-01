@@ -13,3 +13,17 @@ C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\
 C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Release\netcoreapp2.1\Anthill.p21.AutoTests.dll
 C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Release\netcoreapp2.1\Anthill.p21.AutoTests.pdb
 C:\Users\Andrew\Desktop\selenium-cshap-sample-master_core\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Release\netcoreapp2.1\Anthill.p21.AutoTests.csprojAssemblyReference.cache
+C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Release\netcoreapp2.1\NUnit3.TestAdapter.dll
+C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Release\netcoreapp2.1\NUnit3.TestAdapter.pdb
+C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Release\netcoreapp2.1\nunit.engine.netstandard.dll
+C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Release\netcoreapp2.1\Mono.Cecil.dll
+C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Release\netcoreapp2.1\Anthill.p21.AutoTests.deps.json
+C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Release\netcoreapp2.1\Anthill.p21.AutoTests.runtimeconfig.json
+C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Release\netcoreapp2.1\Anthill.p21.AutoTests.runtimeconfig.dev.json
+C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Release\netcoreapp2.1\Anthill.p21.AutoTests.dll
+C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\bin\Release\netcoreapp2.1\Anthill.p21.AutoTests.pdb
+C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Release\netcoreapp2.1\Anthill.p21.AutoTests.csproj.CoreCompileInputs.cache
+C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Release\netcoreapp2.1\Anthill.p21.AutoTests.AssemblyInfoInputs.cache
+C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Release\netcoreapp2.1\Anthill.p21.AutoTests.AssemblyInfo.cs
+C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Release\netcoreapp2.1\Anthill.p21.AutoTests.dll
+C:\Work\Anthill\Anthill.p21.AutoTests\Anthill.p21.AutoTests\obj\Release\netcoreapp2.1\Anthill.p21.AutoTests.pdb

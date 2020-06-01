@@ -1,22 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Andrew\\Desktop\\selenium-cshap-sample-master_core\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj": {}
+    "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Andrew\\Desktop\\selenium-cshap-sample-master_core\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj": {
+    "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Andrew\\Desktop\\selenium-cshap-sample-master_core\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj",
+        "projectUniqueName": "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj",
         "projectName": "Anthill.p21.AutoTests",
-        "projectPath": "C:\\Users\\Andrew\\Desktop\\selenium-cshap-sample-master_core\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj",
+        "projectPath": "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj",
         "packagesPath": "C:\\Users\\Andrew\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Andrew\\Desktop\\selenium-cshap-sample-master_core\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\obj\\",
+        "outputPath": "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
+          "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\NuGet.Config",
           "C:\\Users\\Andrew\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -25,8 +26,11 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Work\\Anthill\\s\\Anthill.p21\\nuget": {},
           "C:\\Work\\v2_backend\\Anthill.p21\\packages": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://dotnet.myget.org/F/dotnet-core/api/v3/index.json": {},
+          "https://www.myget.org/F/vsixtesting/api/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp2.1": {
