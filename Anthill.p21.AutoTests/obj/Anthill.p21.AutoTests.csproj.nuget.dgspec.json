@@ -55,6 +55,10 @@
               "version": "[2.1.0, )",
               "autoReferenced": true
             },
+            "Microsoft.TeamFoundationServer.ExtendedClient": {
+              "target": "Package",
+              "version": "[16.153.0, )"
+            },
             "NUnit3TestAdapter": {
               "target": "Package",
               "version": "[3.10.0, )"

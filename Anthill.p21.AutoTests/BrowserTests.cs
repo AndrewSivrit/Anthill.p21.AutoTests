@@ -14,10 +14,38 @@ using OpenQA.Selenium.IE;
 using NUnit.Framework.Interfaces;
 using System.Drawing.Imaging;
 using OpenQA.Selenium.Support.Extensions;
-
+using System.Threading.Tasks;
+using System.IO.Compression;
+using System.Collections.Generic;
+//using System.Net.WebClient.Download;
+using System.Net;
 
 namespace Selenium.Test
 {
+
+    class Values
+    {
+        public String item_category_link_uid;
+        public String item_category_uid;
+        public String sequence_no;
+        public String link_name;
+        public String full_link_path;
+        public String isFound;
+
+
+        public static Values FromCsv(string csvLine)
+        {
+            string[] values = csvLine.Split(',');
+            Values yValues = new Values();
+            yValues.item_category_link_uid = Convert.ToString(values[0]);
+            yValues.item_category_uid = Convert.ToString(values[1]);
+            yValues.sequence_no = Convert.ToString(values[2]);
+            yValues.link_name = Convert.ToString(values[3]);
+            yValues.full_link_path = Convert.ToString(values[4]);
+            
+            return yValues;
+        }
+    }
 
     public class PageTestBase
     {
@@ -58,6 +86,10 @@ namespace Selenium.Test
         private string password;
         private string login;
 
+        string currentFile = string.Empty;
+        static string name = string.Empty;
+        bool result = false;
+
         string mainURLs = "https://v2dev.cascade-usa.com/";
 
         [SetUp]
@@ -76,36 +108,19 @@ namespace Selenium.Test
             login = "nikitin_andrew@bk.ru";
             password = "12345";
 
-           
-
             //login = "artvbashuk@gmail.com";
             //password = "123";
-
-            
 
             helperTest = new HelperTest();
 
             ChromeOptions options = new ChromeOptions();
-            options.AddArguments("start-maximized");
-            options.AddArguments("enable-automation");
+
             options.AddArguments("--no-sandbox");
-            options.AddArguments("--disable-infobars");
-            options.AddArguments("--disable-dev-shm-usage");
-            options.AddArguments("--disable-browser-side-navigation");
-            options.AddArguments("--disable-gpu");
-            options.AddArguments("--headless");
-
-            //options.setPageLoadStrategy(PageLoadStrategy.NONE);
-            //options.AddArguments("enable-automation");
             //options.AddArguments("--headless");
-            //options.AddArguments("--window-size=1920,1080");
-            //options.AddArguments("--no-sandbox");
-            //options.AddArguments("--disable-extensions");
-            //options.AddArguments("--dns-prefetch-disable");
-            //options.AddArguments("--disable-gpu");
 
-            //_driver = new ChromeDriver(option);
-
+            options.AddUserProfilePreference("download.default_directory", "C:/Work/Anthill/Anthill.p21.AutoTests/logs_img");
+            options.AddUserProfilePreference("intl.accept_languages", "nl");
+            options.AddUserProfilePreference("disable-popup-blocking", "true");
 
             driver = new ChromeDriver(pathDrivers, options);
 
@@ -121,10 +136,108 @@ namespace Selenium.Test
         }
 
         [Test]
+        public void CheckFilesByUrls()
+        {
+            string pathCsv = "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files.csv";
+            string outPathCsv = "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out.csv";
+
+            File.Delete(outPathCsv);
+
+            List<Values> values = File.ReadAllLines(pathCsv)
+                                            .Skip(1)
+                                            .Select(v => Values.FromCsv(v))
+                                            .ToList();
+
+            string name = "3D-LITELSOXTRA_SIZECHART.png";
+            string folder = "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\files\\";
+
+            string bufff = "item_category_link_uid,item_category_uid,sequence_no,link_name,full_link_path, isLoading";
+            List<String> bufffs = new List<String>();
+            bufffs.Add(bufff);
+            File.AppendAllLines(outPathCsv, bufffs);
+
+            for (int i = 0; i < values.Count(); i++)
+            {
+                List<String> buffs = new List<String>();
+
+                
+                try
+                {
+                    downloadFile(values[i].full_link_path, name, folder);
+                    values[i].isFound = "True";
+                }
+                catch (Exception ex)
+                {
+                    values[i].isFound = "false";
+
+                }
+
+                string buff = values[i].item_category_link_uid + "," + values[i].item_category_uid + "," + values[i].sequence_no + "," + values[i].link_name + "," + values[i].full_link_path + "," + values[i].isFound;
+
+                buffs.Add(buff);
+
+                File.AppendAllLines(outPathCsv, buffs);
+
+            }
+
+        }
+
+        public void downloadFile(string remoteUri, string name, string folder)
+        {
+
+            string myStringWebResource = null;
+
+            // Create a new WebClient instance.
+            using (WebClient myWebClient = new WebClient())
+            {
+                myStringWebResource = remoteUri;
+                // Download the Web resource and save it into the current filesystem folder.
+                myWebClient.DownloadFile(myStringWebResource, folder + name);
+            }
+
+            Task.Delay(4).Wait();//wait for sometime till download is completed
+            //string path = "C:\\Users\\abc\\Downloads";//the path of the folder where the zip file will be downloaded
+            string path = folder + name;
+
+            if (Directory.Exists(folder)) //we check if the directory or folder exists
+            {
+                bool result = CheckFile(name, folder); // boolean result true or false is stored after checking the zip file name
+                if (result == true)
+                {
+                    //ExtractFiles();// if the zip file is present , this method is called to extract files within the zip file
+                    File.Delete(path);
+                }
+
+                else
+                {
+                    Assert.Fail("The file does not exist.");// if the zip file is not present, then the  test fails
+                }
+            }
+            else
+            {
+                Assert.Fail("The directory or folder does not exist.");//if the directory or folder does not exist, then the test fails
+            }
+        }
+
+
+        public bool CheckFile(string name, string folder) // the name of the zip file which is obtained, is passed in this method
+        {
+            currentFile = folder + name + ""; // the zip filename is stored in a variable
+            if (File.Exists(currentFile)) //helps to check if the zip file is present
+            {
+                return true; //if the zip file exists return boolean true
+            }
+            else
+            {
+                return false; // if the zip file does not exist return boolean false
+            }
+        }
+
+        [Test]
         public void Login()
         {
-            UITest(() =>
-            {
+            //UITest(() =>
+            //{
                 helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
                 Thread.Sleep(4000);
@@ -134,6 +247,7 @@ namespace Selenium.Test
                 Actions actions = new Actions(driver);
                 actions.MoveToElement(ClickUser).Build().Perform();
 
+                helperTest.waitElementId(driver, 60, "logout_button");
                 var LogOut = driver.FindElement(By.Id("logout_button"));
 
                 LogOut.Click();
@@ -141,10 +255,10 @@ namespace Selenium.Test
                 Assert.AreEqual(authUrl, driver.Url);
 
                 Thread.Sleep(4000);
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            //}, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
-        //[Test]
+        [Test]
         public void AddToCartFromPreview()
         {
             IWebElement Img;
@@ -918,18 +1032,18 @@ namespace Selenium.Test
                 helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[11]/div[2]/select", 3);
 
                 helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[7]/div[2]/input");
-                helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/mat-calendar-header/div/div/button[1]/span");
-                helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-multi-year-view/table/tbody/tr[2]/td[1]/div");
-                helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-year-view/table/tbody/tr[2]/td[1]/div");
-                helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[1]/td[2]/div");
+                helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[4]/td[4]/div");
+                //helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-multi-year-view/table/tbody/tr[2]/td[1]/div");
+                //helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-year-view/table/tbody/tr[2]/td[1]/div");
+                //helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[1]/td[2]/div");
 
                 helperTest.InputStringXpath(driver, "Broken", "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[8]/div[2]/textarea");
 
                 helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[9]/div[2]/input");
-                helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/mat-calendar-header/div/div/button[1]/span");
-                helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-multi-year-view/table/tbody/tr[2]/td[1]/div");
-                helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-year-view/table/tbody/tr[2]/td[1]/div");
-                helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[1]/td[2]/div");
+                helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[4]/td[3]/div");
+                //helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-multi-year-view/table/tbody/tr[2]/td[1]/div");
+                //helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-year-view/table/tbody/tr[2]/td[1]/div");
+                //helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[1]/td[2]/div");
 
                 helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[11]/div[2]/select", 3);
 
@@ -948,7 +1062,7 @@ namespace Selenium.Test
 
                 Thread.Sleep(2000);
 
-                helperTest.JsClickElement(driver, "//*[text()='" + " Submit for Return " + "']");
+                helperTest.JsClickElementId(driver, "//*[text()='" + " Submit for Return " + "']");
 
                 Thread.Sleep(30000);
 

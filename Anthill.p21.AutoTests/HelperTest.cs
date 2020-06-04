@@ -153,6 +153,7 @@ namespace Selenium.Test
 
                 if (driver.Url != homeUrl)
                 {
+                    Thread.Sleep(2000);
 
                     IWebElement InpBox = driver.FindElement(By.Id("input-mail"));
                     InpBox.SendKeys(login);
