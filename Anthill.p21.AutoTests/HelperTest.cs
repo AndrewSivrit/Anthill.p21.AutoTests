@@ -11,9 +11,39 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Interactions;
 using System.Linq;
 using OpenQA.Selenium.IE;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace Selenium.Test
 {
+    class Values
+    {
+        public String item_category_link_uid;
+        public String item_category_uid;
+        public String sequence_no;
+        public String link_name;
+        public String full_link_path;
+        public String isFound;
+
+
+        public static Values FromCsv(string csvLine)
+        {
+
+            Regex CSVParser = new Regex(",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
+            String[] values = CSVParser.Split(csvLine);
+
+            Values yValues = new Values();
+
+            yValues.item_category_link_uid = Convert.ToString(values[0]);
+            yValues.item_category_uid = Convert.ToString(values[1]);
+            yValues.sequence_no = Convert.ToString(values[2]);
+            yValues.link_name = Convert.ToString(values[3]);
+            yValues.full_link_path = Convert.ToString(values[4]);
+
+            return yValues;
+        }
+    }
+
     public class HelperTest
     {
 

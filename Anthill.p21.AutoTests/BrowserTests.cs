@@ -5,47 +5,17 @@ using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium.Edge;
-using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Interactions;
 using System.Linq;
-using OpenQA.Selenium.IE;
-using NUnit.Framework.Interfaces;
-using System.Drawing.Imaging;
 using OpenQA.Selenium.Support.Extensions;
 using System.Threading.Tasks;
-using System.IO.Compression;
 using System.Collections.Generic;
-//using System.Net.WebClient.Download;
 using System.Net;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace Selenium.Test
 {
-
-    class Values
-    {
-        public String item_category_link_uid;
-        public String item_category_uid;
-        public String sequence_no;
-        public String link_name;
-        public String full_link_path;
-        public String isFound;
-
-
-        public static Values FromCsv(string csvLine)
-        {
-            string[] values = csvLine.Split(',');
-            Values yValues = new Values();
-            yValues.item_category_link_uid = Convert.ToString(values[0]);
-            yValues.item_category_uid = Convert.ToString(values[1]);
-            yValues.sequence_no = Convert.ToString(values[2]);
-            yValues.link_name = Convert.ToString(values[3]);
-            yValues.full_link_path = Convert.ToString(values[4]);
-            
-            return yValues;
-        }
-    }
 
     public class PageTestBase
     {
@@ -66,14 +36,10 @@ namespace Selenium.Test
 
                 screenshot.SaveAsFile(filePath, ScreenshotImageFormat.Jpeg);
 
-                // This would be a good place to log the exception message and
-                // save together with the screensho
-
                 throw;
             }
         }
     }
-
 
     [TestFixture]
     public class BrowserTests : PageTestBase
@@ -83,19 +49,16 @@ namespace Selenium.Test
         string mainURL;
         string homeUrl;
         string authUrl;
+
         private string password;
         private string login;
 
         string currentFile = string.Empty;
-        static string name = string.Empty;
-        bool result = false;
-
         string mainURLs = "https://v2dev.cascade-usa.com/";
 
         [SetUp]
         public void SetUp()
         {
-
             var directory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var pathDrivers = directory + "/../../../../drivers/";
             mainURL = mainURLs + "";
@@ -112,7 +75,6 @@ namespace Selenium.Test
             //password = "123";
 
             helperTest = new HelperTest();
-
             ChromeOptions options = new ChromeOptions();
 
             options.AddArguments("--no-sandbox");
@@ -123,7 +85,6 @@ namespace Selenium.Test
             options.AddUserProfilePreference("disable-popup-blocking", "true");
 
             driver = new ChromeDriver(pathDrivers, options);
-
             //driver = new InternetExplorerDriver(pathDrivers);
 
             driver.Manage().Cookies.DeleteAllCookies();
@@ -135,11 +96,11 @@ namespace Selenium.Test
             //_firefox = new FirefoxDriver(pathDrivers);
         }
 
-        [Test]
+        //[Test]
         public void CheckFilesByUrls()
         {
-            string pathCsv = "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files.csv";
-            string outPathCsv = "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out.csv";
+            string pathCsv = "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_done_false.csv";
+            string outPathCsv = "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out4.csv";
 
             File.Delete(outPathCsv);
 
@@ -154,13 +115,12 @@ namespace Selenium.Test
             string bufff = "item_category_link_uid,item_category_uid,sequence_no,link_name,full_link_path, isLoading";
             List<String> bufffs = new List<String>();
             bufffs.Add(bufff);
-            File.AppendAllLines(outPathCsv, bufffs);
+            File.WriteAllLines(outPathCsv, bufffs);
 
             for (int i = 0; i < values.Count(); i++)
             {
                 List<String> buffs = new List<String>();
 
-                
                 try
                 {
                     downloadFile(values[i].full_link_path, name, folder);
@@ -174,7 +134,7 @@ namespace Selenium.Test
 
                 string buff = values[i].item_category_link_uid + "," + values[i].item_category_uid + "," + values[i].sequence_no + "," + values[i].link_name + "," + values[i].full_link_path + "," + values[i].isFound;
 
-                buffs.Add(buff);
+                buffs.Add(Encoding.UTF8.GetString(Encoding.Default.GetBytes(buff)));
 
                 File.AppendAllLines(outPathCsv, buffs);
 
@@ -193,9 +153,10 @@ namespace Selenium.Test
                 myStringWebResource = remoteUri;
                 // Download the Web resource and save it into the current filesystem folder.
                 myWebClient.DownloadFile(myStringWebResource, folder + name);
+                //myWebClient.DownloadFileCompleted();
             }
-
-            Task.Delay(4).Wait();//wait for sometime till download is completed
+            Thread.Sleep(10000);
+            //Task.Delay(10000).Wait();//wait for sometime till download is completed
             //string path = "C:\\Users\\abc\\Downloads";//the path of the folder where the zip file will be downloaded
             string path = folder + name;
 
@@ -236,8 +197,8 @@ namespace Selenium.Test
         [Test]
         public void Login()
         {
-            //UITest(() =>
-            //{
+            UITest(() =>
+            {
                 helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
                 Thread.Sleep(4000);
@@ -255,16 +216,87 @@ namespace Selenium.Test
                 Assert.AreEqual(authUrl, driver.Url);
 
                 Thread.Sleep(4000);
-            //}, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
         [Test]
+        public void SubmitterApproval()
+        {
+            login = "Anthony.Kosenko@gmail.com";
+            password = "12345";
+
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+
+            Thread.Sleep(4000);
+            Assert.AreEqual(homeUrl, driver.Url);
+
+            driver.Url = mainURLs + "product?productID=1282";
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+            
+            Thread.Sleep(5000);
+
+            helperTest.JsClickElementId(driver, "header_cart_icon");
+
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-submitter/section/section/article/div[2]/app-cart-product-order-for-submitter/section/article[2]/div/input[1]");
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Submit for Approval " + "']");
+            
+            Thread.Sleep(5000);
+
+            string bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("submitted to Andrew"));
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-submitter/div/div/div/div/div");
+
+            IWebElement ClickUser = driver.FindElement(By.Id("username_button"));
+
+            Actions actions = new Actions(driver);
+            actions.MoveToElement(ClickUser).Build().Perform();
+
+            helperTest.waitElementId(driver, 60, "logout_button");
+            var LogOut = driver.FindElement(By.Id("logout_button"));
+
+            LogOut.Click();
+
+            login = "nikitin_andrew@bk.ru";
+            password = "12345";
+
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+
+            Thread.Sleep(5000);
+
+            helperTest.JsClickElementId(driver, "header_cart_icon");
+
+            helperTest.waitElementId(driver, 60, "submit_order");
+
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Original Grace Plate"));
+
+            Thread.Sleep(1000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "Move to Cart" + "']");
+
+            Thread.Sleep(1000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "Keep Current" + "']");
+
+            IWebElement InpBox = driver.FindElement(By.Id("poNumber"));
+            InpBox.SendKeys("TESTPO " + DateTime.Now.ToString("yyyyMMdd"));
+
+            IWebElement InpBox2 = driver.FindElement(By.Id("notesInput"));
+            InpBox2.Clear();
+            InpBox2.SendKeys("TEST ORDER PLEASE DO NOT PROCESS " + DateTime.Now.ToString("yyyyMMdd"));
+
+            Thread.Sleep(1000);
+
+        }
+        [Test]
         public void AddToCartFromPreview()
         {
-            IWebElement Img;
-            Boolean ImagePresent;
             Actions actions = new Actions(driver);
-            IWebElement CartBtn;
             String bodyTextProduct;
             IWebElement NavigateCusror;
 
@@ -294,16 +326,16 @@ namespace Selenium.Test
             bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/span[1]")).Text;
             Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® Liners"));
 
-            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[1]/select", "Small");
-            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[2]/select", "Uniform");
-            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[3]/select", "Standard Umbrella");
-            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[4]/select", "Locking");
+            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[1]/select", "Locking");
+            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[2]/select", "Small");
+            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[3]/select", "Uniform");
+
+            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[4]/select", "6 mm");
+
             helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[5]/select", "Buff");
+
             helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[6]/select", "Spirit");
-            
-            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[7]/select", "6 mm");
-            
-            
+            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[3]/select", "Standard Umbrella");
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
 
@@ -354,18 +386,12 @@ namespace Selenium.Test
 
                     ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
 
-                    //Assert.IsTrue(ImagePresent);
-
                 }
                 
-                //Assert.AreEqual(mainURLs + "category/catalogsearch/configurable?searchBy=all&queryStr=liners&viewMode=configurable&fromSearch=true&page=" + j.ToString(), driver.Url);
-
-
                 helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/div/ngb-pagination/ul/li[10]/a");
 
                 Thread.Sleep(5000);
             }
-
 
         }
 
@@ -385,15 +411,12 @@ namespace Selenium.Test
 
             for (int i = 1; i <= 5; i++)
             {
-
                 string path = "/html/body/app-root/div/app-home/div/div[2]/div[2]/div[" + i.ToString() + "]/ app-product-card/mdb-card/div/a/mdb-card-img/img";
                 Img = driver.FindElement(By.XPath(path));
-                
 
                 ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
 
             }
-
 
             driver.Url = mainURLs + "product?productID=255";
 
@@ -430,9 +453,6 @@ namespace Selenium.Test
                 Assert.IsTrue(ImagePresent);
 
             }
-
-            //driver.Url = mainURLs + "cart/index";
-
 
         }
 
@@ -572,7 +592,6 @@ namespace Selenium.Test
             helperTest.waitElementId(driver, 60, "toggleQuickOrder");
 
             Actions actions = new Actions(driver);
-            IWebElement CartBtn;
             String bodyTextProduct;
             IWebElement NavigateCusror;
 
@@ -603,9 +622,7 @@ namespace Selenium.Test
 
             helperTest.JsClickElement(driver, "//*[text()='" + " + Compare " + "']");
 
-
             helperTest.JsClickElement(driver, "//*[text()='" + " Compare products " + "']");
-            
 
             Thread.Sleep(4000);
 
@@ -620,7 +637,6 @@ namespace Selenium.Test
             Thread.Sleep(3000);
 
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-compare/section/section/div[1]/div/app-compare-item[3]/section/article/div[1]/i");
-            
 
             Thread.Sleep(1000);
 
@@ -640,7 +656,6 @@ namespace Selenium.Test
             Thread.Sleep(4000);
 
             driver.Url = mainURLs + "account-info";
-            
 
             Thread.Sleep(4000);
 
@@ -670,7 +685,6 @@ namespace Selenium.Test
 
             Thread.Sleep(4000);
 
-            //helperTest.JsClickElement(driver, "//*[text()='" + "Default Address" + "']");
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[3]/div/div[2]/div[2]/label");
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[4]/div/div[2]/div[2]/label");
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[5]/div/div[2]/div[2]/label");
@@ -693,7 +707,6 @@ namespace Selenium.Test
 
             Thread.Sleep(4000);
 
-            //helperTest.JsClickElement(driver, "//*[text()='" + "Default Address" + "']");
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[3]/div/div[2]/div[2]/label");
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[4]/div/div[2]/div[2]/label");
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[5]/div/div[2]/div[2]/label");
@@ -712,10 +725,7 @@ namespace Selenium.Test
 
             driver.Url = mainURLs + "account-info";
 
-
             Thread.Sleep(4000);
-            
-
 
             helperTest.JsClickElement(driver, "//*[text()='" + "Change Password" + "']");
 
@@ -730,7 +740,6 @@ namespace Selenium.Test
 
             Thread.Sleep(2000);
 
-            //Assert.AreEqual(homeUrl, driver.Url);
             IWebElement ClickUser = driver.FindElement(By.Id("username_button"));
 
             Actions actions = new Actions(driver);
@@ -743,8 +752,6 @@ namespace Selenium.Test
             Thread.Sleep(4000);
 
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, "12345", mainURL);
-
-
 
         }
 
@@ -766,12 +773,8 @@ namespace Selenium.Test
 
             Thread.Sleep(5000);
 
-            //Assert.AreEqual(mainURLs + "category/catalogsearch/configurable?searchBy=all&queryStr=Liners&viewMode=configurable&fromSearch=true ", driver.Url);
-
             helperTest.JsClickElement(driver, "//*[text()='" + "L5679" + "']");
-            
-            //helperTest.JsClickElement(driver, "//*[text()='" + "L5988" + "']");
-            //helperTest.JsClickElement(driver, "//*[text()='" + "L2397" + "']");
+
             Thread.Sleep(3000);
 
             helperTest.waitElementId(driver, 60, "label_filter_lcode_0");
@@ -781,7 +784,6 @@ namespace Selenium.Test
 
             Thread.Sleep(5000);
 
-            //helperTest.JsClickElement(driver, "//*[text()='" + " Clear All " + "']");
             helperTest.JsClickElementId(driver, "clear-all");
 
             Thread.Sleep(2000);
@@ -922,8 +924,8 @@ namespace Selenium.Test
         [Test]
         public void SubmitOrder()
         {
-            //UITest(() =>
-           // {
+            UITest(() =>
+            {
                 helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
                 helperTest.waitElementId(driver, 60, "toggleQuickOrder");
@@ -953,25 +955,9 @@ namespace Selenium.Test
 
                 Assert.AreEqual(mainURLs + "cart/index", driver.Url);
 
-
                 IWebElement InpBox = driver.FindElement(By.Id("poNumber"));
 
-                //for (int i = 1; i <= 10; i++)
-                //{
-                //    InpBox.SendKeys(Keys.Backspace);
-                //}
-
-                //Thread.Sleep(3000);
-
-                //helperTest.JsClickElementId(driver, "submit_order");
-
-                //Thread.Sleep(3000);
-
-                
-                //bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
-
-                //Assert.IsTrue(bodyTextProduct.Contains("PO # is required and cannot exceed 50 characters."));
-
+                InpBox.Clear();
                 InpBox.SendKeys("TESTPO " + DateTime.Now.ToString("yyyyMMdd"));
 
                 IWebElement InpBox2 = driver.FindElement(By.Id("notesInput"));
@@ -979,8 +965,8 @@ namespace Selenium.Test
                 InpBox2.SendKeys("TEST ORDER PLEASE DO NOT PROCESS " + DateTime.Now.ToString("yyyyMMdd"));
 
                 Thread.Sleep(1000);
-                //helperTest.JsClickElement(driver, "//*[text()='" + "Submit Order" + "']");
-                helperTest.JsClickElementId(driver, "submit_order");
+
+            helperTest.JsClickElementId(driver, "submit_order");
 
                 helperTest.waitElementId(driver, 180, "product-name-in-cartundefined");
 
@@ -989,7 +975,6 @@ namespace Selenium.Test
                 Thread.Sleep(3000);
 
                 helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-review-cart/section/aside/app-order-info-aside/aside/div[3]/div[3]/app-button/div/button");
-                //helperTest.JsClickElementId(driver, "submit_order");
 
                 Thread.Sleep(160000);
 
@@ -999,15 +984,15 @@ namespace Selenium.Test
 
                 Thread.Sleep(11000);
 
-           // }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
 
         }
 
         [Test]
         public void submitRMAs()
         {
-            //UITest(() =>
-            //{
+            UITest(() =>
+            {
                 helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
                 helperTest.waitElementId(driver, 60, "toggleQuickOrder");
@@ -1022,7 +1007,6 @@ namespace Selenium.Test
 
                 helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/section/section/app-history-order-item[1]/article/article/section/div[2]/section[1]/div[2]/div[2]/app-button[2]/div/button");
 
-
                 helperTest.InputStringId(driver, "123456", "rma_patientID");
                 helperTest.InputStringId(driver, "1234567890", "rma_serialNumbers");
 
@@ -1033,21 +1017,12 @@ namespace Selenium.Test
 
                 helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[7]/div[2]/input");
                 helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[4]/td[4]/div");
-                //helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-multi-year-view/table/tbody/tr[2]/td[1]/div");
-                //helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-year-view/table/tbody/tr[2]/td[1]/div");
-                //helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[1]/td[2]/div");
-
                 helperTest.InputStringXpath(driver, "Broken", "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[8]/div[2]/textarea");
 
                 helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[9]/div[2]/input");
                 helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[4]/td[3]/div");
-                //helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-multi-year-view/table/tbody/tr[2]/td[1]/div");
-                //helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-year-view/table/tbody/tr[2]/td[1]/div");
-                //helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[1]/td[2]/div");
 
                 helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[11]/div[2]/select", 3);
-
-                //helperTest.InputStringXpath(driver, "This is a test", "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[12]/div[2]/textarea");
 
                 IWebElement InpBox2 = driver.FindElement(By.Id("rma_notes"));
 
@@ -1060,15 +1035,13 @@ namespace Selenium.Test
 
                 helperTest.FindTextInBody(driver, "Success");
 
-                Thread.Sleep(2000);
+                helperTest.JsClickElement(driver, "//*[text()='" + " Submit for Return " + "']");
 
-                helperTest.JsClickElementId(driver, "//*[text()='" + " Submit for Return " + "']");
-
-                Thread.Sleep(30000);
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-main/div/app-order-history/div[5]/div/div/div[3]/app-button/div/button");
 
                 helperTest.FindTextInBody(driver, "Thank you for your submission");
 
-           // }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
 
         }
 
@@ -1077,9 +1050,7 @@ namespace Selenium.Test
         {
 
             Actions actions = new Actions(driver);
-            IWebElement CartBtn;
             String bodyTextProduct;
-            IWebElement NavigateCusror;
 
 
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -1128,8 +1099,6 @@ namespace Selenium.Test
             Actions actions = new Actions(driver);
             IWebElement CartBtn;
             String bodyTextProduct;
-            IWebElement NavigateCusror;
-
 
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
@@ -1190,8 +1159,8 @@ namespace Selenium.Test
         public void AddToCartStep02()
         {
 
-           // UITest(() =>
-           // {
+            UITest(() =>
+            {
                 helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
                 helperTest.waitElementId(driver, 60, "toggleQuickOrder");
@@ -1201,7 +1170,6 @@ namespace Selenium.Test
                 Actions actions = new Actions(driver);
                 IWebElement CartBtn;
                 String bodyTextProduct;
-                IWebElement NavigateCusror;
 
                 helperTest.waitElementId(driver, 60, "search");
                 IWebElement SearchBox = driver.FindElement(By.Id("search"));
@@ -1230,7 +1198,7 @@ namespace Selenium.Test
                 helperTest.InputStringId(driver, "patient 1", "patient_id_in_cart0");
                 helperTest.InputStringId(driver, "test notes for 993640", "notes_in_cart0");
 
-           // }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
         //[Test]
@@ -1248,8 +1216,6 @@ namespace Selenium.Test
                 Actions actions = new Actions(driver);
                 IWebElement CartBtn;
                 String bodyTextProduct;
-                IWebElement NavigateCusror;
-
 
                 helperTest.waitElementId(driver, 60, "search");
                 IWebElement SearchBox = driver.FindElement(By.Id("search"));
@@ -1329,7 +1295,7 @@ namespace Selenium.Test
 
         }
 
-        ////[Test]
+        //[Test]
         public void Step05()
         {
             UITest(() =>

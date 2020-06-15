@@ -1,0 +1,217 @@
+{ "time": "2020-06-04 19:39:27.6969", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 19:39:27.8004", "level": "Info", "message": "Size of file: 6,13 kB" }
+{ "time": "2020-06-04 19:39:27.9937", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 19:39:28.0406", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 19:39:28.4741", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 19:40:02.6841", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 19:40:02.7837", "level": "Info", "message": "Size of file: 9,26 kB" }
+{ "time": "2020-06-04 19:40:02.9584", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 19:40:03.0063", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 19:40:03.4271", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 19:48:39.2785", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 19:48:39.3762", "level": "Info", "message": "Size of file: 47,82 kB" }
+{ "time": "2020-06-04 19:48:39.5958", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 19:48:39.6388", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 19:48:40.0957", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:00:37.5793", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:00:37.6925", "level": "Info", "message": "Size of file: 47,82 kB" }
+{ "time": "2020-06-04 20:00:37.9102", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:00:37.9551", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:00:38.4247", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:00:57.5200", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:00:57.6196", "level": "Info", "message": "Size of file: 3,90 kB" }
+{ "time": "2020-06-04 20:00:57.7982", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:00:57.8529", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:00:58.2961", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:01:43.4248", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:01:43.5234", "level": "Info", "message": "Size of file: 8,64 kB" }
+{ "time": "2020-06-04 20:01:43.7441", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:01:43.7890", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:01:44.2225", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:02:59.2804", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:02:59.3908", "level": "Info", "message": "Size of file: 14,37 kB" }
+{ "time": "2020-06-04 20:02:59.5694", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:02:59.6143", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:03:00.0820", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:07:03.4321", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:07:03.5316", "level": "Info", "message": "Size of file: 34,00 kB" }
+{ "time": "2020-06-04 20:07:03.7640", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:07:03.8030", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:07:04.3020", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:08:39.5497", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:08:39.6512", "level": "Info", "message": "Size of file: 1,26 kB" }
+{ "time": "2020-06-04 20:08:39.8250", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:08:39.8611", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:08:40.2419", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:10:34.9769", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out.csv\" }" }
+{ "time": "2020-06-04 20:10:35.0765", "level": "Info", "message": "Size of file: 12,19 kB" }
+{ "time": "2020-06-04 20:10:35.2571", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:10:35.3069", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:10:35.7287", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:10:46.6600", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:10:46.7068", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:10:53.2128", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:10:53.2704", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:10:55.8677", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:11:44.3869", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:11:44.4904", "level": "Info", "message": "Size of file: 1,26 kB" }
+{ "time": "2020-06-04 20:11:44.6690", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:11:44.7051", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:11:45.0810", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:13:01.3203", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files.csv\" }" }
+{ "time": "2020-06-04 20:13:01.4189", "level": "Info", "message": "Size of file: 843,67 kB" }
+{ "time": "2020-06-04 20:13:01.6600", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:13:01.7127", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:13:02.6851", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:13:14.9961", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:13:15.1308", "level": "Info", "message": "Size of file: 9,99 kB" }
+{ "time": "2020-06-04 20:13:15.3202", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:13:15.3671", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:13:15.8006", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:16:45.0817", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:16:54.7306", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f (2).csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f (2).csv\" }" }
+{ "time": "2020-06-04 20:16:54.8410", "level": "Info", "message": "Size of file: 27,18 kB" }
+{ "time": "2020-06-04 20:16:55.0274", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:16:55.0733", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:16:55.5078", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:17:12.6480", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:17:12.7779", "level": "Info", "message": "Size of file: 29,39 kB" }
+{ "time": "2020-06-04 20:17:12.9673", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:17:13.0063", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:17:13.4740", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:20:00.6264", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files.csv\" }" }
+{ "time": "2020-06-04 20:20:00.7240", "level": "Info", "message": "Size of file: 843,67 kB" }
+{ "time": "2020-06-04 20:20:00.9690", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:20:01.0100", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:20:02.0216", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:21:02.0147", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:21:02.1143", "level": "Info", "message": "Size of file: 1,22 kB" }
+{ "time": "2020-06-04 20:21:02.3095", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:21:02.3486", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:21:02.7674", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:22:46.8764", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:22:59.9543", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:23:00.0607", "level": "Info", "message": "Size of file: 1,23 kB" }
+{ "time": "2020-06-04 20:23:00.2725", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:23:00.3145", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:23:00.7021", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:23:44.2605", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:23:44.3591", "level": "Info", "message": "Size of file: 820 Bytes" }
+{ "time": "2020-06-04 20:23:44.5407", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:23:44.5778", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:23:44.9497", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:25:31.2775", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:25:31.3810", "level": "Info", "message": "Size of file: 10,52 kB" }
+{ "time": "2020-06-04 20:25:31.5713", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:25:31.6153", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:25:32.0214", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:28:22.3616", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:28:22.4593", "level": "Info", "message": "Size of file: 25,31 kB" }
+{ "time": "2020-06-04 20:28:22.6526", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:28:22.6985", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:28:23.1447", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:28:48.3314", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:28:48.4339", "level": "Info", "message": "Size of file: 27,43 kB" }
+{ "time": "2020-06-04 20:28:48.6379", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:28:48.6809", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:28:49.1134", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:29:01.2381", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:29:01.3367", "level": "Info", "message": "Size of file: 28,82 kB" }
+{ "time": "2020-06-04 20:29:01.5808", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:29:01.6208", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:29:02.0689", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:29:58.0716", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files.csv\" }" }
+{ "time": "2020-06-04 20:29:58.1722", "level": "Info", "message": "Size of file: 843,67 kB" }
+{ "time": "2020-06-04 20:29:58.4104", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:29:58.4661", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:29:59.4560", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:34:19.5632", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:34:19.6663", "level": "Info", "message": "Size of file: 6,41 kB" }
+{ "time": "2020-06-04 20:34:19.8518", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:34:19.9006", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:34:20.3048", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:36:25.9144", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:36:26.0130", "level": "Info", "message": "Size of file: 16,31 kB" }
+{ "time": "2020-06-04 20:36:26.2122", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:36:26.2561", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:36:26.7072", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:39:54.4906", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:39:54.5912", "level": "Info", "message": "Size of file: 33,41 kB" }
+{ "time": "2020-06-04 20:39:54.8560", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:39:54.8980", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:39:55.3471", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:44:40.5359", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:44:40.6355", "level": "Info", "message": "Size of file: 52,56 kB" }
+{ "time": "2020-06-04 20:44:40.8463", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:44:40.8864", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:44:41.3765", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:45:28.9250", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files.csv\" }" }
+{ "time": "2020-06-04 20:45:29.0314", "level": "Info", "message": "Size of file: 843,67 kB" }
+{ "time": "2020-06-04 20:45:29.2677", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:45:29.3233", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:45:30.3250", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:46:01.3198", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:46:01.4164", "level": "Info", "message": "Size of file: 52,56 kB" }
+{ "time": "2020-06-04 20:46:01.6429", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:46:01.6849", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:46:02.1603", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:47:36.3327", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:47:36.4332", "level": "Info", "message": "Size of file: 52,56 kB" }
+{ "time": "2020-06-04 20:47:36.6627", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:47:36.7144", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:47:37.2543", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:50:41.4153", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:50:41.5129", "level": "Info", "message": "Size of file: 52,56 kB" }
+{ "time": "2020-06-04 20:50:41.7609", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:50:41.8038", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:50:42.2539", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:50:54.3583", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:50:54.4559", "level": "Info", "message": "Size of file: 52,56 kB" }
+{ "time": "2020-06-04 20:50:54.6931", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:50:54.7322", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:50:55.2077", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 20:51:12.0720", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 20:51:12.1706", "level": "Info", "message": "Size of file: 79,81 kB" }
+{ "time": "2020-06-04 20:51:12.3961", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 20:51:12.4400", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 20:51:12.9223", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 21:00:20.3162", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 21:00:20.4158", "level": "Info", "message": "Size of file: 121,80 kB" }
+{ "time": "2020-06-04 21:00:20.6423", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 21:00:20.6980", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 21:00:21.2095", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 21:04:30.3550", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 21:04:30.4546", "level": "Info", "message": "Size of file: 253,07 kB" }
+{ "time": "2020-06-04 21:04:30.6938", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 21:04:30.7367", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 21:04:31.4143", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 21:05:11.5432", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 21:05:11.6418", "level": "Info", "message": "Size of file: 134,96 kB" }
+{ "time": "2020-06-04 21:05:11.8693", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 21:05:11.9113", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 21:05:12.4443", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 21:20:15.7038", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 21:20:15.8014", "level": "Info", "message": "Size of file: 207,82 kB" }
+{ "time": "2020-06-04 21:20:16.0337", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 21:20:16.0787", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 21:20:16.6488", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 23:02:00.7004", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-04 23:02:00.8107", "level": "Info", "message": "Size of file: 628,98 kB" }
+{ "time": "2020-06-04 23:02:01.0382", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 23:02:01.0938", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 23:02:02.0154", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-04 23:54:09.4100", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_done.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_done.csv\" }" }
+{ "time": "2020-06-04 23:54:09.5070", "level": "Info", "message": "Size of file: 872,11 kB" }
+{ "time": "2020-06-04 23:54:09.7418", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-04 23:54:09.7908", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-04 23:54:10.8493", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-05 09:10:38.5503", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_out3 \u2014 \u043a\u043e\u043f\u0438\u044f.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_out3 \u2014 \u043a\u043e\u043f\u0438\u044f.csv\" }" }
+{ "time": "2020-06-05 09:10:38.6557", "level": "Info", "message": "Size of file: 17,92 kB" }
+{ "time": "2020-06-05 09:10:38.8880", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-05 09:10:38.9291", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-05 09:10:39.4416", "level": "Info", "message": "Showing loaded data..." }
+{ "time": "2020-06-05 09:27:41.9321", "level": "Info", "message": "Examining file \"C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\bin\\Debug\\netcoreapp2.1\\validate_files_done2.csv\"", "properties": "{ \"filename\": \"C:\\\\Work\\\\Anthill\\\\Anthill.p21.AutoTests\\\\Anthill.p21.AutoTests\\\\bin\\\\Debug\\\\netcoreapp2.1\\\\validate_files_done2.csv\" }" }
+{ "time": "2020-06-05 09:27:42.0405", "level": "Info", "message": "Size of file: 872,11 kB" }
+{ "time": "2020-06-05 09:27:42.2709", "level": "Info", "message": "Delimiter: \",\"", "properties": "{ \"delimiter\": \",\" }" }
+{ "time": "2020-06-05 09:27:42.3217", "level": "Info", "message": "With Header Row" }
+{ "time": "2020-06-05 09:27:43.3946", "level": "Info", "message": "Showing loaded data..." }
