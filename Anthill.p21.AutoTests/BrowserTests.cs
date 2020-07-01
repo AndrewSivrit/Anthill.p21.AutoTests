@@ -877,11 +877,11 @@ namespace Selenium.Test
                 InputAndCheckAdd("1212", 3, "Splint MD Left");
                 InputAndCheckAdd("3243", 4, "Profile Orthosis XL");
       
-                InputAndCheckAdd("1213", 5, "Splint LG Left");
-                InputAndCheckAdd("1213", 6, "Splint LG Left");
-                InputAndCheckAdd("3241", 7, "Orthosis MD");
-                InputAndCheckAdd("3239", 8, "Orthosis XS");
-                InputAndCheckAdd("3231", 9, "Orthosis 10");
+                //InputAndCheckAdd("1213", 5, "Splint LG Left");
+                //InputAndCheckAdd("1213", 6, "Splint LG Left");
+                //InputAndCheckAdd("3241", 7, "Orthosis MD");
+                //InputAndCheckAdd("3239", 8, "Orthosis XS");
+                //InputAndCheckAdd("3231", 9, "Orthosis 10");
 
                 Thread.Sleep(1000);
 
@@ -907,11 +907,11 @@ namespace Selenium.Test
                 Assert.IsTrue(bodyTextCart2.Contains("Splint SM Left"));
                 Assert.IsTrue(bodyTextCart2.Contains("Splint MD Left"));
                 Assert.IsTrue(bodyTextCart2.Contains("Profile Orthosis XL"));
-                Assert.IsTrue(bodyTextCart2.Contains("Splint LG Left"));
-                Assert.IsTrue(bodyTextCart2.Contains("Splint LG Left"));
-                Assert.IsTrue(bodyTextCart2.Contains("Orthosis MD"));
-                Assert.IsTrue(bodyTextCart2.Contains("Orthosis XS"));
-                Assert.IsTrue(bodyTextCart2.Contains("Orthosis 10"));
+                //Assert.IsTrue(bodyTextCart2.Contains("Splint LG Left"));
+                //Assert.IsTrue(bodyTextCart2.Contains("Splint LG Left"));
+                //Assert.IsTrue(bodyTextCart2.Contains("Orthosis MD"));
+                //Assert.IsTrue(bodyTextCart2.Contains("Orthosis XS"));
+                //Assert.IsTrue(bodyTextCart2.Contains("Orthosis 10"));
 
             //}, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
