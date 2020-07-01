@@ -197,8 +197,8 @@ namespace Selenium.Test
         [Test]
         public void Login()
         {
-            UITest(() =>
-            {
+            //UITest(() =>
+            //{
                 helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
                 Thread.Sleep(4000);
@@ -216,10 +216,10 @@ namespace Selenium.Test
                 Assert.AreEqual(authUrl, driver.Url);
 
                 Thread.Sleep(4000);
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            //}, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
-        [Test]
+        //[Test]
         public void SubmitterApproval()
         {
             login = "Anthony.Kosenko@gmail.com";
@@ -335,7 +335,7 @@ namespace Selenium.Test
             helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[5]/select", "Buff");
 
             helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[6]/select", "Spirit");
-            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[3]/select", "Standard Umbrella");
+            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[7]/select", "Standard Umbrella");
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
 
@@ -814,8 +814,8 @@ namespace Selenium.Test
         [Test]
         public void SearchPopProduct()
         {
-            UITest(() =>
-            {
+            //UITest(() =>
+            //{
                 String bodyTextProduct;
 
                 helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -831,9 +831,9 @@ namespace Selenium.Test
 
                 bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-                Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee OFM2"));
+                Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee"));
 
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            //}, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
 
         }
 
@@ -991,8 +991,8 @@ namespace Selenium.Test
         [Test]
         public void submitRMAs()
         {
-            UITest(() =>
-            {
+            //UITest(() =>
+            //{
                 helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
                 helperTest.waitElementId(driver, 60, "toggleQuickOrder");
@@ -1041,7 +1041,7 @@ namespace Selenium.Test
 
                 helperTest.FindTextInBody(driver, "Thank you for your submission");
 
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+           // }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
 
         }
 
@@ -1159,8 +1159,8 @@ namespace Selenium.Test
         public void AddToCartStep02()
         {
 
-            UITest(() =>
-            {
+            //UITest(() =>
+            //{
                 helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
                 helperTest.waitElementId(driver, 60, "toggleQuickOrder");
@@ -1198,7 +1198,7 @@ namespace Selenium.Test
                 helperTest.InputStringId(driver, "patient 1", "patient_id_in_cart0");
                 helperTest.InputStringId(driver, "test notes for 993640", "notes_in_cart0");
 
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            //}, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
         //[Test]
