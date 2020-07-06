@@ -920,7 +920,7 @@ namespace Selenium.Test
                 executor2.ExecuteScript("arguments[0].click();", ele2);
                 executor2.ExecuteScript("arguments[0].click();", ele2);
 
-                InputAndCheckAdd("1210", 0, "Grace Plate");
+                InputAndCheckAdd("3244", 0, "Profile Orthosis 2XL");
                 InputAndCheckAdd("3245", 1, "Profile Orthosis 3XL");
                 InputAndCheckAdd("1211", 2, "Splint SM Left");
                 InputAndCheckAdd("1212", 3, "Splint MD Left");
@@ -951,7 +951,7 @@ namespace Selenium.Test
 
                 String bodyTextCart2 = driver.FindElement(By.TagName("body")).Text;
 
-                Assert.IsTrue(bodyTextCart2.Contains("Grace Plate"));
+                Assert.IsTrue(bodyTextCart2.Contains("Profile Orthosis 2XL"));
                 Assert.IsTrue(bodyTextCart2.Contains("Profile Orthosis 3XL"));
                 Assert.IsTrue(bodyTextCart2.Contains("Splint SM Left"));
                 Assert.IsTrue(bodyTextCart2.Contains("Splint MD Left"));
