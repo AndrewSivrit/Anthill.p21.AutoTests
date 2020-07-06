@@ -170,9 +170,19 @@ namespace Selenium.Test
             Thread.Sleep(500);
         }
 
-        public void LoginToSite(IWebDriver driver, string urlSite, string homeUrl, string login, string password, string mainURL)
+        public void JsClickElementID(IWebDriver driver, string path)
         {
 
+            //waitElementXpath(driver, 120, path);
+            Thread.Sleep(100);
+            IWebElement ele = driver.FindElement(By.Id(path));
+            IJavaScriptExecutor executor = (IJavaScriptExecutor)driver;
+            executor.ExecuteScript("arguments[0].click();", ele);
+            Thread.Sleep(500);
+        }
+
+        public void LoginToSite(IWebDriver driver, string urlSite, string homeUrl, string login, string password, string mainURL)
+        {
             if ((driver.Url.Contains(mainURL)) & (!(driver.Url.Contains("auth"))))
             {
 
@@ -183,7 +193,9 @@ namespace Selenium.Test
 
                 if (driver.Url != homeUrl)
                 {
-                    Thread.Sleep(2000);
+                    waitElementId(driver, 60, "input-mail");
+                    
+                    Thread.Sleep(3000);
 
                     IWebElement InpBox = driver.FindElement(By.Id("input-mail"));
                     InpBox.SendKeys(login);
@@ -199,6 +211,79 @@ namespace Selenium.Test
             }
 
         }
+       
+        public void RegisterToSite(IWebDriver driver, string homeUrl, string FirstName, string LastName, string Email, string PhoneNumber, string RegPassword, string ConfirmPassword, string CascadeAccountNumber)
+        {
+            driver.Url = homeUrl;
+            {
 
+                Thread.Sleep(4000);
+
+                JsClickElementID(driver, "header_register_button");
+
+                Thread.Sleep(4000);
+
+                IWebElement FNBox = driver.FindElement(By.Id("defaultForm-firstname"));
+                FNBox.SendKeys(FirstName);
+
+                IWebElement LNBox = driver.FindElement(By.Id("defaultForm-lastname"));
+                LNBox.SendKeys(LastName);
+
+                IWebElement EmailBox = driver.FindElement(By.Id("defaultForm-email"));
+                EmailBox.SendKeys(Email);
+
+                IWebElement PhoneBox = driver.FindElement(By.Id("defaultForm-phone"));
+                PhoneBox.SendKeys(PhoneNumber);
+
+                IWebElement PassBox = driver.FindElement(By.Id("defaultForm-pass"));
+                PassBox.SendKeys(RegPassword);
+
+                IWebElement ComfPassBox = driver.FindElement(By.Id("defaultForm-cpass"));
+                ComfPassBox.SendKeys(ConfirmPassword);
+
+                IWebElement AccBox = driver.FindElement(By.Id("defaultForm-acc"));
+                AccBox.SendKeys(CascadeAccountNumber);
+                            
+            }
+
+        }
+        public void AddItem(IWebDriver driver, string Item, int num, string Desc)
+        {
+
+            string numInput = "input-" + num.ToString();
+            IWebElement InpBox = driver.FindElement(By.Id(numInput));
+            InpBox.SendKeys(Item);
+
+            driver.FindElement(By.Id(numInput)).SendKeys(Keys.Enter);
+
+            Thread.Sleep(3000);
+
+            String bodyText = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyText.Contains(Desc));
+
+        }
+        public void AddPatientID(IWebDriver driver, string Item, int num)
+        {
+
+            string numInput = "input-patient-" + num.ToString();
+            IWebElement InpBox = driver.FindElement(By.Id(numInput));
+            InpBox.SendKeys(Item);
+
+            driver.FindElement(By.Id(numInput)).SendKeys(Keys.Enter);
+
+            Thread.Sleep(2000);                      
+        }
+        public void AddNotes(IWebDriver driver, string Item, int num)
+        {
+
+            string numInput = "input-note-" + num.ToString();
+            IWebElement InpBox = driver.FindElement(By.Id(numInput));
+            InpBox.SendKeys(Item);
+
+            driver.FindElement(By.Id(numInput)).SendKeys(Keys.Enter);
+
+            Thread.Sleep(2000);
+        }
     }
 }
+
