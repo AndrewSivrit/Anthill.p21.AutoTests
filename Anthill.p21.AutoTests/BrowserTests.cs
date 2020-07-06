@@ -1067,7 +1067,7 @@ namespace Selenium.Test
         [Test]
         public void SubmitOrder()
         {
-            UITest(() =>
+            //UITest(() =>
             {
                 helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
@@ -1076,8 +1076,6 @@ namespace Selenium.Test
                 Assert.AreEqual(homeUrl, driver.Url);
 
                 driver.Url = mainURLs + "product?productID=1528";
-
-
 
                 Assert.AreEqual(mainURLs + "product?productID=1528", driver.Url);
 
@@ -1091,8 +1089,7 @@ namespace Selenium.Test
                 
                 Thread.Sleep(5000);
 
-                helperTest.JsClickElementId(driver, "header_cart_icon");
-            
+                helperTest.JsClickElementId(driver, "header_cart_icon");            
 
                 helperTest.waitElementId(driver, 60, "item-name-in-cart0");
 
@@ -1109,7 +1106,7 @@ namespace Selenium.Test
 
                 Thread.Sleep(1000);
 
-            helperTest.JsClickElementId(driver, "submit_order");
+                helperTest.JsClickElementId(driver, "submit_order");
 
                 helperTest.waitElementId(driver, 180, "product-name-in-cartundefined");
 
@@ -1129,7 +1126,7 @@ namespace Selenium.Test
 
                 Thread.Sleep(11000);
 
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            }//, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
 
         }
 
