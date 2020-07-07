@@ -669,12 +669,12 @@ namespace Selenium.Test
             Thread.Sleep(4000);
 
             Assert.AreEqual(mainURLs + "comparison", driver.Url);
-
+             
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
             Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® Liners"));
             Assert.IsTrue(bodyTextProduct.Contains("Alpha Hybrid® Liners"));
-            Assert.IsTrue(bodyTextProduct.Contains("DuraGel™ LinerLow Activity Liner"));
+            Assert.IsTrue(bodyTextProduct.Contains("Relax™ Liner"));
 
             Thread.Sleep(3000);
 
@@ -684,7 +684,7 @@ namespace Selenium.Test
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsFalse(bodyTextProduct.Contains("DuraGel™ LinerLow Activity Liner"));
+            Assert.IsFalse(bodyTextProduct.Contains("Relax™ Liner"));
 
             Thread.Sleep(1000);
 
@@ -876,7 +876,7 @@ namespace Selenium.Test
 
                 bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-                Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee OFM2"));
+                Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee"));
 
             }
             //, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
