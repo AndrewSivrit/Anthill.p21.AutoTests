@@ -452,7 +452,7 @@ namespace Selenium.Test
             Assert.IsTrue(ImagePresent);
 
             IWebElement SearchBox = driver.FindElement(By.Id("search"));
-            SearchBox.SendKeys("shoes");
+            SearchBox.SendKeys("knee");
 
             SearchBox.SendKeys(Keys.Enter);
 

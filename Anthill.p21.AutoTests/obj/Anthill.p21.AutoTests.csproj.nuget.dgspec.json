@@ -1,33 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj": {}
+    "C:\\Anthill\\temp\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj": {}
   },
   "projects": {
-    "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj": {
+    "C:\\Anthill\\temp\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj",
+        "projectUniqueName": "C:\\Anthill\\temp\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj",
         "projectName": "Anthill.p21.AutoTests",
-        "projectPath": "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj",
-        "packagesPath": "C:\\Users\\Andrew\\.nuget\\packages\\",
-        "outputPath": "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\obj\\",
+        "projectPath": "C:\\Anthill\\temp\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests.csproj",
+        "packagesPath": "C:\\Users\\working-pc-1\\.nuget\\packages\\",
+        "outputPath": "C:\\Anthill\\temp\\Anthill.p21.AutoTests\\Anthill.p21.AutoTests\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Work\\Anthill\\Anthill.p21.AutoTests\\NuGet.Config",
-          "C:\\Users\\Andrew\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Anthill\\temp\\Anthill.p21.AutoTests\\NuGet.Config",
+          "C:\\Anthill\\NuGet.Config",
+          "C:\\Users\\working-pc-1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.1"
         ],
         "sources": {
+          "C:\\Anthill\\temp\\s\\Anthill.p21\\nuget": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Work\\Anthill\\s\\Anthill.p21\\nuget": {},
-          "C:\\Work\\v2_backend\\Anthill.p21\\packages": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://dotnet.myget.org/F/dotnet-core/api/v3/index.json": {},
           "https://www.myget.org/F/vsixtesting/api/v3/index.json": {}
@@ -51,13 +48,10 @@
               "version": "[15.8.0, )"
             },
             "Microsoft.NETCore.App": {
+              "suppressParent": "All",
               "target": "Package",
               "version": "[2.1.0, )",
               "autoReferenced": true
-            },
-            "Microsoft.TeamFoundationServer.ExtendedClient": {
-              "target": "Package",
-              "version": "[16.153.0, )"
             },
             "NUnit3TestAdapter": {
               "target": "Package",
@@ -77,10 +71,16 @@
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
