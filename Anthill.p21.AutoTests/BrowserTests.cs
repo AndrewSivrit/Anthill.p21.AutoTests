@@ -342,18 +342,18 @@ namespace Selenium.Test
             Thread.Sleep(3000);
 
             bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/span[1]")).Text;
-            Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® Liners"));
+            Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® AK Liner"));
 
             helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[1]/select", "Locking");
-            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[2]/select", "Small");
-            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[3]/select", "Uniform");
+            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[2]/select", "Large");
+            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[3]/select", "MAX");
 
-            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[4]/select", "6 mm");
+            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[4]/select", "Standard Umbrella");
 
-            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[5]/select", "Buff");
+            //helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[5]/select", "Buff");
 
-            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[6]/select", "Spirit");
-            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[7]/select", "Standard Umbrella");
+            //helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[6]/select", "Spirit");
+            //helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[7]/select", "Standard Umbrella");
 
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
@@ -361,7 +361,7 @@ namespace Selenium.Test
             Thread.Sleep(3000);
 
             bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-cart-panel/section/div/div[2]/article/div[1]/div[1]/app-product-card[1]/article/div[2]/div[1]/p[2]")).Text;
-            Assert.IsTrue(bodyTextProduct.Contains("ALL-5463-E"));
+            Assert.IsTrue(bodyTextProduct.Contains("AKL-2636-X"));
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
 
@@ -369,7 +369,7 @@ namespace Selenium.Test
 
             helperTest.waitElementId(driver, 60, "item-name-in-cart0");
             bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
-            Assert.IsTrue(bodyTextProduct.Contains("ALL-5463-E"));
+            Assert.IsTrue(bodyTextProduct.Contains("AKL-2636-X"));
         }
 
         [Test]
@@ -452,7 +452,7 @@ namespace Selenium.Test
             Assert.IsTrue(ImagePresent);
 
             IWebElement SearchBox = driver.FindElement(By.Id("search"));
-            SearchBox.SendKeys("knee");
+            SearchBox.SendKeys("spine");
 
             SearchBox.SendKeys(Keys.Enter);
 
@@ -637,7 +637,6 @@ namespace Selenium.Test
             String bodyTextProduct;
             IWebElement NavigateCusror;
 
-
             helperTest.waitElementId(driver, 60, "search");
             IWebElement SearchBox = driver.FindElement(By.Id("search"));
 
@@ -672,9 +671,9 @@ namespace Selenium.Test
              
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® Liners"));
-            Assert.IsTrue(bodyTextProduct.Contains("Alpha Hybrid® Liners"));
-            Assert.IsTrue(bodyTextProduct.Contains("Relax™ Liner"));
+            Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® AK Liner"));
+            Assert.IsTrue(bodyTextProduct.Contains("DuraGel™ LinerLow Activity Liner"));
+            Assert.IsTrue(bodyTextProduct.Contains("Liberty™ Liner"));
 
             Thread.Sleep(3000);
 
@@ -684,7 +683,7 @@ namespace Selenium.Test
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsFalse(bodyTextProduct.Contains("Relax™ Liner"));
+            Assert.IsFalse(bodyTextProduct.Contains("Liberty™ Liner"));
 
             Thread.Sleep(1000);
 
@@ -1124,7 +1123,7 @@ namespace Selenium.Test
 
                 helperTest.JsClickElement(driver, "//*[text()='" + " OK " + "']");
 
-                Thread.Sleep(11000);
+                Thread.Sleep(2000);
 
             }//, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
 
