@@ -673,7 +673,7 @@ namespace Selenium.Test
 
             Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® AK Liner"));
             Assert.IsTrue(bodyTextProduct.Contains("DuraGel™ LinerLow Activity Liner"));
-            Assert.IsTrue(bodyTextProduct.Contains("Liberty™ Liner"));
+            Assert.IsTrue(bodyTextProduct.Contains("Liner Lanyard"));
 
             Thread.Sleep(3000);
 
@@ -683,7 +683,7 @@ namespace Selenium.Test
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsFalse(bodyTextProduct.Contains("Liberty™ Liner"));
+            Assert.IsFalse(bodyTextProduct.Contains("Liner Lanyard"));
 
             Thread.Sleep(1000);
 
@@ -1065,68 +1065,63 @@ namespace Selenium.Test
 
         [Test]
         public void SubmitOrder()
-        {
-            //UITest(() =>
-            {
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+        {            
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
-                helperTest.waitElementId(driver, 60, "toggleQuickOrder");
+            helperTest.waitElementId(driver, 60, "toggleQuickOrder");
 
-                Assert.AreEqual(homeUrl, driver.Url);
+            Assert.AreEqual(homeUrl, driver.Url);
 
-                driver.Url = mainURLs + "product?productID=1528";
+            driver.Url = mainURLs + "product?productID=1528";
 
-                Assert.AreEqual(mainURLs + "product?productID=1528", driver.Url);
+            Assert.AreEqual(mainURLs + "product?productID=1528", driver.Url);
 
-                helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
 
-                String bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
+            String bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
 
-                Assert.IsTrue(bodyTextProduct.Contains("Attachment Kits 650 AK"));
+            Assert.IsTrue(bodyTextProduct.Contains("Attachment Kits 650 AK"));
 
-                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
                 
-                Thread.Sleep(5000);
+            Thread.Sleep(5000);
 
-                helperTest.JsClickElementId(driver, "header_cart_icon");            
+            helperTest.JsClickElementId(driver, "header_cart_icon");            
 
-                helperTest.waitElementId(driver, 60, "item-name-in-cart0");
+            helperTest.waitElementId(driver, 60, "item-name-in-cart0");
 
-                Assert.AreEqual(mainURLs + "cart/index", driver.Url);
+            Assert.AreEqual(mainURLs + "cart/index", driver.Url);
 
-                IWebElement InpBox = driver.FindElement(By.Id("poNumber"));
+            IWebElement InpBox = driver.FindElement(By.Id("poNumber"));
 
-                InpBox.Clear();
-                InpBox.SendKeys("TESTPO " + DateTime.Now.ToString("yyyyMMdd"));
+            InpBox.Clear();
+            InpBox.SendKeys("TESTPO " + DateTime.Now.ToString("yyyyMMdd"));
 
-                IWebElement InpBox2 = driver.FindElement(By.Id("notesInput"));
-                InpBox2.Clear();
-                InpBox2.SendKeys("TEST ORDER PLEASE DO NOT PROCESS " + DateTime.Now.ToString("yyyyMMdd"));
+            IWebElement InpBox2 = driver.FindElement(By.Id("notesInput"));
+            InpBox2.Clear();
+            InpBox2.SendKeys("TEST ORDER PLEASE DO NOT PROCESS " + DateTime.Now.ToString("yyyyMMdd"));
 
-                Thread.Sleep(1000);
+            Thread.Sleep(1000);
 
-                helperTest.JsClickElementId(driver, "submit_order");
+            helperTest.JsClickElementId(driver, "submit_order");
 
-                helperTest.waitElementId(driver, 180, "product-name-in-cartundefined");
+            helperTest.waitElementId(driver, 180, "product-name-in-cartundefined");
 
-                Assert.AreEqual(mainURLs + "cart/review", driver.Url);
+            Assert.AreEqual(mainURLs + "cart/review", driver.Url);
 
-                Thread.Sleep(3000);
+            Thread.Sleep(3000);
 
-                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-review-cart/section/aside/app-order-info-aside/aside/div[3]/div[3]/app-button/div/button");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-review-cart/section/aside/app-order-info-aside/aside/div[3]/div[3]/app-button/div/button");
 
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-review-cart/div[1]/div/div/div[3]/app-button/div/button");
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-review-cart/div[1]/div/div/div[3]/app-button/div/button");
 
-                helperTest.FindTextInBody(driver, "Your order number is");
+            helperTest.FindTextInBody(driver, "Your order number is");
 
-                Thread.Sleep(4000);
+            Thread.Sleep(4000);
 
-                helperTest.JsClickElement(driver, "//*[text()='" + " OK " + "']");
+            helperTest.JsClickElement(driver, "//*[text()='" + " OK " + "']");
 
-                Thread.Sleep(2000);
-
-            }//, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
-
+            Thread.Sleep(2000);            
         }
 
         [Test]
@@ -1206,7 +1201,7 @@ namespace Selenium.Test
             IWebElement SearchBox = driver.FindElement(By.Id("search"));
 
             SearchBox.Clear();
-            SearchBox.SendKeys("L5679");
+            SearchBox.SendKeys("L5647");
 
             SearchBox.SendKeys(Keys.Enter);
 
@@ -1214,10 +1209,10 @@ namespace Selenium.Test
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® Liners"));
-            Assert.IsTrue(bodyTextProduct.Contains("Alpha Hybrid® Liners"));
-            Assert.IsTrue(bodyTextProduct.Contains("Alpha Silicone® Liners"));
-            Assert.IsTrue(bodyTextProduct.Contains("AEGIS Seal-Pro TT Liner"));
+            Assert.IsTrue(bodyTextProduct.Contains("Medium Air-Lock"));
+            Assert.IsTrue(bodyTextProduct.Contains("Opti-Seal®"));
+            Assert.IsTrue(bodyTextProduct.Contains("Alpha® Suction Pro"));
+            Assert.IsTrue(bodyTextProduct.Contains("Air-Lock Lanyard"));
 
             SearchBox.Clear();
             SearchBox.SendKeys("L8417");
