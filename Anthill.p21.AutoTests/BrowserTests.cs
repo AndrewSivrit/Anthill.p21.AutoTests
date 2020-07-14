@@ -1115,7 +1115,7 @@ namespace Selenium.Test
 
             helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-review-cart/div[1]/div/div/div[3]/app-button/div/button");
 
-            helperTest.FindTextInBody(driver, "Your order number is");
+            helperTest.FindTextInBody(driver, "Thank you for your order. Your order number is");
 
             Thread.Sleep(4000);
 
