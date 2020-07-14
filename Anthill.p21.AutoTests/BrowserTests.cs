@@ -1866,47 +1866,43 @@ namespace Selenium.Test
         [Test]
         public void AddToCartStep13()
         {
-           // UITest(() =>
-           // {
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
-                helperTest.waitElementId(driver, 60, "toggleQuickOrder");
+            helperTest.waitElementId(driver, 60, "toggleQuickOrder");
 
-                Actions actions = new Actions(driver);
-                IWebElement CartBtn;
-                String bodyTextProduct;
-                IWebElement NavigateCusror;
+            Actions actions = new Actions(driver);
+            IWebElement CartBtn;
+            String bodyTextProduct;
+            IWebElement NavigateCusror;
 
 
-                helperTest.waitElementId(driver, 60, "search");
-                IWebElement SearchBox = driver.FindElement(By.Id("search"));
+            helperTest.waitElementId(driver, 60, "search");
+            IWebElement SearchBox = driver.FindElement(By.Id("search"));
 
-                SearchBox.Clear();
-                SearchBox.SendKeys("60SL");
-                Thread.Sleep(3000);
+            SearchBox.Clear();
+            SearchBox.SendKeys("60SL");
+            Thread.Sleep(3000);
 
-                helperTest.JsClickElement(driver, "/html/body/app-root/app-header/nav/div/div[1]/app-search-panel/div/div[2]/div[2]/form/div[1]/app-search-panel-dropdown/div[1]/div/div[2]/p[1]");
+            helperTest.JsClickElement(driver, "/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[2]/p[1]");               
+                
+            Thread.Sleep(5000);
 
-                Thread.Sleep(5000);
+            Assert.AreEqual(mainURLs + "product?productID=6646", driver.Url);
 
-                Assert.AreEqual(mainURLs + "product?productID=6646", driver.Url);
+            helperTest.InputStringId(driver, "5", "qty_product_page1");
+            helperTest.JsClickElementId(driver, "add_product_to_cart1");
 
-                helperTest.InputStringId(driver, "5", "qty_product_page1");
-                helperTest.JsClickElementId(driver, "add_product_to_cart1");
-
-                // go to cart
-                helperTest.waitElementId(driver, 60, "header_cart_icon");
-                CartBtn = driver.FindElement((By.Id("header_cart_icon")));
-                CartBtn.Click();
-                // check sku
-                helperTest.waitElementId(driver, 60, "item-name-in-cart0");
-                bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
-                Assert.IsTrue(bodyTextProduct.Contains("60SL"));
-                // wtite descr
-                helperTest.InputStringId(driver, "patient 12", "patient_id_in_cart0");
-                helperTest.InputStringId(driver, "test notes for item 60SL", "notes_in_cart0");
-            //}, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
-
+            // go to cart
+            helperTest.waitElementId(driver, 60, "header_cart_icon");
+            CartBtn = driver.FindElement((By.Id("header_cart_icon")));
+            CartBtn.Click();
+            // check sku
+            helperTest.waitElementId(driver, 60, "item-name-in-cart0");
+            bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("60SL"));
+            // wtite descr
+            helperTest.InputStringId(driver, "patient 12", "patient_id_in_cart0");
+            helperTest.InputStringId(driver, "test notes for item 60SL", "notes_in_cart0");           
         }
 
         ////[Test]
@@ -2058,51 +2054,48 @@ namespace Selenium.Test
 
         [Test]
         public void AddToCartStep17()
-        {
-            //UITest(() =>
-            //{
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+        {          
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
-                helperTest.waitElementId(driver, 60, "toggleQuickOrder");
+            helperTest.waitElementId(driver, 60, "toggleQuickOrder");
 
-                Actions actions = new Actions(driver);
-                IWebElement CartBtn;
-                String bodyTextProduct;
-                IWebElement NavigateCusror;
+            Actions actions = new Actions(driver);
+            IWebElement CartBtn;
+            String bodyTextProduct;
+            IWebElement NavigateCusror;
 
-                //search text
-                helperTest.waitElementId(driver, 60, "search");
-                IWebElement SearchBox = driver.FindElement(By.Id("search"));
-                SearchBox.Clear();
-                SearchBox.SendKeys("993740");
+            //search text
+            helperTest.waitElementId(driver, 60, "search");
+            IWebElement SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.Clear();
+            SearchBox.SendKeys("993740");
 
-                Thread.Sleep(3000);
+            Thread.Sleep(3000);
 
-                Thread.Sleep(3000);
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/app-header/nav/div/div[1]/app-search-panel/div/div[2]/div[2]/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span");
+            Thread.Sleep(3000);
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span");
+            
+            NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span"));
+            actions.MoveToElement(NavigateCusror).Build().Perform();
 
-                NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div/div[1]/app-search-panel/div/div[2]/div[2]/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span"));
-                actions.MoveToElement(NavigateCusror).Build().Perform();
+            helperTest.InputStringId(driver, "2", "qty_in_dropdown");
 
-                helperTest.InputStringId(driver, "2", "qty_in_dropdown");
+            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
 
-                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+            Thread.Sleep(3000);
+            // go to cart
+            helperTest.waitElementId(driver, 60, "header_cart_icon");
+            CartBtn = driver.FindElement((By.Id("header_cart_icon")));
+            CartBtn.Click();
+            // check sku
+            helperTest.waitElementId(driver, 60, "item-name-in-cart0");
+            bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("993740"));
+            // wtite descr
+            helperTest.InputStringId(driver, "patient 16", "patient_id_in_cart0");
+            helperTest.InputStringId(driver, "test notes for item 993740", "notes_in_cart0");
 
-                Thread.Sleep(3000);
-                // go to cart
-                helperTest.waitElementId(driver, 60, "header_cart_icon");
-                CartBtn = driver.FindElement((By.Id("header_cart_icon")));
-                CartBtn.Click();
-                // check sku
-                helperTest.waitElementId(driver, 60, "item-name-in-cart0");
-                bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
-                Assert.IsTrue(bodyTextProduct.Contains("993740"));
-                // wtite descr
-                helperTest.InputStringId(driver, "patient 16", "patient_id_in_cart0");
-                helperTest.InputStringId(driver, "test notes for item 993740", "notes_in_cart0");
-
-                Thread.Sleep(5000);
-           // }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            Thread.Sleep(5000);           
         }
 
         ////[Test]
