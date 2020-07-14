@@ -441,7 +441,7 @@ namespace Selenium.Test
 
             helperTest.waitElementId(driver, 60, "search");
 
-            Thread.Sleep(4000);
+            Thread.Sleep(5000);
 
             helperTest.waitElementId(driver, 60, "current_product_img");
 
