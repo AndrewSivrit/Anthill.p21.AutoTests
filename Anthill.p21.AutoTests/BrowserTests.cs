@@ -99,7 +99,7 @@ namespace Selenium.Test
             ChromeOptions options = new ChromeOptions();
 
             options.AddArguments("--no-sandbox");
-            //options.AddArguments("--headless");
+            options.AddArguments("--headless");
 
             options.AddUserProfilePreference("download.default_directory", "C:/Work/Anthill/Anthill.p21.AutoTests/logs_img");
             options.AddUserProfilePreference("intl.accept_languages", "nl");
@@ -315,7 +315,7 @@ namespace Selenium.Test
             Thread.Sleep(1000);
 
         }
-        [Test]
+        //[Test]
         public void AddToCartFromPreview()
         {
             Actions actions = new Actions(driver);
@@ -397,7 +397,7 @@ namespace Selenium.Test
 
             Thread.Sleep(5000);                       
 
-            for (int j = 1; j < 5; j++)
+            for (int j = 1; j < 3; j++)
             {
                 for (int i = 0; i < 25; i++)
                 {
@@ -458,7 +458,7 @@ namespace Selenium.Test
             Assert.IsTrue(ImagePresent);
 
             IWebElement SearchBox = driver.FindElement(By.Id("search"));
-            SearchBox.SendKeys("spine");
+            SearchBox.SendKeys("orthotics");
 
             SearchBox.SendKeys(Keys.Enter);
 
@@ -481,7 +481,7 @@ namespace Selenium.Test
 
         }
 
-        [Test]
+        //[Test]
         public void ShoppingList()
         {
             //UITest(() =>
@@ -632,7 +632,7 @@ namespace Selenium.Test
             Thread.Sleep(4000);
         }
 
-        [Test]
+        //[Test]
         public void Comparision()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -695,7 +695,7 @@ namespace Selenium.Test
 
         }
 
-        [Test]
+        //[Test]
         public void ShipAddr()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -805,7 +805,7 @@ namespace Selenium.Test
 
         }
 
-        [Test]
+        //[Test]
         public void ClearAll()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -861,7 +861,7 @@ namespace Selenium.Test
             }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
-        [Test]
+        //[Test]
         public void SearchPopProduct()
         {
             //UITest(() =>
@@ -907,7 +907,7 @@ namespace Selenium.Test
             Assert.IsTrue(bodyText.Contains(nameCheck));
         }
 
-        [Test]
+        //[Test]
         public void QuickOrderAndDeleteFromCart()
         {
            // UITest(() =>
@@ -1069,7 +1069,7 @@ namespace Selenium.Test
             return value.ToString("yyyyMMddHHmmssffff");
         }
 
-        [Test]
+        //[Test]
         public void SubmitOrder()
         {            
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -1130,76 +1130,67 @@ namespace Selenium.Test
             Thread.Sleep(2000);            
         }
 
-        [Test]
+        //[Test]
         public void submitRMAs()
         {
-            //UITest(() =>
-            {
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
-                helperTest.waitElementId(driver, 60, "toggleQuickOrder");
+            helperTest.waitElementId(driver, 60, "toggleQuickOrder");
 
-                Assert.AreEqual(homeUrl, driver.Url);
+            Assert.AreEqual(homeUrl, driver.Url);
 
-                driver.Url = mainURLs + "shopping/order-history?tab=orders&page=1";
+            driver.Url = mainURLs + "shopping/order-history?tab=orders&page=1";
 
-                Thread.Sleep(1000);
+            Thread.Sleep(1000);
 
-                Assert.AreEqual(mainURLs + "shopping/order-history?tab=orders&page=1", driver.Url);                              
+            Assert.AreEqual(mainURLs + "shopping/order-history?tab=orders&page=1", driver.Url);                              
 
-                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/section/section/app-history-order-item[1]/article/article/section/div[2]/section[1]/div[2]/div[2]/div/app-button/div/button");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/section/section/app-history-order-item[1]/article/article/section/div[2]/section[1]/div[2]/div[2]/div/app-button/div/button");
 
-                helperTest.InputStringId(driver, "123456", "rma_patientID");
-                helperTest.InputStringId(driver, "1234567890", "rma_serialNumbers");
+            helperTest.InputStringId(driver, "123456", "rma_patientID");
+            helperTest.InputStringId(driver, "1234567890", "rma_serialNumbers");
 
-                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[4]/div[2]/select", 2);
-                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[5]/div[2]/select", 2);
-                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[6]/div[2]/select", 5);
+            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[4]/div[2]/select", 2);
+            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[5]/div[2]/select", 2);
+            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[6]/div[2]/select", 5);
 
-                Thread.Sleep(2000);
+            //Thread.Sleep(2000);
 
-                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[11]/div[2]/select", 3);
+            //helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[11]/div[2]/select", 3);
 
-                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[7]/div[2]/input");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[7]/div[2]/input");                       
 
-                Thread.Sleep(2000);
+            helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[4]/td[2]/div");            
 
-                helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[4]/td[2]/div");               
+            helperTest.InputStringXpath(driver, "Broken", "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[8]/div[2]/textarea");
 
-                Thread.Sleep(2000);
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[9]/div[2]/input");                                              
 
-                helperTest.InputStringXpath(driver, "Broken", "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[8]/div[2]/textarea");
+            helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[4]/td[3]/div");                       
 
-                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[9]/div[2]/input");
+            Thread.Sleep(2000);
 
-                Thread.Sleep(2000);                               
+            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[11]/div[2]/select", 3);
 
-                helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[4]/td[3]/div");
+            IWebElement InpBox2 = driver.FindElement(By.Id("rma_notes"));
 
-                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[11]/div[2]/select", 3);
+            InpBox2.Clear();
+            InpBox2.SendKeys("TEST RMA PLEASE DO NOT PROCESS " + DateTime.Now.ToString("yyyyMMdd"));
 
-                IWebElement InpBox2 = driver.FindElement(By.Id("rma_notes"));
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[2]/div[2]/button");
 
-                InpBox2.Clear();
-                InpBox2.SendKeys("TEST RMA PLEASE DO NOT PROCESS " + DateTime.Now.ToString("yyyyMMdd"));
+            Thread.Sleep(5000);
 
-                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[2]/div[2]/button");
+            helperTest.FindTextInBody(driver, "Success");
 
-                Thread.Sleep(5000);
+            helperTest.JsClickElement(driver, "//*[text()='" + " Submit for Return " + "']");
 
-                helperTest.FindTextInBody(driver, "Success");
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-main/div/app-order-history/div[5]/div/div/div[3]/app-button/div/button");
 
-                helperTest.JsClickElement(driver, "//*[text()='" + " Submit for Return " + "']");
-
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-main/div/app-order-history/div[5]/div/div/div[3]/app-button/div/button");
-
-                helperTest.FindTextInBody(driver, "Thank you for your submission");
-
-            }//, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
-
+            helperTest.FindTextInBody(driver, "Thank you for your submission");                      
         }
 
-        [Test]
+        //[Test]
         public void searchByHCPCS()
         {
 
@@ -1247,7 +1238,7 @@ namespace Selenium.Test
 
         }
 
-        [Test]
+        //[Test]
         public void searchByPartName()
         {
             Actions actions = new Actions(driver);
@@ -1881,7 +1872,7 @@ namespace Selenium.Test
 
         }
 
-        [Test]
+        //[Test]
         public void AddToCartStep13()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -2070,7 +2061,7 @@ namespace Selenium.Test
            // }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
-        [Test]
+        //[Test]
         public void AddToCartStep17()
         {          
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
