@@ -315,7 +315,7 @@ namespace Selenium.Test
             Thread.Sleep(1000);
 
         }
-        //[Test]
+        [Test]
         public void AddToCartFromPreview()
         {
             Actions actions = new Actions(driver);
@@ -481,7 +481,7 @@ namespace Selenium.Test
 
         }
 
-        //[Test]
+        [Test]
         public void ShoppingList()
         {
             //UITest(() =>
@@ -632,7 +632,7 @@ namespace Selenium.Test
             Thread.Sleep(4000);
         }
 
-        //[Test]
+        [Test]
         public void Comparision()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -695,7 +695,7 @@ namespace Selenium.Test
 
         }
 
-        //[Test]
+        [Test]
         public void ShipAddr()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -805,7 +805,7 @@ namespace Selenium.Test
 
         }
 
-        //[Test]
+        [Test]
         public void ClearAll()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -861,7 +861,7 @@ namespace Selenium.Test
             }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
-        //[Test]
+        [Test]
         public void SearchPopProduct()
         {
             //UITest(() =>
@@ -907,7 +907,7 @@ namespace Selenium.Test
             Assert.IsTrue(bodyText.Contains(nameCheck));
         }
 
-        //[Test]
+        [Test]
         public void QuickOrderAndDeleteFromCart()
         {
            // UITest(() =>
@@ -1069,7 +1069,7 @@ namespace Selenium.Test
             return value.ToString("yyyyMMddHHmmssffff");
         }
 
-        //[Test]
+        [Test]
         public void SubmitOrder()
         {            
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -1130,7 +1130,7 @@ namespace Selenium.Test
             Thread.Sleep(2000);            
         }
 
-        //[Test]
+        [Test]
         public void submitRMAs()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -1154,7 +1154,7 @@ namespace Selenium.Test
             helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[5]/div[2]/select", 2);
             helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[6]/div[2]/select", 5);
 
-            //Thread.Sleep(2000);
+            Thread.Sleep(2000);
 
             //helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[11]/div[2]/select", 3);
 
@@ -1190,7 +1190,7 @@ namespace Selenium.Test
             helperTest.FindTextInBody(driver, "Thank you for your submission");                      
         }
 
-        //[Test]
+        [Test]
         public void searchByHCPCS()
         {
 
@@ -1238,7 +1238,7 @@ namespace Selenium.Test
 
         }
 
-        //[Test]
+        [Test]
         public void searchByPartName()
         {
             Actions actions = new Actions(driver);
@@ -1872,7 +1872,7 @@ namespace Selenium.Test
 
         }
 
-        //[Test]
+        [Test]
         public void AddToCartStep13()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -2061,7 +2061,7 @@ namespace Selenium.Test
            // }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
-        //[Test]
+        [Test]
         public void AddToCartStep17()
         {          
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
