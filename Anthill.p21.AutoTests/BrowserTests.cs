@@ -95,7 +95,7 @@ namespace Selenium.Test
             ConfirmPassword = "54321";
             CascadeAccountNumber = "102978";
 
-        helperTest = new HelperTest();
+            helperTest = new HelperTest();
             ChromeOptions options = new ChromeOptions();
 
             options.AddArguments("--no-sandbox");
@@ -105,11 +105,12 @@ namespace Selenium.Test
             options.AddUserProfilePreference("intl.accept_languages", "nl");
             options.AddUserProfilePreference("disable-popup-blocking", "true");
 
-            driver = new ChromeDriver(pathDrivers, options);
+            driver = new ChromeDriver(pathDrivers, options);            
             //driver = new InternetExplorerDriver(pathDrivers);
 
             driver.Manage().Cookies.DeleteAllCookies();
-            driver.Manage().Window.Maximize();
+            driver.Manage().Window.Size = new System.Drawing.Size(1920, 1024);
+            //driver.Manage().Window.Maximize();
 
             //driver.Url = mainURLs + "auth/login";
             //driver.Manage().Window.Maximize();
@@ -314,7 +315,7 @@ namespace Selenium.Test
             Thread.Sleep(1000);
 
         }
-        //[Test]
+        [Test]
         public void AddToCartFromPreview()
         {
             Actions actions = new Actions(driver);
@@ -375,7 +376,7 @@ namespace Selenium.Test
             Assert.IsTrue(bodyTextProduct.Contains("AKL-2636-X"));
         }
 
-        //[Test]
+        [Test]
         public void Pagenation()
         {
             IWebElement Img;
@@ -407,7 +408,7 @@ namespace Selenium.Test
 
 
                     ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
-
+                    Assert.IsTrue(ImagePresent);
                 }
                 
                 helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/div/ngb-pagination/ul/li[10]/a");
@@ -429,6 +430,8 @@ namespace Selenium.Test
 
             Assert.AreEqual(homeUrl, driver.Url);
 
+            //((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("Test3.png", ScreenshotImageFormat.Png);
+
             helperTest.waitElementId(driver, 60, "search");
 
             for (int i = 1; i <= 5; i++)
@@ -437,7 +440,7 @@ namespace Selenium.Test
                 Img = driver.FindElement(By.XPath(path));
 
                 ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
-
+                Assert.IsTrue(ImagePresent);
             }
 
             driver.Url = mainURLs + "product?productID=255";
@@ -478,7 +481,7 @@ namespace Selenium.Test
 
         }
 
-        //[Test]
+        [Test]
         public void ShoppingList()
         {
             //UITest(() =>
@@ -629,7 +632,7 @@ namespace Selenium.Test
             Thread.Sleep(4000);
         }
 
-        //[Test]
+        [Test]
         public void Comparision()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -676,7 +679,7 @@ namespace Selenium.Test
 
             Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® AK Liner"));
             Assert.IsTrue(bodyTextProduct.Contains("DuraGel™ LinerLow Activity Liner"));
-            Assert.IsTrue(bodyTextProduct.Contains("Liner Lanyard"));
+            Assert.IsTrue(bodyTextProduct.Contains("DuoSil.basic Liner"));
 
             Thread.Sleep(3000);
 
@@ -686,13 +689,13 @@ namespace Selenium.Test
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsFalse(bodyTextProduct.Contains("Liner Lanyard"));
+            Assert.IsFalse(bodyTextProduct.Contains("DuoSil.basic Liner"));
 
             Thread.Sleep(1000);
 
         }
 
-        //[Test]
+        [Test]
         public void ShipAddr()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -802,7 +805,7 @@ namespace Selenium.Test
 
         }
 
-        //[Test]
+        [Test]
         public void ClearAll()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -858,7 +861,7 @@ namespace Selenium.Test
             }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
-        //[Test]
+        [Test]
         public void SearchPopProduct()
         {
             //UITest(() =>
@@ -904,7 +907,7 @@ namespace Selenium.Test
             Assert.IsTrue(bodyText.Contains(nameCheck));
         }
 
-        //[Test]
+        [Test]
         public void QuickOrderAndDeleteFromCart()
         {
            // UITest(() =>
@@ -1066,7 +1069,7 @@ namespace Selenium.Test
             return value.ToString("yyyyMMddHHmmssffff");
         }
 
-        //[Test]
+        [Test]
         public void SubmitOrder()
         {            
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -1127,10 +1130,10 @@ namespace Selenium.Test
             Thread.Sleep(2000);            
         }
 
-        //[Test]
+        [Test]
         public void submitRMAs()
         {
-            UITest(() =>
+            //UITest(() =>
             {
                 helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
@@ -1152,13 +1155,25 @@ namespace Selenium.Test
                 helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[4]/div[2]/select", 2);
                 helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[5]/div[2]/select", 2);
                 helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[6]/div[2]/select", 5);
+
+                Thread.Sleep(2000);
+
                 helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[11]/div[2]/select", 3);
 
                 helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[7]/div[2]/input");
-                helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[4]/td[4]/div");
+
+                Thread.Sleep(2000);
+
+                helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[4]/td[2]/div");               
+
+                Thread.Sleep(2000);
+
                 helperTest.InputStringXpath(driver, "Broken", "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[8]/div[2]/textarea");
 
                 helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[9]/div[2]/input");
+
+                Thread.Sleep(2000);                               
+
                 helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[4]/td[3]/div");
 
                 helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[11]/div[2]/select", 3);
@@ -1180,11 +1195,11 @@ namespace Selenium.Test
 
                 helperTest.FindTextInBody(driver, "Thank you for your submission");
 
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            }//, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
 
         }
 
-        //[Test]
+        [Test]
         public void searchByHCPCS()
         {
 
@@ -1232,7 +1247,7 @@ namespace Selenium.Test
 
         }
 
-        //[Test]
+        [Test]
         public void searchByPartName()
         {
             Actions actions = new Actions(driver);
@@ -1866,7 +1881,7 @@ namespace Selenium.Test
 
         }
 
-        //[Test]
+        [Test]
         public void AddToCartStep13()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -2055,7 +2070,7 @@ namespace Selenium.Test
            // }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
-        //[Test]
+        [Test]
         public void AddToCartStep17()
         {          
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
