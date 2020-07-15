@@ -384,6 +384,8 @@ namespace Selenium.Test
 
             Assert.AreEqual(homeUrl, driver.Url);
 
+            ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("Test.png", ScreenshotImageFormat.Png);
+
             helperTest.waitElementId(driver, 60, "search");
             IWebElement SearchBox = driver.FindElement(By.Id("search"));
 
@@ -391,7 +393,7 @@ namespace Selenium.Test
             SearchBox.SendKeys("Liners");
             SearchBox.SendKeys(Keys.Enter);
 
-            Thread.Sleep(5000);
+            Thread.Sleep(5000);                       
 
             for (int j = 1; j < 5; j++)
             {
