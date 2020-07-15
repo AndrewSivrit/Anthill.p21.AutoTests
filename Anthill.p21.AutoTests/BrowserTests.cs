@@ -384,8 +384,8 @@ namespace Selenium.Test
 
             Assert.AreEqual(homeUrl, driver.Url);            
 
-            helperTest.waitElementId(driver, 120, "search");
-            IWebElement SearchBox = driver.FindElement(By.Id("search"));
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div/div/form/div[1]/input");
+            IWebElement SearchBox = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div/div/form/div[1]/input"));
 
             SearchBox.Clear();
             SearchBox.SendKeys("Liners");
