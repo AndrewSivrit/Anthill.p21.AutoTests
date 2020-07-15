@@ -64,7 +64,7 @@ namespace Selenium.Test
         private string CascadeAccountNumber;
 
         string currentFile = string.Empty;
-        string mainURLs = "https://v2dev.cascade-usa.com/";
+        string mainURLs = "https://www.cascade-usa.com/";
 
         [SetUp]
         public void SetUp()
@@ -78,8 +78,11 @@ namespace Selenium.Test
             //login = "Anthony.Kosenko@gmail.com";
             //password = "12345";
 
-            login = "artvbashuk@gmail.com";
-            password = "9999";
+            //login = "artvbashuk@gmail.com";
+            //password = "9999";
+
+            login = "sergeykorolevsky2015@gmail.com";
+            password = "111";
 
             //login = "artvbashuk@gmail.com";
             //password = "123";
@@ -372,7 +375,7 @@ namespace Selenium.Test
             Assert.IsTrue(bodyTextProduct.Contains("AKL-2636-X"));
         }
 
-        [Test]
+        //[Test]
         public void Pagenation()
         {
             IWebElement Img;
@@ -382,10 +385,10 @@ namespace Selenium.Test
 
             Thread.Sleep(4000);
 
-            Assert.AreEqual(homeUrl, driver.Url);            
+            Assert.AreEqual(homeUrl, driver.Url);
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div/div/form/div[1]/input");
-            IWebElement SearchBox = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div/div/form/div[1]/input"));
+            helperTest.waitElementId(driver, 60, "search");
+            IWebElement SearchBox = driver.FindElement(By.Id("search"));
 
             SearchBox.Clear();
             SearchBox.SendKeys("Liners");
