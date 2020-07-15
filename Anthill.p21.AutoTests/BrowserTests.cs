@@ -64,7 +64,7 @@ namespace Selenium.Test
         private string CascadeAccountNumber;
 
         string currentFile = string.Empty;
-        string mainURLs = "https://www.cascade-usa.com/";
+        string mainURLs = "https://v2dev.cascade-usa.com/";
 
         [SetUp]
         public void SetUp()
@@ -78,11 +78,11 @@ namespace Selenium.Test
             //login = "Anthony.Kosenko@gmail.com";
             //password = "12345";
 
-            //login = "artvbashuk@gmail.com";
-            //password = "9999";
+            login = "artvbashuk@gmail.com";
+            password = "9999";
 
-            login = "sergeykorolevsky2015@gmail.com";
-            password = "111";
+            //login = "sergeykorolevsky2015@gmail.com";
+            //password = "111";
 
             //login = "artvbashuk@gmail.com";
             //password = "123";
