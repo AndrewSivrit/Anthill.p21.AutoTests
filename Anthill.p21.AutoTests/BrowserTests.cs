@@ -226,6 +226,8 @@ namespace Selenium.Test
             Actions actions = new Actions(driver);
             actions.MoveToElement(ClickUser).Build().Perform();
 
+            ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("Test.png", ScreenshotImageFormat.Png);
+
             helperTest.waitElementId(driver, 60, "logout_button");
             var LogOut = driver.FindElement(By.Id("logout_button"));
 
@@ -382,9 +384,7 @@ namespace Selenium.Test
 
             Thread.Sleep(4000);
 
-            Assert.AreEqual(homeUrl, driver.Url);
-
-            ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("Test.png", ScreenshotImageFormat.Png);
+            Assert.AreEqual(homeUrl, driver.Url);            
 
             helperTest.waitElementId(driver, 60, "search");
             IWebElement SearchBox = driver.FindElement(By.Id("search"));
