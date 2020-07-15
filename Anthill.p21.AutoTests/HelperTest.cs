@@ -59,7 +59,7 @@ namespace Selenium.Test
             TimeSpan ts = TimeSpan.FromSeconds(time);
             WebDriverWait wait = new WebDriverWait(driver, ts);
             wait.Until(ExpectedConditions.ElementToBeClickable(By.Id(Id)));
-            Thread.Sleep(400);
+            Thread.Sleep(2000);
         }
 
         public void waitElementTagName(IWebDriver driver, int time)
