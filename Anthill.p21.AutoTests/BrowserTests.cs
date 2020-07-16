@@ -1151,27 +1151,11 @@ namespace Selenium.Test
             helperTest.InputStringId(driver, "1234567890", "rma_serialNumbers");
 
             helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[4]/div[2]/select", 2);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[5]/div[2]/select", 2);
+            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[5]/div[2]/select", 3);
             helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[6]/div[2]/select", 5);
-
-            Thread.Sleep(2000);
-
-            //helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[11]/div[2]/select", 3);
-
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[7]/div[2]/input");                       
-
-            helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[4]/td[2]/div");            
-
-            helperTest.InputStringXpath(driver, "Broken", "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[8]/div[2]/textarea");
-
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[9]/div[2]/input");                                              
-
-            helperTest.JsClickElement(driver, "/html/body/div[4]/div[2]/div/mat-datepicker-content/mat-calendar/div/mat-month-view/table/tbody/tr[4]/td[3]/div");                       
-
-            Thread.Sleep(2000);
-
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[11]/div[2]/select", 3);
-
+                        
+            helperTest.InputStringXpath(driver, "Broken", "/html/body/app-root/div/app-main/div/app-order-history/app-rma-modal/section/div/div[2]/div[1]/section/form/div[7]/div[2]/textarea");
+            
             IWebElement InpBox2 = driver.FindElement(By.Id("rma_notes"));
 
             InpBox2.Clear();
@@ -2647,8 +2631,7 @@ namespace Selenium.Test
         public void Cleanup()
         {
             //driver.Quit();
-            driver?.Dispose();
-           
+            driver?.Dispose();           
         }
     }
 }
