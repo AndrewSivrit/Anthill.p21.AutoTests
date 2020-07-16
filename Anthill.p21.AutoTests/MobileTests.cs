@@ -83,7 +83,7 @@ namespace Selenium.Test
         [Test]
         public void Login()
         {
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+            helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
 
             Thread.Sleep(4000);
             Assert.AreEqual(homeUrl, driver.Url);
@@ -103,7 +103,7 @@ namespace Selenium.Test
         [Test]
         public void LoginWrongCreds()
         {
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, "fgdgf", mainURL);
+            helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, "fgdgf", mainURL);
 
             Thread.Sleep(4000);
 
@@ -112,29 +112,23 @@ namespace Selenium.Test
 
         [Test]
         public void SearchPopProduct()
-        {
-            //UITest(() =>
-            {
-                String bodyTextProduct;
+        {            
+            String bodyTextProduct;
 
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+            helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
 
-                Thread.Sleep(4000);
+            Thread.Sleep(4000);
 
-                IWebElement SearchBox = driver.FindElement(By.Id("search"));
-                SearchBox.SendKeys("Knee");
+            IWebElement SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.SendKeys("Knee");
 
-                SearchBox.SendKeys(Keys.Enter);
+            SearchBox.SendKeys(Keys.Enter);
 
-                Thread.Sleep(4000);
+            Thread.Sleep(4000);
 
-                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-                Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee"));
-
-            }
-            //, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
-
+            Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee"));            
         }
 
         [Test]
@@ -144,7 +138,7 @@ namespace Selenium.Test
             IWebElement OpenItem;
             String bodyTextProduct;
 
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+            helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
 
             helperTest.waitElementId(driver, 60, "open-category-panel-button");
 
@@ -237,7 +231,7 @@ namespace Selenium.Test
             Actions actions = new Actions(driver);
             String bodyTextProduct;
 
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+            helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
 
             helperTest.waitElementId(driver, 60, "open-category-panel-button");
 
@@ -284,7 +278,7 @@ namespace Selenium.Test
             IWebElement Img;
             Boolean ImagePresent;
 
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+            helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
 
             Thread.Sleep(4000);
 
@@ -340,7 +334,7 @@ namespace Selenium.Test
             IWebElement Img;
             Boolean ImagePresent;
 
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+            helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
 
             Thread.Sleep(4000);
 
@@ -398,7 +392,7 @@ namespace Selenium.Test
         [Test]
         public void QuickOrderAndDeleteFromCart()
         {
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+            helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
 
             Thread.Sleep(4000);
 
@@ -462,7 +456,7 @@ namespace Selenium.Test
         [Test]
         public void ShoppingList()
         {
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+            helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
 
             Thread.Sleep(4000);
             helperTest.waitElementId(driver, 60, "open-category-panel-button");
@@ -603,7 +597,7 @@ namespace Selenium.Test
         [Test]
         public void SubmitOrder()
         {
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+            helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
 
             driver.Url = mainURLs + "product?productID=1528";
 
@@ -660,7 +654,7 @@ namespace Selenium.Test
         [Test]
         public void submitRMAs()
         {
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+            helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
 
             helperTest.waitElementId(driver, 60, "search");
 

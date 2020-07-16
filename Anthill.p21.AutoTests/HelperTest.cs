@@ -203,7 +203,7 @@ namespace Selenium.Test
                     IWebElement PassBox = driver.FindElement(By.Id("input-pass"));
                     PassBox.SendKeys(password);
 
-                    JsClickElement(driver, "//*[text()='" + " Login " + "']");
+                    JsClickElementId(driver, "login_button");
 
                     Thread.Sleep(2000);
                 }
@@ -211,7 +211,38 @@ namespace Selenium.Test
             }
 
         }
-       
+
+        public void LoginToSiteMobile(IWebDriver driver, string urlSite, string homeUrl, string login, string password, string mainURL)
+        {
+            if ((driver.Url.Contains(mainURL)) & (!(driver.Url.Contains("auth"))))
+            {
+
+            }
+            else
+            {
+                driver.Url = urlSite;
+
+                if (driver.Url != homeUrl)
+                {
+                    waitElementId(driver, 60, "input-mail");
+
+                    Thread.Sleep(3000);
+
+                    IWebElement InpBox = driver.FindElement(By.Id("input-mail"));
+                    InpBox.SendKeys(login);
+
+                    IWebElement PassBox = driver.FindElement(By.Id("input-pass"));
+                    PassBox.SendKeys(password);
+
+                    JsClickElement(driver, "/html/body/app-root/div/app-login/div[1]/div/div[1]/div/div[3]/button");
+
+                    Thread.Sleep(2000);
+                }
+
+            }
+
+        }
+
         public void RegisterToSite(IWebDriver driver, string homeUrl, string FirstName, string LastName, string Email, string PhoneNumber, string RegPassword, string ConfirmPassword, string CascadeAccountNumber)
         {
             driver.Url = homeUrl;
