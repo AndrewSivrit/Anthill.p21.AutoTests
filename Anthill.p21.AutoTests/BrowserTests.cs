@@ -118,6 +118,8 @@ namespace Selenium.Test
             //driver.Manage().Window.Maximize();
             //_edge = new EdgeDriver(pathDrivers);
             //_firefox = new FirefoxDriver(pathDrivers);
+
+            //((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("Test3.png", ScreenshotImageFormat.Png); - screenshots
         }
 
         //[Test]
@@ -1174,11 +1176,8 @@ namespace Selenium.Test
 
         [Test]
         public void searchByHCPCS()
-        {
-
-            Actions actions = new Actions(driver);
+        {            
             String bodyTextProduct;
-
 
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
@@ -1217,13 +1216,11 @@ namespace Selenium.Test
             Assert.IsTrue(bodyTextProduct.Contains("One Sleeve"));
             Assert.IsTrue(bodyTextProduct.Contains("One® Gel Sock"));
             Assert.IsTrue(bodyTextProduct.Contains("Skin Reliever Gel Sheath"));
-
         }
 
         [Test]
         public void searchByPartName()
-        {
-            Actions actions = new Actions(driver);
+        {            
             IWebElement CartBtn;
             String bodyTextProduct;
 
@@ -1857,15 +1854,14 @@ namespace Selenium.Test
         [Test]
         public void AddToCartStep13()
         {
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);                       
 
             helperTest.waitElementId(driver, 60, "toggleQuickOrder");
 
-            Actions actions = new Actions(driver);
+            Thread.Sleep(2000);
+                        
             IWebElement CartBtn;
-            String bodyTextProduct;
-            IWebElement NavigateCusror;
-
+            String bodyTextProduct;            
 
             helperTest.waitElementId(driver, 60, "search");
             IWebElement SearchBox = driver.FindElement(By.Id("search"));
