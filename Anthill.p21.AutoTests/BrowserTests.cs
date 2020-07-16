@@ -39,6 +39,8 @@ namespace Selenium.Test
                 screenshot.SaveAsFile(filePath, ScreenshotImageFormat.Jpeg);
 
                 throw;
+
+                //((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("Test3.png", ScreenshotImageFormat.Png);
             }
         }
     }
@@ -428,9 +430,7 @@ namespace Selenium.Test
 
             Thread.Sleep(4000);
 
-            Assert.AreEqual(homeUrl, driver.Url);
-
-            //((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("Test3.png", ScreenshotImageFormat.Png);
+            Assert.AreEqual(homeUrl, driver.Url);            
 
             helperTest.waitElementId(driver, 60, "search");
 
@@ -483,9 +483,7 @@ namespace Selenium.Test
 
         [Test]
         public void ShoppingList()
-        {
-            //UITest(() =>
-            //{
+        {            
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
             Thread.Sleep(4000);
