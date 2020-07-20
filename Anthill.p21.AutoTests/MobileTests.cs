@@ -46,7 +46,7 @@ namespace Selenium.Test
             //password = "12345";
 
             //login = "sergeykorolevsky2015@gmail.com";
-            //password = "111";
+            //password = "5555";
 
             login = "artvbashuk@gmail.com";
             password = "9999";
@@ -362,11 +362,7 @@ namespace Selenium.Test
                     Assert.IsTrue(ImagePresent);
                 }
 
-                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div/div/ngb-pagination/ul/li[8]/a/span");
-
-                Thread.Sleep(5000);
-
-                driver.Navigate().Refresh();
+                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div/div/ngb-pagination/ul/li[8]/a/span");                                            
 
                 Thread.Sleep(9000);
             }
@@ -447,7 +443,11 @@ namespace Selenium.Test
 
             for (int j = 1; j < 10; j++)
             {
+                //for dev env
                 helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
+
+                //for prod env
+                //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
 
                 Thread.Sleep(1000);
             }

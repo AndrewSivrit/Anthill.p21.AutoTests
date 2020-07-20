@@ -84,7 +84,7 @@ namespace Selenium.Test
             password = "9999";
 
             //login = "sergeykorolevsky2015@gmail.com";
-            //password = "111";
+            //password = "5555";
 
             //login = "artvbashuk@gmail.com";
             //password = "123";
@@ -335,7 +335,7 @@ namespace Selenium.Test
             helperTest.waitElementId(driver, 60, "search");
 
             IWebElement SearchBox = driver.FindElement(By.Id("search"));
-            SearchBox.SendKeys("liners");
+            SearchBox.SendKeys("liners AK");
 
             SearchBox.SendKeys(Keys.Enter);
 
