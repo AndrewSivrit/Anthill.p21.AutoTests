@@ -647,7 +647,7 @@ namespace Selenium.Test
             IWebElement SearchBox = driver.FindElement(By.Id("search"));
 
             SearchBox.Clear();
-            SearchBox.SendKeys("liners");
+            SearchBox.SendKeys("RevoFit");
 
             SearchBox.SendKeys(Keys.Enter);
 
@@ -667,6 +667,11 @@ namespace Selenium.Test
             NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/div/div[2]/div/div[3]/app-product-card-configurable/section/div[1]/a/img"));
             actions.MoveToElement(NavigateCusror).Build().Perform();
 
+            helperTest.JsClickElement(driver, "//*[text()='" + " + Compare " + "']");            
+
+            NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/div/div[2]/div/div[4]/app-product-card-configurable/section/div[1]/a/img"));
+            actions.MoveToElement(NavigateCusror).Build().Perform();
+
             helperTest.JsClickElement(driver, "//*[text()='" + " + Compare " + "']");
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Compare products " + "']");
@@ -677,9 +682,10 @@ namespace Selenium.Test
              
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® AK Liner"));
-            Assert.IsTrue(bodyTextProduct.Contains("DuraGel™ LinerLow Activity Liner"));
-            Assert.IsTrue(bodyTextProduct.Contains("DuoSil.basic Liner"));
+            Assert.IsTrue(bodyTextProduct.Contains("RevoFit2 Kit"));
+            Assert.IsTrue(bodyTextProduct.Contains("Medical RevoLock Lanyard Kit"));
+            Assert.IsTrue(bodyTextProduct.Contains("Medical RevoLock Upper Extremity"));
+            Assert.IsTrue(bodyTextProduct.Contains("Medical Replacement Parts"));
 
             Thread.Sleep(3000);
 
@@ -689,7 +695,7 @@ namespace Selenium.Test
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsFalse(bodyTextProduct.Contains("DuoSil.basic Liner"));
+            Assert.IsFalse(bodyTextProduct.Contains("Medical RevoLock Upper Extremity"));
 
             Thread.Sleep(1000);
 

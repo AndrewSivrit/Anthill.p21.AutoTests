@@ -81,7 +81,7 @@ namespace Selenium.Test
         }
 
         [Test]
-        public void Login()
+        public void MobileLogin()
         {
             helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
 
@@ -101,7 +101,7 @@ namespace Selenium.Test
         }
 
         [Test]
-        public void LoginWrongCreds()
+        public void MobileLoginWrongCreds()
         {
             helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, "fgdgf", mainURL);
 
@@ -111,7 +111,7 @@ namespace Selenium.Test
         }
 
         [Test]
-        public void SearchPopProduct()
+        public void MobileSearchPopProduct()
         {            
             String bodyTextProduct;
 
@@ -132,7 +132,7 @@ namespace Selenium.Test
         }
 
         [Test]
-        public void searchByPartName()
+        public void MobileSearchByPartName()
         {
             Actions actions = new Actions(driver);
             IWebElement OpenItem;
@@ -226,7 +226,7 @@ namespace Selenium.Test
         }
 
         [Test]
-        public void searchByHCPCS()
+        public void MobileSearchByHCPCS()
         {
             Actions actions = new Actions(driver);
             String bodyTextProduct;
@@ -273,7 +273,7 @@ namespace Selenium.Test
         }
 
         [Test]
-        public void CheckImagesOnPages()
+        public void MobileCheckImagesOnPages()
         {
             IWebElement Img;
             Boolean ImagePresent;
@@ -329,7 +329,7 @@ namespace Selenium.Test
         }
 
         [Test]
-        public void Pagenation()
+        public void MobilePagenation()
         {
             IWebElement Img;
             Boolean ImagePresent;
@@ -390,7 +390,7 @@ namespace Selenium.Test
         }
 
         [Test]
-        public void QuickOrderAndDeleteFromCart()
+        public void MobileQuickOrderAndDeleteFromCart()
         {
             helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
 
@@ -454,7 +454,7 @@ namespace Selenium.Test
         }
 
         [Test]
-        public void ShoppingList()
+        public void MobileShoppingList()
         {
             helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
 
@@ -595,7 +595,7 @@ namespace Selenium.Test
         }
 
         [Test]
-        public void SubmitOrder()
+        public void MobileSubmitOrder()
         {
             helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
 
@@ -652,7 +652,7 @@ namespace Selenium.Test
         }
 
         [Test]
-        public void submitRMAs()
+        public void MobileSubmitRMAs()
         {
             helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
 
