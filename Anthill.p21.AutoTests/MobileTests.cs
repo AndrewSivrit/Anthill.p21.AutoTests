@@ -29,8 +29,7 @@ namespace Selenium.Test
 
         private string password;
         private string login;
-
-        string currentFile = string.Empty;
+        
         string mainURLs = "https://v2dev.cascade-usa.com/";
 
         [SetUp]
@@ -254,22 +253,18 @@ namespace Selenium.Test
             Assert.IsTrue(bodyTextProduct.Contains("Limbguard™"));
             Assert.IsTrue(bodyTextProduct.Contains("ProtectOR"));
 
-            //SearchBox.Clear();
-            //SearchBox.SendKeys("L8417");
+            SearchBox.Clear();
+            SearchBox.SendKeys("L8417");
 
-            //SearchBox.SendKeys(Keys.Enter);
+            SearchBox.SendKeys(Keys.Enter);
 
-            //Thread.Sleep(3000);
+            Thread.Sleep(3000);
 
-            //driver.Navigate().Refresh();
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            //Thread.Sleep(8000);
-
-            //bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
-
-            //Assert.IsTrue(bodyTextProduct.Contains("One Sleeve"));
-            //Assert.IsTrue(bodyTextProduct.Contains("One® Gel Sock"));
-            //Assert.IsTrue(bodyTextProduct.Contains("Skin Reliever Gel Sheath"));
+            Assert.IsTrue(bodyTextProduct.Contains("One Sleeve"));
+            Assert.IsTrue(bodyTextProduct.Contains("One® Gel Sock"));
+            Assert.IsTrue(bodyTextProduct.Contains("Skin Reliever Gel Sheath"));
         }
 
         [Test]
@@ -366,6 +361,69 @@ namespace Selenium.Test
 
                 Thread.Sleep(9000);
             }
+        }
+
+        [Test]
+        public void MobileFilterAndClearAll()
+        {
+            String bodyTextProduct;
+
+            helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
+
+            Thread.Sleep(4000);
+
+            Assert.AreEqual(homeUrl, driver.Url);
+
+            helperTest.waitElementId(driver, 60, "search");
+            IWebElement SearchBox = driver.FindElement(By.Id("search"));
+
+            SearchBox.Clear();
+            SearchBox.SendKeys("Liners");
+            SearchBox.SendKeys(Keys.Enter);
+
+            Thread.Sleep(5000);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div/app-configurable/div/app-search-result-info-panel/div/div/div/i");
+
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "L5673" + "']");
+            helperTest.JsClickElement(driver, "//*[text()='" + "Pediatric" + "']");
+            helperTest.JsClickElement(driver, "//*[text()='" + "Cushion" + "']");
+            
+            Thread.Sleep(3000);
+
+            helperTest.waitElementId(driver, 60, "label_filter_lcode_0");
+            var isChecked = driver.FindElement(By.Id("filter_lcode_0")).Selected;
+            Assert.IsTrue(isChecked);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Apply " + "']");
+
+            Thread.Sleep(2000);
+
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+
+            Assert.IsTrue(bodyTextProduct.Contains("Evolution Chameleon Liner"));
+            Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® Pediatric Liner"));
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div/app-configurable/div/app-search-result-info-panel/div/div/div/i");
+
+            Thread.Sleep(3000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "Clear All" + "']");      
+
+            Thread.Sleep(2000);
+
+            isChecked = driver.FindElement(By.Id("filter_lcode_2")).Selected;
+
+            Assert.IsFalse(isChecked);            
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Apply " + "']");
+
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® AK Liner"));
+
+            Thread.Sleep(2000);
         }
 
         public void InputAndCheckAdd(string productId, string nameCheck)
@@ -474,9 +532,8 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + "Create new list" + "']");
 
             helperTest.InputStringXpath(driver, "list1", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[1]/div[2]/input");
-            helperTest.InputStringXpath(driver, "description if list 1", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[2]/div[2]/textarea");
-
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[3]/mdb-checkbox/div/label");
+            helperTest.InputStringXpath(driver, "description of list 1", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[2]/div[2]/textarea");
+                        
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[3]/button");
 
             Thread.Sleep(4000);
@@ -484,7 +541,7 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + "Create new list" + "']");
 
             helperTest.InputStringXpath(driver, "list2", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[1]/div[2]/input");
-            helperTest.InputStringXpath(driver, "description if list 2", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[2]/div[2]/textarea");
+            helperTest.InputStringXpath(driver, "description of list 2", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[2]/div[2]/textarea");
 
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[3]/button");
 
@@ -517,9 +574,7 @@ namespace Selenium.Test
 
             bodyTextCart2 = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsFalse(bodyTextCart2.Contains("62471-AM"));
-
-            //helperTest.InputStringXpath(driver, "10", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[2]/div/div[2]/app-my-current-list[1]/section/div[3]/div[1]/app-qty/input");
+            Assert.IsFalse(bodyTextCart2.Contains("62471-AM"));                       
 
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[2]/div/div/app-my-current-list/div[1]/section/div[4]/app-button/div/button");
 
@@ -554,9 +609,7 @@ namespace Selenium.Test
 
             bodyTextCart2 = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsFalse(bodyTextCart2.Contains("112-10"));
-
-            //helperTest.InputStringXpath(driver, "10", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[2]/div/div[2]/app-my-current-list[1]/section/div[3]/div[1]/app-qty/input");
+            Assert.IsFalse(bodyTextCart2.Contains("112-10"));                        
 
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[2]/div/div/app-my-current-list/div[1]/section/div[4]/app-button/div/button");
 

@@ -57,14 +57,6 @@ namespace Selenium.Test
         private string password;
         private string login;
 
-        private string FirstName;
-        private string LastName;
-        private string Email;
-        private string PhoneNumber;
-        private string RegPassword;
-        private string ConfirmPassword;
-        private string CascadeAccountNumber;
-
         string currentFile = string.Empty;
         string mainURLs = "https://v2dev.cascade-usa.com/";
 
@@ -89,13 +81,13 @@ namespace Selenium.Test
             //login = "artvbashuk@gmail.com";
             //password = "123";
 
-            FirstName = "Sergey";
-            LastName = "Korolevsky";
-            Email = "sergeykorolevsky2015@gmail.com";
-            PhoneNumber = "8888888888";
-            RegPassword = "54321";
-            ConfirmPassword = "54321";
-            CascadeAccountNumber = "102978";
+            //FirstName = "Sergey";
+            //LastName = "Korolevsky";
+            //Email = "sergeykorolevsky2015@gmail.com";
+            //PhoneNumber = "8888888888";
+            //RegPassword = "54321";
+            //ConfirmPassword = "54321";
+            //CascadeAccountNumber = "102978";
 
             helperTest = new HelperTest();
             ChromeOptions options = new ChromeOptions();
@@ -223,8 +215,6 @@ namespace Selenium.Test
         [Test]
         public void Login()
         {
-            //UITest(() =>
-            //{
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
             Thread.Sleep(4000);
@@ -241,8 +231,7 @@ namespace Selenium.Test
 
             Assert.AreEqual(authUrl, driver.Url);
 
-            Thread.Sleep(4000);
-            //}, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            Thread.Sleep(4000);            
         }
 
         //[Test]
@@ -356,13 +345,7 @@ namespace Selenium.Test
             helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[2]/select", "Large");
             helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[3]/select", "MAX");
 
-            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[4]/select", "Standard Umbrella");
-
-            //helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[5]/select", "Buff");
-
-            //helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[6]/select", "Spirit");
-            //helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[7]/select", "Standard Umbrella");
-
+            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[4]/select", "Standard Umbrella");                     
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
 
@@ -505,9 +488,8 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + "Create new list" + "']");
 
             helperTest.InputStringXpath(driver, "list1", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[1]/div[2]/input");
-            helperTest.InputStringXpath(driver, "description if list 1", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[2]/div[2]/textarea");
-
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[3]/mdb-checkbox/div/label");
+            helperTest.InputStringXpath(driver, "description of list 1", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[2]/div[2]/textarea");
+                        
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[3]/button");
 
             Thread.Sleep(4000);
@@ -515,7 +497,7 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + "Create new list" + "']");
 
             helperTest.InputStringXpath(driver, "list2", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[1]/div[2]/input");
-            helperTest.InputStringXpath(driver, "description if list 2", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[2]/div[2]/textarea");
+            helperTest.InputStringXpath(driver, "description of list 2", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[2]/div[2]/textarea");
 
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[3]/button");
 
@@ -548,9 +530,7 @@ namespace Selenium.Test
 
             bodyTextCart2 = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsFalse(bodyTextCart2.Contains("62471-AM"));
-
-            //helperTest.InputStringXpath(driver, "10", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[2]/div/div[2]/app-my-current-list[1]/section/div[3]/div[1]/app-qty/input");
+            Assert.IsFalse(bodyTextCart2.Contains("62471-AM"));            
 
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[2]/div/div[2]/app-my-current-list[1]/section/div[3]/div[2]/app-button/div/button");
 
@@ -585,9 +565,7 @@ namespace Selenium.Test
 
             bodyTextCart2 = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsFalse(bodyTextCart2.Contains("112-10"));
-
-            //helperTest.InputStringXpath(driver, "10", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[2]/div/div[2]/app-my-current-list[1]/section/div[3]/div[1]/app-qty/input");
+            Assert.IsFalse(bodyTextCart2.Contains("112-10"));            
 
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[2]/div/div[2]/app-my-current-list[1]/section/div[3]/div[2]/app-button/div/button");
 
@@ -768,7 +746,6 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[5]/div/div[2]/div[2]/label");
 
             Thread.Sleep(4000);
-
         }
 
         [Test]
@@ -815,7 +792,9 @@ namespace Selenium.Test
             helperTest.InputStringId(driver, "Test Address 1", "AddressOne");
             helperTest.InputStringId(driver, "Test Address 2", "AddressTwo");
             helperTest.InputStringId(driver, "Test City", "City");
+            //for dev env
             helperTest.UseDropDown(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/div/div/div/div[2]/div/form/select[1]", 2);
+            //for prod env
             //helperTest.UseDropDown(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/aside/app-order-info-aside/div/div/div/div[2]/div/form/select[1]", 2);
             helperTest.InputStringId(driver, "11111", "ZipCode");
             helperTest.InputStringId(driver, "22222", "Phone");
@@ -961,28 +940,22 @@ namespace Selenium.Test
         [Test]
         public void SearchPopProduct()
         {
-            //UITest(() =>
-            {
-                String bodyTextProduct;
+            String bodyTextProduct;
 
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
-                Thread.Sleep(4000);
+            Thread.Sleep(4000);
 
-                IWebElement SearchBox = driver.FindElement(By.Id("search"));
-                SearchBox.SendKeys("Knee");
+            IWebElement SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.SendKeys("Knee");
 
-                SearchBox.SendKeys(Keys.Enter);
+            SearchBox.SendKeys(Keys.Enter);
 
-                Thread.Sleep(4000);
+            Thread.Sleep(4000);
 
-                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-                Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee"));
-
-            }
-            //, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
-
+            Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee"));
         }
 
 
@@ -1007,8 +980,6 @@ namespace Selenium.Test
         [Test]
         public void QuickOrderAndDeleteFromCart()
         {
-            // UITest(() =>
-            //{
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
             Thread.Sleep(4000);
@@ -1063,12 +1034,10 @@ namespace Selenium.Test
             Assert.IsTrue(bodyTextCart2.Contains("Orthosis MD"));
             Assert.IsTrue(bodyTextCart2.Contains("Orthosis XS"));
             Assert.IsTrue(bodyTextCart2.Contains("Orthosis 10"));
-
-            //}, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
         }
 
         //[Test]
-        public void QuickOrder()
+        public void QuickOrderSergeyTest()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
@@ -1362,7 +1331,6 @@ namespace Selenium.Test
 
             helperTest.JsClickElementId(driver, "add_to_cart_in_dropdown");
 
-
             helperTest.waitElementId(driver, 60, "header_cart_icon");
             CartBtn = driver.FindElement((By.Id("header_cart_icon")));
             CartBtn.Click();
@@ -1373,7 +1341,6 @@ namespace Selenium.Test
             bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
 
             Assert.IsTrue(bodyTextProduct.Contains("ALC-5067-E"));
-
         }
 
         //[Test]
@@ -2703,19 +2670,6 @@ namespace Selenium.Test
 
             Console.WriteLine(times);
             Console.ReadKey();
-        }
-
-        //[Test]
-        public void Registration()
-        {
-            helperTest.RegisterToSite(driver, homeUrl, FirstName, LastName, Email, PhoneNumber, RegPassword, ConfirmPassword, CascadeAccountNumber);
-
-            //Last Name, EmailAdress, PhoneNumber, RegPassword, Confirm RegPassword, Cascade Account Number
-
-            Thread.Sleep(4000);
-
-            helperTest.JsClickElement(driver, ("recaptcha-anchor"));
-
         }
 
         [TearDown]
