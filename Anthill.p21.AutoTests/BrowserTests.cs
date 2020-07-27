@@ -1393,8 +1393,68 @@ namespace Selenium.Test
             Assert.IsTrue(bodyTextCart.Contains("Pyramid Adapter"));
             Assert.IsTrue(bodyTextCart.Contains("OH5 Knee with Loop Adapter"));
 
+            Thread.Sleep(1000);
+                        
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");            
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");            
+            //remove items from the cart
+        }
+
+        [Test]
+        public void SearchBySkuAndDescription()
+        {
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+
+            helperTest.waitElementId(driver, 60, "toggleQuickOrder");
+
+            Assert.AreEqual(homeUrl, driver.Url);
+
+            driver.Url = mainURLs + "product?productID=11602";
+
+            Assert.AreEqual(mainURLs + "product?productID=11602", driver.Url);
+
+            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+
+            String bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
+
+            Assert.IsTrue(bodyTextProduct.Contains("Danmar Soft Shell Helmet"));
+
+            helperTest.InputStringXpath(driver, "9820-BLACK-XS", "/html/body/app-root/div/app-product/div[1]/div[3]/section/div/h6[1]/input");
+            helperTest.waitElementId(driver, 60, "add_product_to_cart0");
+            helperTest.JsClickElementID(driver, "add_product_to_cart0");
+
+            Thread.Sleep(3000);
+
+            driver.Url = mainURLs + "product?productID=11602";
+
+            Assert.AreEqual(mainURLs + "product?productID=11602", driver.Url);
+
+            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+
+            String bodyTextProduct2 = driver.FindElement(By.Id("product_name_in_product_page")).Text;
+
+            Assert.IsTrue(bodyTextProduct2.Contains("Danmar Soft Shell Helmet"));
+                        
+            helperTest.InputStringXpath(driver, "Soft Shell Helmet Black XL", "/html/body/app-root/div/app-product/div[1]/div[3]/section/div/h6[2]/input");
+            helperTest.waitElementId(driver, 60, "add_product_to_cart0");
+            helperTest.JsClickElementID(driver, "add_product_to_cart0");
+
+            Thread.Sleep(3000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+            String bodyTextCart = driver.FindElement(By.TagName("body")).Text;
+
+            Assert.IsTrue(bodyTextCart.Contains("9820-BLACK-XL"));
+            Assert.IsTrue(bodyTextCart.Contains("Soft Shell Helmet Black XS"));
+            
             Thread.Sleep(2000);
 
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
             //remove items from the cart
         }
 
@@ -1450,7 +1510,6 @@ namespace Selenium.Test
 
             //remove items from the cart
         }
-
 
 
 
