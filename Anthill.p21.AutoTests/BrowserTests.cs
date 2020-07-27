@@ -90,6 +90,7 @@ namespace Selenium.Test
             //CascadeAccountNumber = "102978";
 
             helperTest = new HelperTest();
+
             ChromeOptions options = new ChromeOptions();
 
             options.AddArguments("--no-sandbox");
@@ -100,7 +101,7 @@ namespace Selenium.Test
             options.AddUserProfilePreference("disable-popup-blocking", "true");
 
             driver = new ChromeDriver(pathDrivers, options);
-            //driver = new InternetExplorerDriver(pathDrivers);
+            //driver = new InternetExplorerDriver(pathDrivers);            
 
             driver.Manage().Cookies.DeleteAllCookies();
             driver.Manage().Window.Size = new System.Drawing.Size(1920, 1024);
@@ -434,9 +435,9 @@ namespace Selenium.Test
 
             Thread.Sleep(5000);
 
-            helperTest.waitElementId(driver, 60, "current_product_img");
+            helperTest.waitElementId(driver, 60, "myimage");
 
-            Img = driver.FindElement(By.Id("current_product_img"));
+            Img = driver.FindElement(By.Id("myimage"));
 
             ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
 
@@ -755,6 +756,7 @@ namespace Selenium.Test
 
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
+            helperTest.waitElementId(driver, 60, "toggleQuickOrder");
             IWebElement QuickOrderBtn = driver.FindElement(By.Id("toggleQuickOrder"));
             QuickOrderBtn.Click();
 
@@ -1342,6 +1344,125 @@ namespace Selenium.Test
 
             Assert.IsTrue(bodyTextProduct.Contains("ALC-5067-E"));
         }
+
+        [Test]
+        public void MostFrequentlyPurchased()
+        {
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+
+            helperTest.waitElementId(driver, 60, "toggleQuickOrder");
+
+            Assert.AreEqual(homeUrl, driver.Url);
+
+            driver.Url = mainURLs + "product?productID=15678";
+
+            Assert.AreEqual(mainURLs + "product?productID=15678", driver.Url);
+
+            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+
+            String bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
+
+            Assert.IsTrue(bodyTextProduct.Contains("OH5 Knee™"));
+
+            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div/select", 2);
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[1]/div[2]/div[4]/div[1]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-button/div/button");
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+
+            Thread.Sleep(5000);
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[5]/p/app-qty/input");            
+
+            helperTest.InputStringXpath(driver, "5", "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[5]/p/app-qty/input");
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[6]/app-button/div/button")).Click();
+            
+            Thread.Sleep(5000);
+            
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[4]/div[6]/app-button/div/button")).Click();
+            
+            Thread.Sleep(3000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+            String bodyTextCart = driver.FindElement(By.TagName("body")).Text;
+
+            Assert.IsTrue(bodyTextCart.Contains("Lamination Plate Adaptor Set"));
+            Assert.IsTrue(bodyTextCart.Contains("Pyramid Adapter"));
+            Assert.IsTrue(bodyTextCart.Contains("OH5 Knee with Loop Adapter"));
+
+            Thread.Sleep(2000);
+
+            //remove items from the cart
+        }
+
+        //[Test]
+        public void SkuGrid()
+        {
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+
+            helperTest.waitElementId(driver, 60, "toggleQuickOrder");
+
+            Assert.AreEqual(homeUrl, driver.Url);
+
+            driver.Url = mainURLs + "product?productID=15678";
+
+            Assert.AreEqual(mainURLs + "product?productID=15678", driver.Url);
+
+            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+
+            String bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
+
+            Assert.IsTrue(bodyTextProduct.Contains("OH5 Knee™"));
+
+            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div/select", 2);
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[1]/div[2]/div[4]/div[1]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-button/div/button");
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+
+            Thread.Sleep(5000);
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[5]/p/app-qty/input");
+
+            helperTest.InputStringXpath(driver, "5", "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[5]/p/app-qty/input");
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[6]/app-button/div/button")).Click();
+
+            Thread.Sleep(5000);
+
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[4]/div[6]/app-button/div/button")).Click();
+
+            Thread.Sleep(3000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+            String bodyTextCart = driver.FindElement(By.TagName("body")).Text;
+
+            Assert.IsTrue(bodyTextCart.Contains("Lamination Plate Adaptor Set"));
+            Assert.IsTrue(bodyTextCart.Contains("Pyramid Adapter"));
+            Assert.IsTrue(bodyTextCart.Contains("OH5 Knee with Loop Adapter"));
+
+            Thread.Sleep(2000);
+
+            //remove items from the cart
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //[Test]
         public void AddToCartStep02()
