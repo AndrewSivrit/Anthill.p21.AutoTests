@@ -69,7 +69,8 @@ namespace Selenium.Test
             //driver = new InternetExplorerDriver(pathDrivers);
 
             driver.Manage().Cookies.DeleteAllCookies();
-            driver.Manage().Window.Maximize();
+            driver.Manage().Window.Size = new System.Drawing.Size(1920, 1024);
+            //driver.Manage().Window.Maximize();
 
             //driver.Url = mainURLs + "auth/login";
             //driver.Manage().Window.Maximize();
@@ -482,17 +483,16 @@ namespace Selenium.Test
 
             helperTest.waitElementId(driver, 60, "submit_order");
 
-            String bodyTextCart2 = driver.FindElement(By.TagName("body")).Text;
-
             Thread.Sleep(3000);
+
+            String bodyTextCart2 = driver.FindElement(By.TagName("body")).Text;                      
 
             Assert.IsTrue(bodyTextCart2.Contains("Profile Orthosis 2XL"));
             Assert.IsTrue(bodyTextCart2.Contains("Profile Orthosis 3XL"));
             Assert.IsTrue(bodyTextCart2.Contains("Splint SM Left"));
             Assert.IsTrue(bodyTextCart2.Contains("Splint MD Left"));
             Assert.IsTrue(bodyTextCart2.Contains("Profile Orthosis XL"));
-            Assert.IsTrue(bodyTextCart2.Contains("Splint LG Left"));
-            Assert.IsTrue(bodyTextCart2.Contains("Splint LG Left"));
+            Assert.IsTrue(bodyTextCart2.Contains("Splint LG Left"));            
             Assert.IsTrue(bodyTextCart2.Contains("Orthosis MD"));
             Assert.IsTrue(bodyTextCart2.Contains("Orthosis XS"));
             Assert.IsTrue(bodyTextCart2.Contains("Orthosis 10"));
@@ -646,6 +646,104 @@ namespace Selenium.Test
 
             //Thread.Sleep(4000);
         }
+
+        //[Test]
+        public void MobileMostFrequentlyPurchased()
+        {
+            helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
+
+            driver.Url = mainURLs + "product?productID=8186";
+
+            Thread.Sleep(3000);
+
+            Assert.AreEqual(mainURLs + "product?productID=8186", driver.Url);
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[1]/div/p[1]");
+
+            String bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[1]/div/p[1]")).Text;
+
+            Assert.IsTrue(bodyTextProduct.Contains("Symphony Knee"));
+
+            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div/div[2]/app-attributes/form/div/div[1]/select", 2);
+            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div/div[2]/app-attributes/form/div/div[2]/select", 2);
+
+            helperTest.waitElementId(driver, 60, "mobile-add-to-cart");
+            helperTest.JsClickElementId(driver, "mobile-add-to-cart");
+
+            Thread.Sleep(8000);
+
+            //not exectuted
+        }
+
+        [Test]
+        public void MobileSearchBySkuAndDescription()
+        {
+            helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
+
+            driver.Url = mainURLs + "product?productID=17659";
+
+            Thread.Sleep(3000);
+
+            Assert.AreEqual(mainURLs + "product?productID=17659", driver.Url);
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[1]/div/p[1]");
+
+            String bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[1]/div/p[1]")).Text;
+
+            Assert.IsTrue(bodyTextProduct.Contains("Truform® 8865 Compression Stockings 20-30 mmHg Knee High"));
+
+            helperTest.InputStringXpath(driver, "8865-WH-M", "/html/body/app-root/div/app-product/div[1]/div/div[5]/section/div/h6/input");
+
+            Thread.Sleep(3000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+
+            Thread.Sleep(5000);
+
+            driver.Url = mainURLs + "product?productID=17659";
+
+            Thread.Sleep(3000);
+
+            Assert.AreEqual(mainURLs + "product?productID=17659", driver.Url);
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[1]/div/p[1]");
+
+            String bodyTextProduct2 = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[1]/div/p[1]")).Text;
+
+            Assert.IsTrue(bodyTextProduct2.Contains("Truform® 8865 Compression Stockings 20-30 mmHg Knee High"));
+
+            helperTest.InputStringXpath(driver, "20-30 Therapeutic BK Short CT Beige XL", "/html/body/app-root/div/app-product/div[1]/div/div[5]/section/div/h6/input");
+
+            Thread.Sleep(3000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+
+            Thread.Sleep(5000);
+
+            Assert.AreEqual(mainURLs + "cart/index", driver.Url);
+
+            helperTest.waitElementId(driver, 60, "submit_order");
+
+            Thread.Sleep(5000);
+
+            String bodyTextCart1 = driver.FindElement(By.TagName("body")).Text;                      
+
+            Assert.IsTrue(bodyTextCart1.Contains("Therapeutic BK Short CT Beige XL"));
+            Assert.IsTrue(bodyTextCart1.Contains("BELOW KNEE"));
+            
+            Thread.Sleep(1000);
+
+            for (int j = 1; j < 3; j++)
+            {
+                //for dev env
+                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
+
+                //for prod env
+                //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
+
+                Thread.Sleep(1000);
+            }
+        }           
 
         [Test]
         public void MobileSubmitOrder()
