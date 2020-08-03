@@ -547,7 +547,7 @@ namespace Selenium.Test
 
             driver.Url = mainURLs + "product?productID=7254";
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-product/div[1]/div/div[4]/div/span/div/div/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-product/div[1]/div/div[5]/div/span/div/div/span");
 
             helperTest.JsClickElement(driver, "//*[text()='" + "list1" + "']");
 
@@ -555,7 +555,7 @@ namespace Selenium.Test
 
             driver.Url = mainURLs + "product?productID=15048";
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-product/div[1]/div/div[4]/div/span/div/div/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-product/div[1]/div/div[5]/div/span/div/div/span");
 
             helperTest.JsClickElement(driver, "//*[text()='" + "list1" + "']");
 
@@ -582,7 +582,7 @@ namespace Selenium.Test
 
             driver.Url = mainURLs + "product?productID=15048";
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-product/div[1]/div/div[4]/div/span/div/div/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-product/div[1]/div/div[5]/div/span/div/div/span");
 
             helperTest.JsClickElement(driver, "//*[text()='" + "list2" + "']");
 
@@ -590,7 +590,7 @@ namespace Selenium.Test
 
             driver.Url = mainURLs + "product?productID=7254";
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-product/div[1]/div/div[4]/div/span/div/div/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-product/div[1]/div/div[5]/div/span/div/div/span");
 
             helperTest.JsClickElement(driver, "//*[text()='" + "list2" + "']");
 
