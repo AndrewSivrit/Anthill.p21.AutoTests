@@ -31,6 +31,7 @@ namespace Selenium.Test
         private string login;
         
         string mainURLs = "https://v2dev.cascade-usa.com/";
+        
 
         [SetUp]
         public void SetUp()
@@ -511,7 +512,7 @@ namespace Selenium.Test
             }
         }
 
-        [Test]
+        //[Test]
         public void MobileShoppingList()
         {
             helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
