@@ -94,7 +94,7 @@ namespace Selenium.Test
             ChromeOptions options = new ChromeOptions();
 
             options.AddArguments("--no-sandbox");
-            //options.AddArguments("--headless");
+            options.AddArguments("--headless");
 
             options.AddUserProfilePreference("download.default_directory", "C:/Work/Anthill/Anthill.p21.AutoTests/logs_img");
             options.AddUserProfilePreference("intl.accept_languages", "nl");
@@ -1369,11 +1369,13 @@ namespace Selenium.Test
 
             Thread.Sleep(5000);
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[5]/p/app-qty/input");            
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[5]/p/app-qty/input");
 
+            string item1 = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[2]/p")).Text;
+            string item2 = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[4]/div[2]/p")).Text;
             helperTest.InputStringXpath(driver, "5", "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[5]/p/app-qty/input");
             driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[6]/app-button/div/button")).Click();
-            
+
             Thread.Sleep(5000);
             
             driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[4]/div[6]/app-button/div/button")).Click();
@@ -1386,8 +1388,8 @@ namespace Selenium.Test
 
             String bodyTextCart = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsTrue(bodyTextCart.Contains("Lamination Plate Adaptor Set"));
-            Assert.IsTrue(bodyTextCart.Contains("Pyramid Adapter"));
+            Assert.IsTrue(bodyTextCart.Contains(item1));
+            Assert.IsTrue(bodyTextCart.Contains(item2));
             Assert.IsTrue(bodyTextCart.Contains("OH5 Knee with Loop Adapter"));
 
             Thread.Sleep(1000);
@@ -1458,6 +1460,73 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
             //prod env
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+        }
+
+        [Test]
+        public void ReplacementParts()
+        {
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+
+            helperTest.waitElementId(driver, 60, "toggleQuickOrder");
+
+            Assert.AreEqual(homeUrl, driver.Url);
+
+            driver.Url = mainURLs + "product?productID=11300";            
+
+            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+            Assert.AreEqual(mainURLs + "product?productID=11300", driver.Url);
+
+            String bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
+
+            Assert.IsTrue(bodyTextProduct.Contains("Alpha Basic Liner"));
+
+            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[1]/select", 2);
+            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[2]/select", 7);
+            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[3]/select", 3);
+
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "Replacement Parts" + "']");
+
+            Thread.Sleep(3000);
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[3]/div/div/div[2]/div/div/section/div/h6[1]/input");
+            IWebElement BasicPart = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[3]/div/div/div[2]/div/div/section/div/h6[1]/input"));
+            var PartNumber = BasicPart.GetAttribute("value");
+            Assert.AreEqual(PartNumber, "ABKL-32-6");
+
+            string item = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[3]/div/div/div[2]/div/div/div/article[1]/div[2]/p")).Text;            
+            helperTest.InputStringXpath(driver, "5", "/html/body/app-root/div/app-product/div[3]/div/div/div[2]/div/div/div/article[1]/div[7]/p/app-qty/input");
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[3]/div/div/div[2]/div/div/div/article[1]/div[8]/app-button/div/button")).Click();
+
+            Thread.Sleep(5000);
+
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[3]/div/div/div[1]/app-close-button/p/span")).Click();
+
+            Thread.Sleep(1000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+
+            Thread.Sleep(3000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+            String bodyTextCart = driver.FindElement(By.TagName("body")).Text;
+
+            Assert.IsTrue(bodyTextCart.Contains(item));           
+            Assert.IsTrue(bodyTextCart.Contains("Alpha Basic Large Lck Umbrella 32"));
+
+            Thread.Sleep(1000);
+
+            //dev env
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");            
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            //prod env
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
             //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
             //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
         }
