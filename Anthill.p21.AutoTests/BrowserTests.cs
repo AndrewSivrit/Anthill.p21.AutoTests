@@ -31,10 +31,10 @@ namespace Selenium.Test
             }
             catch (Exception ex)
             {
-                
+
                 var screenshot = driver.TakeScreenshot();
 
-                var filePath = "../logs_img/test_" + nameTest +  ".jpg";
+                var filePath = "../logs_img/test_" + nameTest + ".jpg";
 
                 screenshot.SaveAsFile(filePath, ScreenshotImageFormat.Jpeg);
 
@@ -58,7 +58,7 @@ namespace Selenium.Test
         private string login;
 
         string currentFile = string.Empty;
-        string mainURLs = "https://v2dev.cascade-usa.com/";        
+        string mainURLs = "https://v2dev.cascade-usa.com/";
 
         [SetUp]
         public void SetUp()
@@ -232,7 +232,7 @@ namespace Selenium.Test
 
             Assert.AreEqual(authUrl, driver.Url);
 
-            Thread.Sleep(4000);            
+            Thread.Sleep(4000);
         }
 
         //[Test]
@@ -346,7 +346,7 @@ namespace Selenium.Test
             helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[2]/select", "Large");
             helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[3]/select", "MAX");
 
-            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[4]/select", "Standard Umbrella");                     
+            helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/app-attributes/form/div/div[4]/select", "Standard Umbrella");
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
 
@@ -490,7 +490,7 @@ namespace Selenium.Test
 
             helperTest.InputStringXpath(driver, "list1", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[1]/div[2]/input");
             helperTest.InputStringXpath(driver, "description of list 1", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[2]/div[2]/textarea");
-                        
+
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[3]/button");
 
             Thread.Sleep(4000);
@@ -531,7 +531,7 @@ namespace Selenium.Test
 
             bodyTextCart2 = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsFalse(bodyTextCart2.Contains("62471-AM"));            
+            Assert.IsFalse(bodyTextCart2.Contains("62471-AM"));
 
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[2]/div/div[2]/app-my-current-list[1]/section/div[3]/div[2]/app-button/div/button");
 
@@ -565,7 +565,7 @@ namespace Selenium.Test
 
             bodyTextCart2 = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsFalse(bodyTextCart2.Contains("112-10"));            
+            Assert.IsFalse(bodyTextCart2.Contains("112-10"));
 
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[2]/div/div[2]/app-my-current-list[1]/section/div[3]/div[2]/app-button/div/button");
 
@@ -580,7 +580,7 @@ namespace Selenium.Test
             Assert.IsTrue(bodyTextCart2.Contains("62471-AM"));
             helperTest.waitElementId(driver, 60, "item-name-in-cart1");
             bodyTextCart2 = driver.FindElement(By.Id("item-name-in-cart1")).Text;
-            Assert.IsTrue(bodyTextCart2.Contains("112-10"));            
+            Assert.IsTrue(bodyTextCart2.Contains("112-10"));
 
             helperTest.waitElementId(driver, 60, "item-name-in-cart0");
 
@@ -1287,24 +1287,22 @@ namespace Selenium.Test
         public void searchByPartName()
         {
             IWebElement CartBtn;
-            String bodyTextProduct;
+            String bodyTextProduct1;
+            String bodyTextProduct2;
 
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
             helperTest.waitElementId(driver, 60, "toggleQuickOrder");
-
             Assert.AreEqual(homeUrl, driver.Url);
 
             helperTest.UseDropDownIdByName(driver, "basic-addon1", "Part Number");
 
             helperTest.waitElementId(driver, 60, "search");
             IWebElement SearchBox = driver.FindElement(By.Id("search"));
-
             SearchBox.Clear();
             SearchBox.SendKeys("ALC-9460-E");
 
-            Thread.Sleep(5000);
-
+            helperTest.waitElementId(driver, 60, "add_to_cart_in_dropdown");
             helperTest.JsClickElementId(driver, "add_to_cart_in_dropdown");
 
             Thread.Sleep(5000);
@@ -1314,37 +1312,34 @@ namespace Selenium.Test
             CartBtn.Click();
 
             helperTest.waitElementId(driver, 60, "item-name-in-cart0");
-            bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
-
-            Assert.IsTrue(bodyTextProduct.Contains("ALC-9460-E"));
+            bodyTextProduct1 = driver.FindElement(By.Id("item-name-in-cart0")).Text;
+            Assert.IsTrue(bodyTextProduct1.Contains("ALC-9460-E"));
 
             helperTest.UseDropDownIdByName(driver, "basic-addon1", "Part Number");
 
             helperTest.waitElementId(driver, 60, "search");
             SearchBox = driver.FindElement(By.Id("search"));
-
             SearchBox.Clear();
             SearchBox.SendKeys("ALC-5067-E");
 
-            Thread.Sleep(3000);
-
+            helperTest.waitElementId(driver, 60, "add_to_cart_in_dropdown");
             helperTest.JsClickElementId(driver, "add_to_cart_in_dropdown");
 
-            helperTest.waitElementId(driver, 60, "header_cart_icon");
-            CartBtn = driver.FindElement((By.Id("header_cart_icon")));
-            CartBtn.Click();
-
-            Thread.Sleep(3000);
+            Thread.Sleep(4000);
 
             helperTest.waitElementId(driver, 60, "item-name-in-cart0");
-            bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
+            bodyTextProduct2 = driver.FindElement(By.Id("item-name-in-cart0")).Text;
+            Assert.IsTrue(bodyTextProduct2.Contains("ALC-5067-E"));
 
-            Assert.IsTrue(bodyTextProduct.Contains("ALC-5067-E"));
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
         }
 
         [Test]
         public void MostFrequentlyPurchased()
         {
+            string bodyTextProduct;
+
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
             helperTest.waitElementId(driver, 60, "toggleQuickOrder");
@@ -1357,7 +1352,7 @@ namespace Selenium.Test
 
             helperTest.waitElementId(driver, 60, "product_name_in_product_page");
 
-            String bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
+            bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
 
             Assert.IsTrue(bodyTextProduct.Contains("OH5 Knee™"));
 
@@ -1377,27 +1372,27 @@ namespace Selenium.Test
             driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[6]/app-button/div/button")).Click();
 
             Thread.Sleep(5000);
-            
+
             driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[4]/div[6]/app-button/div/button")).Click();
-            
+
             Thread.Sleep(3000);
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
 
             helperTest.waitElementId(driver, 60, "product-name-in-cart0");
 
-            String bodyTextCart = driver.FindElement(By.TagName("body")).Text;
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsTrue(bodyTextCart.Contains(item1));
-            Assert.IsTrue(bodyTextCart.Contains(item2));
-            Assert.IsTrue(bodyTextCart.Contains("OH5 Knee with Loop Adapter"));
+            Assert.IsTrue(bodyTextProduct.Contains(item1));
+            Assert.IsTrue(bodyTextProduct.Contains(item2));
+            Assert.IsTrue(bodyTextProduct.Contains("OH5 Knee with Loop Adapter"));
 
             Thread.Sleep(1000);
 
             //dev env
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");            
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");            
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
             //prod env
             //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
             //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
@@ -1407,6 +1402,8 @@ namespace Selenium.Test
         [Test]
         public void SearchBySkuAndDescription()
         {
+            string bodyTextProduct;
+
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
             helperTest.waitElementId(driver, 60, "toggleQuickOrder");
@@ -1419,7 +1416,7 @@ namespace Selenium.Test
 
             helperTest.waitElementId(driver, 60, "product_name_in_product_page");
 
-            String bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
+            bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
 
             Assert.IsTrue(bodyTextProduct.Contains("Danmar Soft Shell Helmet"));
 
@@ -1435,10 +1432,10 @@ namespace Selenium.Test
 
             helperTest.waitElementId(driver, 60, "product_name_in_product_page");
 
-            String bodyTextProduct2 = driver.FindElement(By.Id("product_name_in_product_page")).Text;
+            bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
 
-            Assert.IsTrue(bodyTextProduct2.Contains("Danmar Soft Shell Helmet"));
-                        
+            Assert.IsTrue(bodyTextProduct.Contains("Danmar Soft Shell Helmet"));
+
             helperTest.InputStringXpath(driver, "Soft Shell Helmet Black XL", "/html/body/app-root/div/app-product/div[1]/div[3]/section/div/h6[2]/input");
             helperTest.waitElementId(driver, 60, "add_product_to_cart0");
             helperTest.JsClickElementID(driver, "add_product_to_cart0");
@@ -1449,11 +1446,11 @@ namespace Selenium.Test
 
             helperTest.waitElementId(driver, 60, "product-name-in-cart0");
 
-            String bodyTextCart = driver.FindElement(By.TagName("body")).Text;
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsTrue(bodyTextCart.Contains("9820-BLACK-XL"));
-            Assert.IsTrue(bodyTextCart.Contains("Soft Shell Helmet Black XS"));
-            
+            Assert.IsTrue(bodyTextProduct.Contains("9820-BLACK-XL"));
+            Assert.IsTrue(bodyTextProduct.Contains("Soft Shell Helmet Black XS"));
+
             Thread.Sleep(2000);
 
             //dev env
@@ -1467,18 +1464,20 @@ namespace Selenium.Test
         [Test]
         public void ReplacementParts()
         {
+            string bodyTextProduct;
+
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
             helperTest.waitElementId(driver, 60, "toggleQuickOrder");
 
             Assert.AreEqual(homeUrl, driver.Url);
 
-            driver.Url = mainURLs + "product?productID=11300";            
+            driver.Url = mainURLs + "product?productID=11300";
 
             helperTest.waitElementId(driver, 60, "product_name_in_product_page");
             Assert.AreEqual(mainURLs + "product?productID=11300", driver.Url);
 
-            String bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
+            bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
 
             Assert.IsTrue(bodyTextProduct.Contains("Alpha Basic Liner"));
 
@@ -1497,7 +1496,7 @@ namespace Selenium.Test
             var PartNumber = BasicPart.GetAttribute("value");
             Assert.AreEqual(PartNumber, "ABKL-32-6");
 
-            string item = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[3]/div/div/div[2]/div/div/div/article[1]/div[2]/p")).Text;            
+            string item = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[3]/div/div/div[2]/div/div/div/article[1]/div[2]/p")).Text;
             helperTest.InputStringXpath(driver, "5", "/html/body/app-root/div/app-product/div[3]/div/div/div[2]/div/div/div/article[1]/div[7]/p/app-qty/input");
             driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[3]/div/div/div[2]/div/div/div/article[1]/div[8]/app-button/div/button")).Click();
 
@@ -1515,15 +1514,92 @@ namespace Selenium.Test
 
             helperTest.waitElementId(driver, 60, "product-name-in-cart0");
 
-            String bodyTextCart = driver.FindElement(By.TagName("body")).Text;
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsTrue(bodyTextCart.Contains(item));           
-            Assert.IsTrue(bodyTextCart.Contains("Alpha Basic Large Lck Umbrella 32"));
+            Assert.IsTrue(bodyTextProduct.Contains(item));
+            Assert.IsTrue(bodyTextProduct.Contains("Alpha Basic Large Lck Umbrella 32"));
 
             Thread.Sleep(1000);
 
             //dev env
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");            
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            //prod env
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+        }
+
+        [Test]
+        public void AccessoryParts()
+        {
+            string bodyTextProduct;
+
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+
+            helperTest.waitElementId(driver, 60, "toggleQuickOrder");
+
+            Assert.AreEqual(homeUrl, driver.Url);
+
+            helperTest.waitElementId(driver, 60, "search");
+            IWebElement SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.Clear();
+            SearchBox.SendKeys("tamarack");
+            SearchBox.SendKeys(Keys.Enter);
+
+            helperTest.waitElementId(driver, 60, "configurable_img_0");
+            helperTest.JsClickElement(driver, "//*[text()='" + "Tamarack® Flexure Joint™" + "']");
+
+            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+            Assert.AreEqual(mainURLs + "product?productID=502", driver.Url);
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[1]/div[2]/div[4]/div[2]/span[1]/span");
+            helperTest.JsClickElement(driver, "//*[text()='" + "Accessories" + "']");
+
+            Thread.Sleep(3000);
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[4]/div/div/div[2]/div/div/section/div/h6[1]/input");
+            IWebElement PartNumber = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[4]/div/div/div[2]/div/div/section/div/h6[1]/input"));
+            PartNumber.Clear();
+            PartNumber.SendKeys("740-L-BLK-5PK");
+
+            Thread.Sleep(1000);
+
+            helperTest.InputStringXpath(driver, "2", "/html/body/app-root/div/app-product/div[4]/div/div/div[2]/div/div/div/article[3]/div[7]/p/app-qty/input");
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[4]/div/div/div[2]/div/div/div/article[3]/div[8]/app-button/div/button")).Click();
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
+
+            helperTest.InputStringXpath(driver, "4", "/html/body/app-root/div/app-product/div[4]/div/div/div[2]/div/div/div/article[7]/div[7]/p/app-qty/input");
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[4]/div/div/div[2]/div/div/div/article[7]/div[8]/app-button/div/button")).Click();
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[4]/div/div/div[1]/app-close-button/p/span")).Click();
+            Thread.Sleep(1000);
+
+            helperTest.InputStringXpath(driver, "740-L-BLK-5PK", "/html/body/app-root/div/app-product/div[1]/div[3]/section/div/h6[1]/input");
+            helperTest.waitElementId(driver, 60, "add_product_to_cart0");
+            helperTest.JsClickElementID(driver, "add_product_to_cart0");
+
+            Thread.Sleep(3000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+
+            Assert.IsTrue(bodyTextProduct.Contains("TAMARACK FLEXURE JOINT BLACK LG 5PK"));
+            Assert.IsTrue(bodyTextProduct.Contains("TAMARACK JOINT SCREW LG/MD 12MM"));
+            Assert.IsTrue(bodyTextProduct.Contains("TAMARACK JOINT SCREW LG/MD 7MM"));
+
+            Thread.Sleep(1000);
+
+            //dev env
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
             //prod env
             //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
@@ -1534,355 +1610,443 @@ namespace Selenium.Test
         //[Test]
         public void ExtendedOrder()
         {
+            string bodyTextProduct;
+            IWebElement SearchBox;
+
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
             helperTest.waitElementId(driver, 60, "toggleQuickOrder");
             Assert.AreEqual(homeUrl, driver.Url);
 
-            //Patient 1
+            var useTheCode = false;
+            if (useTheCode)
+            {
+                //Patient 1
 
-            IWebElement SearchBox = driver.FindElement(By.Id("search"));
-            SearchBox.SendKeys("tiso 464");
+                SearchBox = driver.FindElement(By.Id("search"));
+                SearchBox.SendKeys("tiso 464");
+                SearchBox.SendKeys(Keys.Enter);
+
+                helperTest.waitElementId(driver, 60, "configurable_img_0");
+                helperTest.JsClickElementID(driver, "configurable_img_0");
+
+                helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("Vista® 464 TLSO"));
+
+                helperTest.InputStringId(driver, "2", "qty_product_page");
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[5]/p/app-qty/input");
+
+                helperTest.InputStringXpath(driver, "5", "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[2]/div[5]/p/app-qty/input");
+                driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[2]/div[6]/app-button/div/button")).Click();
+
+                Thread.Sleep(3000);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+                helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("Vista 464 TLSO Upgrade Kit"));
+                Assert.IsTrue(bodyTextProduct.Contains("Vista 464 TLSO Adjustable"));
+
+                helperTest.InputStringId(driver, "Patient 1", "patient_id_in_cart0");
+                helperTest.InputStringId(driver, "test notes for item 993644", "notes_in_cart0");
+                helperTest.InputStringId(driver, "Patient 1", "patient_id_in_cart1");
+                helperTest.InputStringId(driver, "test notes for item 993640", "notes_in_cart1");
+
+                Thread.Sleep(1000);
+
+                //Patient 2
+
+                SearchBox = driver.FindElement(By.Id("search"));
+                SearchBox.SendKeys("alpha classic");
+                SearchBox.SendKeys(Keys.Enter);
+
+                helperTest.waitElementId(driver, 60, "configurable_img_2");
+                helperTest.JsClickElementID(driver, "configurable_img_2");
+
+                helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® Liners"));
+
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[1]/select", 2);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[2]/select", 5);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[3]/select", 4);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[4]/select", 3);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[5]/select", 3);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[6]/select", 3);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[7]/select", 3);
+
+                helperTest.InputStringId(driver, "2", "qty_product_page");
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+
+                Thread.Sleep(3000);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+                helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic Lock Uni Orig G/G 6mm LG"));
+
+                helperTest.InputStringId(driver, "Patient 2", "patient_id_in_cart0");
+                helperTest.InputStringId(driver, "test notes for item ALL-5066-E", "notes_in_cart0");
+
+                Thread.Sleep(1000);
+
+                //Patient 3
+
+                helperTest.JsClickElementID(driver, "product-name-in-cart0");
+
+                Assert.AreEqual(mainURLs + "product?productID=1483", driver.Url);
+
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[1]/select", 3);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[2]/select", 5);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[3]/select", 4);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[4]/select", 3);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[5]/select", 3);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[6]/select", 3);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[7]/select", 4);
+
+                helperTest.InputStringId(driver, "2", "qty_product_page");
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+
+                Thread.Sleep(3000);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+                helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic Cush Uni Orig G/G 6mm LG"));
+
+                helperTest.InputStringId(driver, "Patient 3", "patient_id_in_cart0");
+                helperTest.InputStringId(driver, "test notes for item ALC-5066-E", "notes_in_cart0");
+
+                Thread.Sleep(1000);
+
+                //Patient 4
+
+                SearchBox = driver.FindElement(By.Id("search"));
+                SearchBox.SendKeys("alpha hybrid");
+                SearchBox.SendKeys(Keys.Enter);
+
+                helperTest.waitElementId(driver, 60, "configurable_img_1");
+                helperTest.JsClickElementID(driver, "configurable_img_1");
+
+                helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("Alpha Hybrid® Liners"));
+
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[1]/select", 2);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[2]/select", 3);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[3]/select", 2);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[4]/select", 2);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+
+                Thread.Sleep(3000);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+                helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("Alpha Hybrid Locking Prog MD Acc Umb"));
+
+                helperTest.InputStringId(driver, "Patient 4", "patient_id_in_cart0");
+                helperTest.InputStringId(driver, "test notes for item H352-6390", "notes_in_cart0");
+
+                Thread.Sleep(1000);
+
+                driver.Url = homeUrl;
+
+                helperTest.waitElementId(driver, 60, "home_img_5");
+                Assert.AreEqual(homeUrl, driver.Url);
+
+                string item1 = driver.FindElement(By.XPath("/html/body/app-root/div/app-home/div/div[2]/div[2]/div[6]/app-product-card/mdb-card/div/mdb-card-body/mdb-card-title/a/p")).Text;
+
+                helperTest.JsClickElementID(driver, "home_img_5");
+
+                helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains(item1));
+
+                helperTest.InputStringId(driver, "5", "qty_product_page");
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[2]/article/div[1]/div/app-product-card[1]/article/div[2]/div[1]/p[1]");
+
+                string item2 = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[2]/article/div[1]/div/app-product-card[1]/article/div[2]/div[1]/p[1]")).Text;
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+                helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains(item2));
+
+                string PartNumber = driver.FindElement(By.Id("item-name-in-cart0")).Text;
+
+                helperTest.InputStringId(driver, "Patient 4", "patient_id_in_cart0");
+                helperTest.InputStringId(driver, "test notes for " + PartNumber, "notes_in_cart0");
+
+                Thread.Sleep(1000);
+
+                //Patient 5
+
+                SearchBox = driver.FindElement(By.Id("search"));
+                SearchBox.SendKeys("aspen summit");
+                SearchBox.SendKeys(Keys.Enter);
+
+                helperTest.waitElementId(driver, 60, "configurable_img_0");
+                helperTest.JsClickElement(driver, "//*[text()='" + "Summit Lock" + "']");
+
+                helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("Summit Lock"));
+
+                helperTest.InputStringXpath(driver, "CD102", "/html/body/app-root/div/app-product/div[1]/div[3]/section/div/h6[1]/input");
+                helperTest.waitElementId(driver, 60, "add_product_to_cart0");
+                helperTest.JsClickElementID(driver, "add_product_to_cart0");
+
+                Thread.Sleep(3000);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+                helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("Summit Lock Low Profile Bowtie"));
+
+                helperTest.InputStringId(driver, "Patient 5", "patient_id_in_cart0");
+                helperTest.InputStringId(driver, "test notes for item CD102", "notes_in_cart0");
+
+                Thread.Sleep(1000);
+
+                //Patient 6
+
+                SearchBox = driver.FindElement(By.Id("search"));
+                SearchBox.SendKeys("lyn valve");
+                SearchBox.SendKeys(Keys.Enter);
+
+                helperTest.waitElementId(driver, 60, "configurable_img_0");
+                helperTest.JsClickElement(driver, "//*[text()='" + "Lyn Valve® RV Auto-Expulsion Kit" + "']");
+
+                helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+                Assert.AreEqual(mainURLs + "product?productID=19543", driver.Url);
+
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div/select", 2);
+
+                Thread.Sleep(3000);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+
+                Thread.Sleep(4000);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+                helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("Lyn Valve RV Auto-Expulsion Kit"));
+
+                helperTest.InputStringId(driver, "Patient 6", "patient_id_in_cart0");
+                helperTest.InputStringId(driver, "test notes for item PA0002", "notes_in_cart0");
+
+                Thread.Sleep(1000);
+
+                //Patient 7
+
+                SearchBox = driver.FindElement(By.Id("search"));
+                SearchBox.SendKeys("limblogic");
+                SearchBox.SendKeys(Keys.Enter);
+
+                helperTest.waitElementId(driver, 60, "configurable_img_0");
+                helperTest.JsClickElement(driver, "//*[text()='" + "LimbLogic®" + "']");
+
+                helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+                Assert.AreEqual(mainURLs + "product?productID=3723", driver.Url);
+
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[1]/select", 3);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[2]/select", 4);
+
+                Thread.Sleep(2000);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[5]/p/app-qty/input");
+
+                helperTest.InputStringXpath(driver, "5", "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[5]/p/app-qty/input");
+                driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[6]/app-button/div/button")).Click();
+
+                Thread.Sleep(3000);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+                helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("LimbLogic Unilateral Kit Thermoplastic"));
+                Assert.IsTrue(bodyTextProduct.Contains("LimbLogic Vacuum Pyramid Adaptor"));
+
+                helperTest.InputStringId(driver, "Patient 7", "patient_id_in_cart0");
+                helperTest.InputStringId(driver, "test notes for item LLV-01044", "notes_in_cart0");
+                helperTest.InputStringId(driver, "Patient 7", "patient_id_in_cart1");
+                helperTest.InputStringId(driver, "test notes for item LLV-2000-T", "notes_in_cart1");
+
+                Thread.Sleep(1000);
+
+                //Patient 8
+
+                SearchBox = driver.FindElement(By.Id("search"));
+                SearchBox.SendKeys("RevoFit2 Kit");
+                SearchBox.SendKeys(Keys.Enter);
+
+                helperTest.waitElementId(driver, 60, "configurable_img_0");
+                helperTest.JsClickElementID(driver, "configurable_img_0");
+
+                helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("RevoFit2 Kit"));
+
+                helperTest.waitElementId(driver, 60, "add_product_to_cart0");
+                helperTest.JsClickElementID(driver, "add_product_to_cart0");
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+                helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("RevoFit2 Lamination Kit"));
+
+                helperTest.InputStringId(driver, "Patient 8", "patient_id_in_cart0");
+                helperTest.InputStringId(driver, "test notes for item PK2000-320-05", "notes_in_cart0");
+
+                Thread.Sleep(1000);
+
+                //Patient 9
+
+                SearchBox = driver.FindElement(By.Id("search"));
+                SearchBox.SendKeys("tamarack");
+                SearchBox.SendKeys(Keys.Enter);
+
+                helperTest.waitElementId(driver, 60, "configurable_img_0");
+                helperTest.JsClickElement(driver, "//*[text()='" + "GlideWear Hair & Scalp Protection Pillowcase" + "']");
+
+                helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("GlideWear Hair & Scalp Protection Pillowcase"));
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+
+                Thread.Sleep(4000);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+                helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("GlideWear Protection Pillowcase"));
+
+                helperTest.InputStringId(driver, "Patient 9", "patient_id_in_cart0");
+                helperTest.InputStringId(driver, "test notes for item GW-PCS", "notes_in_cart0");
+
+                Thread.Sleep(1000);
+
+                //Patient 10
+
+                SearchBox = driver.FindElement(By.Id("search"));
+                SearchBox.SendKeys("knee");
+                SearchBox.SendKeys(Keys.Enter);
+
+                helperTest.waitElementId(driver, 60, "configurable_img_0");
+
+                helperTest.JsClickElement(driver, "//*[text()='" + "Prosthetics" + "']");
+
+                Thread.Sleep(3000);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + "Ossur" + "']");
+
+                helperTest.waitElementId(driver, 60, "configurable_img_0");
+                helperTest.JsClickElement(driver, "//*[text()='" + "Balance™ Knee" + "']");
+
+                helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee"));
+                Assert.AreEqual(mainURLs + "product?productID=8911", driver.Url);
+
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div/select", 2);
+
+                Thread.Sleep(3000);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+
+                Thread.Sleep(4000);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+                helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("Balance Knee Kit"));
+
+                helperTest.InputStringId(driver, "Patient 10", "patient_id_in_cart0");
+                helperTest.InputStringId(driver, "test notes for item BKN12500", "notes_in_cart0");
+
+                Thread.Sleep(1000);
+
+                //Patient 11
+
+                helperTest.JsClickElement(driver, "/html/body/app-root/app-header/nav/div[1]/a/span/i");
+
+                Thread.Sleep(1000);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Foot Care " + "']");
+
+                Thread.Sleep(1000);
+
+                helperTest.JsClickElement(driver, "/html/body/app-root/app-header/nav/app-header-categories-panel/section/div/div[2]/collapsible-list/collapsible-list-item[9]/collapsible-body/span[5]");
+
+                helperTest.waitElementId(driver, 60, "configurable_img_0");
+                helperTest.JsClickElement(driver, "//*[text()='" + "APEX® Boss Runner - Men" + "']");
+
+                helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("APEX® Boss Runner - Men"));
+                Assert.AreEqual(mainURLs + "product?productID=567", driver.Url);
+
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[3]/app-magento-attributes/form/div/div[1]/select", 2);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[3]/app-magento-attributes/form/div/div[2]/select", 2);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[3]/app-magento-attributes/form/div/div[3]/select", 9);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[3]/app-magento-attributes/form/div/div[4]/select", 3);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+
+                Thread.Sleep(4000);
+
+                helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+                helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("Boss Runner Black MW10"));
+
+                helperTest.InputStringId(driver, "Patient 11", "patient_id_in_cart0");
+                helperTest.InputStringId(driver, "test notes for item X520MM10", "notes_in_cart0");
+
+                Thread.Sleep(1000);
+            }
+
+            //Patient 12
+
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.SendKeys("ossur");
             SearchBox.SendKeys(Keys.Enter);
-
-            helperTest.waitElementId(driver, 60, "configurable_img_0");
-            helperTest.JsClickElementID(driver, "configurable_img_0");
-
-            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct.Contains("Vista® 464 TLSO"));
-
-            helperTest.InputStringId(driver, "2", "qty_product_page");
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[5]/p/app-qty/input");
-
-            helperTest.InputStringXpath(driver, "5", "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[2]/div[5]/p/app-qty/input");
-            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[2]/div[6]/app-button/div/button")).Click();
-
-            Thread.Sleep(3000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
-
-            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-
-            String bodyReviewTextProduct = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct.Contains("Vista 464 TLSO Upgrade Kit"));
-            Assert.IsTrue(bodyReviewTextProduct.Contains("Vista 464 TLSO Adjustable"));
-
-            helperTest.InputStringId(driver, "Patient 1", "patient_id_in_cart0");
-            helperTest.InputStringId(driver, "test notes for item 993644", "notes_in_cart0");
-            helperTest.InputStringId(driver, "Patient 1", "patient_id_in_cart1");
-            helperTest.InputStringId(driver, "test notes for item 993640", "notes_in_cart1");
-
-            Thread.Sleep(1000);
-
-            //Patient 2
-
-            IWebElement SearchBox2 = driver.FindElement(By.Id("search"));
-            SearchBox2.SendKeys("alpha classic");
-            SearchBox2.SendKeys(Keys.Enter);
-
-            helperTest.waitElementId(driver, 60, "configurable_img_2");
-            helperTest.JsClickElementID(driver, "configurable_img_2");
-
-            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct2 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct2.Contains("Alpha Classic® Liners"));
-
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[1]/select", 2);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[2]/select", 5);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[3]/select", 4);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[4]/select", 3);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[5]/select", 3);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[6]/select", 3);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[7]/select", 3);
-
-            helperTest.InputStringId(driver, "2", "qty_product_page");
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-            Thread.Sleep(3000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
-
-            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-
-            String bodyReviewTextProduct2 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct2.Contains("Alpha Classic Lock Uni Orig G/G 6mm LG"));
-
-            helperTest.InputStringId(driver, "Patient 2", "patient_id_in_cart0");
-            helperTest.InputStringId(driver, "test notes for item ALL-5066-E", "notes_in_cart0");
-
-            Thread.Sleep(1000);
-
-            //Patient 3
-
-            helperTest.JsClickElementID(driver, "product-name-in-cart0");
-
-            Assert.AreEqual(mainURLs + "product?productID=1483", driver.Url);
-
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[1]/select", 3);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[2]/select", 5);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[3]/select", 4);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[4]/select", 3);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[5]/select", 3);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[6]/select", 3);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[7]/select", 4);
-
-            helperTest.InputStringId(driver, "2", "qty_product_page");
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-            Thread.Sleep(3000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
-
-            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-
-            String bodyReviewTextProduct3 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct3.Contains("Alpha Classic Cush Uni Orig G/G 6mm LG"));
-
-            helperTest.InputStringId(driver, "Patient 3", "patient_id_in_cart0");
-            helperTest.InputStringId(driver, "test notes for item ALC-5066-E", "notes_in_cart0");
-
-            Thread.Sleep(1000);
-
-            //Patient 4
-
-            IWebElement SearchBox4 = driver.FindElement(By.Id("search"));
-            SearchBox4.SendKeys("alpha hybrid");
-            SearchBox4.SendKeys(Keys.Enter);
-
-            helperTest.waitElementId(driver, 60, "configurable_img_1");
-            helperTest.JsClickElementID(driver, "configurable_img_1");
-
-            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct4 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct4.Contains("Alpha Hybrid® Liners"));
-
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[1]/select", 2);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[2]/select", 3);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[3]/select", 2);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[4]/select", 2);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-            Thread.Sleep(3000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
-
-            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-
-            String bodyReviewTextProduct4 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct4.Contains("Alpha Hybrid Locking Prog MD Acc Umb"));
-
-            helperTest.InputStringId(driver, "Patient 4", "patient_id_in_cart0");
-            helperTest.InputStringId(driver, "test notes for item H352-6390", "notes_in_cart0");
-
-            Thread.Sleep(1000);
-
-            driver.Url = homeUrl;
-
-            helperTest.waitElementId(driver, 60, "home_img_5");
-            Assert.AreEqual(homeUrl, driver.Url);
-
-            string item1 = driver.FindElement(By.XPath("/html/body/app-root/div/app-home/div/div[2]/div[2]/div[6]/app-product-card/mdb-card/div/mdb-card-body/mdb-card-title/a/p")).Text;
-
-            helperTest.JsClickElementID(driver, "home_img_5");
-
-            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProducts4 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProducts4.Contains(item1));
-
-            helperTest.InputStringId(driver, "5", "qty_product_page");
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[2]/article/div[1]/div/app-product-card[1]/article/div[2]/div[1]/p[1]");
-
-            string item2 = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[2]/article/div[1]/div/app-product-card[1]/article/div[2]/div[1]/p[1]")).Text;
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
-
-            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-
-            String bodyReviewTextProducts4 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProducts4.Contains(item2));
-
-            string PartNumber = driver.FindElement(By.Id("item-name-in-cart0")).Text;
-
-            helperTest.InputStringId(driver, "Patient 4", "patient_id_in_cart0");
-            helperTest.InputStringId(driver, "test notes for " + PartNumber, "notes_in_cart0");
-
-            Thread.Sleep(1000);
-
-            //Patient 5
-
-            IWebElement SearchBox5 = driver.FindElement(By.Id("search"));
-            SearchBox5.SendKeys("aspen summit");
-            SearchBox5.SendKeys(Keys.Enter);
-
-            helperTest.waitElementId(driver, 60, "configurable_img_0");
-            helperTest.JsClickElement(driver, "//*[text()='" + "Summit Lock" + "']");
-
-            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct5 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct5.Contains("Summit Lock"));
-
-            helperTest.InputStringXpath(driver, "CD102", "/html/body/app-root/div/app-product/div[1]/div[3]/section/div/h6[1]/input");
-            helperTest.waitElementId(driver, 60, "add_product_to_cart0");
-            helperTest.JsClickElementID(driver, "add_product_to_cart0");
-
-            Thread.Sleep(3000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
-
-            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-
-            String bodyReviewTextProduct5 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct5.Contains("Summit Lock Low Profile Bowtie"));
-
-            helperTest.InputStringId(driver, "Patient 5", "patient_id_in_cart0");
-            helperTest.InputStringId(driver, "test notes for item CD102", "notes_in_cart0");
-
-            Thread.Sleep(1000);
-
-            //Patient 6
-
-            IWebElement SearchBox6 = driver.FindElement(By.Id("search"));
-            SearchBox6.SendKeys("lyn valve");
-            SearchBox6.SendKeys(Keys.Enter);
-
-            helperTest.waitElementId(driver, 60, "configurable_img_0");
-            helperTest.JsClickElement(driver, "//*[text()='" + "Lyn Valve® RV Auto-Expulsion Kit" + "']");
-
-            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            Assert.AreEqual(mainURLs + "product?productID=19543", driver.Url);
-
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div/select", 2);
-
-            Thread.Sleep(3000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-            Thread.Sleep(4000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
-
-            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-
-            String bodyReviewTextProduct6 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct6.Contains("Lyn Valve RV Auto-Expulsion Kit"));
-
-            helperTest.InputStringId(driver, "Patient 6", "patient_id_in_cart0");
-            helperTest.InputStringId(driver, "test notes for item PA0002", "notes_in_cart0");
-
-            Thread.Sleep(1000);
-
-            //Patient 7
-
-            IWebElement SearchBox7 = driver.FindElement(By.Id("search"));
-            SearchBox7.SendKeys("limblogic");
-            SearchBox7.SendKeys(Keys.Enter);
-
-            helperTest.waitElementId(driver, 60, "configurable_img_0");
-            helperTest.JsClickElement(driver, "//*[text()='" + "LimbLogic®" + "']");
-
-            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            Assert.AreEqual(mainURLs + "product?productID=3723", driver.Url);
-
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[1]/select", 3);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[2]/select", 4);
-
-            Thread.Sleep(2000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[5]/p/app-qty/input");
-
-            helperTest.InputStringXpath(driver, "5", "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[5]/p/app-qty/input");
-            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[6]/app-button/div/button")).Click();
-
-            Thread.Sleep(3000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
-
-            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-
-            String bodyReviewTextProduct7 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct7.Contains("LimbLogic Unilateral Kit Thermoplastic"));
-            Assert.IsTrue(bodyReviewTextProduct7.Contains("LimbLogic Vacuum Pyramid Adaptor"));
-
-            helperTest.InputStringId(driver, "Patient 7", "patient_id_in_cart0");
-            helperTest.InputStringId(driver, "test notes for item LLV-01044", "notes_in_cart0");
-            helperTest.InputStringId(driver, "Patient 7", "patient_id_in_cart1");
-            helperTest.InputStringId(driver, "test notes for item LLV-2000-T", "notes_in_cart1");
-
-            Thread.Sleep(1000);
-
-            //Patient 8
-
-            IWebElement SearchBox8 = driver.FindElement(By.Id("search"));
-            SearchBox8.SendKeys("RevoFit2 Kit");
-            SearchBox8.SendKeys(Keys.Enter);
-
-            helperTest.waitElementId(driver, 60, "configurable_img_0");
-            helperTest.JsClickElementID(driver, "configurable_img_0");
-
-            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct8 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct8.Contains("RevoFit2 Kit"));
-
-            helperTest.waitElementId(driver, 60, "add_product_to_cart0");
-            helperTest.JsClickElementID(driver, "add_product_to_cart0");
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
-
-            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-
-            String bodyReviewTextProduct8 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct8.Contains("RevoFit2 Lamination Kit"));
-
-            helperTest.InputStringId(driver, "Patient 8", "patient_id_in_cart0");
-            helperTest.InputStringId(driver, "test notes for item PK2000-320-05", "notes_in_cart0");
-
-            Thread.Sleep(1000);
-
-            //Patient 9
-
-            IWebElement SearchBox9 = driver.FindElement(By.Id("search"));
-            SearchBox9.SendKeys("tamarack");
-            SearchBox9.SendKeys(Keys.Enter);
-
-            helperTest.waitElementId(driver, 60, "configurable_img_0");
-            helperTest.JsClickElement(driver, "//*[text()='" + "GlideWear Hair & Scalp Protection Pillowcase" + "']");
-
-            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct9 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct9.Contains("GlideWear Hair & Scalp Protection Pillowcase"));
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-            Thread.Sleep(4000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
-
-            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-            String bodyReviewTextProduct9 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct9.Contains("GlideWear Protection Pillowcase"));
-
-            helperTest.InputStringId(driver, "Patient 9", "patient_id_in_cart0");
-            helperTest.InputStringId(driver, "test notes for item GW-PCS", "notes_in_cart0");
-
-            Thread.Sleep(1000);
-
-            //Patient 10
-
-            IWebElement SearchBox10 = driver.FindElement(By.Id("search"));
-            SearchBox10.SendKeys("knee");
-            SearchBox10.SendKeys(Keys.Enter);
 
             helperTest.waitElementId(driver, 60, "configurable_img_0");
 
@@ -1890,17 +2054,31 @@ namespace Selenium.Test
 
             Thread.Sleep(3000);
 
-            helperTest.JsClickElement(driver, "//*[text()='" + "Ossur" + "']");
+            helperTest.JsClickElement(driver, "//*[text()='" + "Lower Extremity" + "']");
+
+            Thread.Sleep(3000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "Knee" + "']");
+
+            Thread.Sleep(3000);
 
             helperTest.waitElementId(driver, 60, "configurable_img_0");
-            helperTest.JsClickElement(driver, "//*[text()='" + "Balance™ Knee" + "']");
 
-            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct10 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct10.Contains("Balance™ Knee"));
-            Assert.AreEqual(mainURLs + "product?productID=8911", driver.Url);
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div/select", 2);
+            if (bodyTextProduct.Contains("Balance™ Knee OFM"))
+            {
+                helperTest.JsClickElement(driver, "//*[text()='" + "Balance™ Knee OFM" + "']");
+            }
+            else
+            {
+                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/div/ngb-pagination/ul/li[3]/a");
+                helperTest.waitElementId(driver, 60, "configurable_img_0");
+                bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee OFM2"));
+
+                helperTest.JsClickElement(driver, "//*[text()='" + "Balance™ Knee OFM2" + "']");
+            }
 
             Thread.Sleep(3000);
 
@@ -1911,81 +2089,8 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
 
             helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-            String bodyReviewTextProduct10 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct10.Contains("Balance Knee Kit"));
-
-            helperTest.InputStringId(driver, "Patient 10", "patient_id_in_cart0");
-            helperTest.InputStringId(driver, "test notes for item BKN12500", "notes_in_cart0");
-
-            Thread.Sleep(1000);
-
-            //Patient 11
-
-            helperTest.JsClickElement(driver, "/html/body/app-root/app-header/nav/div[1]/a/span/i");
-
-            Thread.Sleep(1000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Foot Care " + "']");
-
-            Thread.Sleep(1000);
-
-            helperTest.JsClickElement(driver, "/html/body/app-root/app-header/nav/app-header-categories-panel/section/div/div[2]/collapsible-list/collapsible-list-item[9]/collapsible-body/span[5]");
-
-            helperTest.waitElementId(driver, 60, "configurable_img_0");
-            helperTest.JsClickElement(driver, "//*[text()='" + "APEX® Boss Runner - Men" + "']");
-
-            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct11 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct11.Contains("APEX® Boss Runner - Men"));
-            Assert.AreEqual(mainURLs + "product?productID=567", driver.Url);
-
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[3]/app-magento-attributes/form/div/div[1]/select", 2);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[3]/app-magento-attributes/form/div/div[2]/select", 2);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[3]/app-magento-attributes/form/div/div[3]/select", 9);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[3]/app-magento-attributes/form/div/div[4]/select", 3);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-            Thread.Sleep(4000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
-
-            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-            String bodyReviewTextProduct11 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct11.Contains("Boss Runner Black MW10"));
-
-            helperTest.InputStringId(driver, "Patient 11", "patient_id_in_cart0");
-            helperTest.InputStringId(driver, "test notes for item X520MM10", "notes_in_cart0");
-
-            Thread.Sleep(1000);
-
-            //Patient 12
-
-            IWebElement SearchBox12 = driver.FindElement(By.Id("search"));
-            SearchBox12.SendKeys("Balance™ Knee OFM2");
-            SearchBox12.SendKeys(Keys.Enter);
-
-            helperTest.waitElementId(driver, 60, "configurable_img_0");
-            helperTest.JsClickElement(driver, "//*[text()='" + "Balance™ Knee OFM2" + "']");
-
-            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct12 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct12.Contains("Balance™ Knee OFM2"));
-            Assert.AreEqual(mainURLs + "product?productID=15676", driver.Url);
-
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div/select", 2);
-
-            Thread.Sleep(3000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-            Thread.Sleep(4000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
-
-            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-            String bodyReviewTextProduct12 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct12.Contains("Balance Knee Kit"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Balance Knee Kit"));
 
             helperTest.InputStringId(driver, "Patient 12", "patient_id_in_cart0");
             helperTest.InputStringId(driver, "test notes for item BKN12500", "notes_in_cart0");
@@ -1994,16 +2099,16 @@ namespace Selenium.Test
 
             //Patient 13
 
-            IWebElement SearchBox13 = driver.FindElement(By.Id("search"));
-            SearchBox13.SendKeys("993740");
-            SearchBox13.SendKeys(Keys.Enter);
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.SendKeys("993740");
+            SearchBox.SendKeys(Keys.Enter);
 
             helperTest.waitElementId(driver, 60, "configurable_img_0");
             helperTest.JsClickElement(driver, "//*[text()='" + "Aspen® Horizon™" + "']");
 
             helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct13 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct13.Contains("Aspen® Horizon™"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Aspen® Horizon™"));
             Assert.AreEqual(mainURLs + "product?productID=17026", driver.Url);
 
             helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div/select", 2);
@@ -2017,8 +2122,8 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
 
             helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-            String bodyReviewTextProduct13 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct13.Contains("Balance Knee Kit"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Balance Knee Kit"));
 
             helperTest.InputStringId(driver, "Patient 13", "patient_id_in_cart0");
             helperTest.InputStringId(driver, "test notes for item BKN12500", "notes_in_cart0");
@@ -2027,16 +2132,16 @@ namespace Selenium.Test
 
             //Patient 14
 
-            IWebElement SearchBox14 = driver.FindElement(By.Id("search"));
-            SearchBox14.SendKeys("PRAFO® Ankle Foot Orthosis");
-            SearchBox14.SendKeys(Keys.Enter);
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.SendKeys("PRAFO® Ankle Foot Orthosis");
+            SearchBox.SendKeys(Keys.Enter);
 
             helperTest.waitElementId(driver, 60, "configurable_img_0");
             helperTest.JsClickElement(driver, "//*[text()='" + "Anatomical Concepts PRAFO® Ankle Foot Orthosis" + "']");
 
             helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct14 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct14.Contains("Anatomical Concepts PRAFO® Ankle Foot Orthosis"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Anatomical Concepts PRAFO® Ankle Foot Orthosis"));
             Assert.AreEqual(mainURLs + "product?productID=13411", driver.Url);
 
             helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div/select", 2);
@@ -2050,8 +2155,8 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
 
             helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-            String bodyReviewTextProduct14 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct14.Contains("Balance Knee Kit"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Balance Knee Kit"));
 
             helperTest.InputStringId(driver, "Patient 14", "patient_id_in_cart0");
             helperTest.InputStringId(driver, "test notes for item BKN12500", "notes_in_cart0");
@@ -2060,16 +2165,16 @@ namespace Selenium.Test
 
             //Patient 15
 
-            IWebElement SearchBox15 = driver.FindElement(By.Id("search"));
-            SearchBox15.SendKeys("Tamarack® Flexure Joint™");
-            SearchBox15.SendKeys(Keys.Enter);
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.SendKeys("Tamarack® Flexure Joint™");
+            SearchBox.SendKeys(Keys.Enter);
 
             helperTest.waitElementId(driver, 60, "configurable_img_0");
             helperTest.JsClickElement(driver, "//*[text()='" + "Tamarack® Flexure Joint™" + "']");
 
             helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct15 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct15.Contains("Balance™ Knee"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee"));
             Assert.AreEqual(mainURLs + "product?productID=8911", driver.Url);
 
             helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div/select", 2);
@@ -2083,8 +2188,8 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
 
             helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-            String bodyReviewTextProduct15 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct15.Contains("Balance Knee Kit"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Balance Knee Kit"));
 
             helperTest.InputStringId(driver, "Patient 15", "patient_id_in_cart0");
             helperTest.InputStringId(driver, "test notes for item BKN12500", "notes_in_cart0");
@@ -2093,16 +2198,16 @@ namespace Selenium.Test
 
             //Patient 16
 
-            IWebElement SearchBox16 = driver.FindElement(By.Id("search"));
-            SearchBox16.SendKeys("Premier Post-Op Brace");
-            SearchBox16.SendKeys(Keys.Enter);
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.SendKeys("Premier Post-Op Brace");
+            SearchBox.SendKeys(Keys.Enter);
 
             helperTest.waitElementId(driver, 60, "configurable_img_0");
             helperTest.JsClickElement(driver, "//*[text()='" + "Breg® T Scope® Premier Post-Op Brace" + "']");
 
             helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct16 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct16.Contains("Breg® T Scope® Premier Post-Op Brace"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Breg® T Scope® Premier Post-Op Brace"));
             Assert.AreEqual(mainURLs + "product?productID=9975", driver.Url);
 
             helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div/select", 2);
@@ -2116,8 +2221,8 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
 
             helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-            String bodyReviewTextProduct16 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct16.Contains("Balance Knee Kit"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Balance Knee Kit"));
 
             helperTest.InputStringId(driver, "Patient 16", "patient_id_in_cart0");
             helperTest.InputStringId(driver, "test notes for item BKN12500", "notes_in_cart0");
@@ -2126,16 +2231,16 @@ namespace Selenium.Test
 
             //Patient 17
 
-            IWebElement SearchBox17 = driver.FindElement(By.Id("search"));
-            SearchBox17.SendKeys("Aspen Vista");
-            SearchBox17.SendKeys(Keys.Enter);
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.SendKeys("Aspen Vista");
+            SearchBox.SendKeys(Keys.Enter);
 
             helperTest.waitElementId(driver, 60, "configurable_img_0");
             helperTest.JsClickElement(driver, "//*[text()='" + "Aspen® Vista® CTO4" + "']");
 
             helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct17 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct17.Contains("Aspen® Vista® CTO4"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Aspen® Vista® CTO4"));
             Assert.AreEqual(mainURLs + "product?productID=14609", driver.Url);
 
             helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div/select", 2);
@@ -2149,8 +2254,8 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
 
             helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-            String bodyReviewTextProduct17 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct17.Contains("Balance Knee Kit"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Balance Knee Kit"));
 
             helperTest.InputStringId(driver, "Patient 17", "patient_id_in_cart0");
             helperTest.InputStringId(driver, "test notes for item BKN12500", "notes_in_cart0");
@@ -2159,16 +2264,16 @@ namespace Selenium.Test
 
             //Patient 18
 
-            IWebElement SearchBox18 = driver.FindElement(By.Id("search"));
-            SearchBox18.SendKeys("L5679");
-            SearchBox18.SendKeys(Keys.Enter);
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.SendKeys("L5679");
+            SearchBox.SendKeys(Keys.Enter);
 
             helperTest.waitElementId(driver, 60, "configurable_img_0");
             helperTest.JsClickElement(driver, "//*[text()='" + "Alpha Hybrid® Liners" + "']");
 
             helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct18 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct18.Contains("Alpha Hybrid® Liners"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Alpha Hybrid® Liners"));
             Assert.AreEqual(mainURLs + "product?productID=7158", driver.Url);
 
             helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div/select", 2);
@@ -2182,8 +2287,8 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
 
             helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-            String bodyReviewTextProduct18 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct18.Contains("Balance Knee Kit"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Balance Knee Kit"));
 
             helperTest.InputStringId(driver, "Patient 18", "patient_id_in_cart0");
             helperTest.InputStringId(driver, "test notes for item BKN12500", "notes_in_cart0");
@@ -2192,16 +2297,16 @@ namespace Selenium.Test
 
             //Patient 19
 
-            IWebElement SearchBox19 = driver.FindElement(By.Id("search"));
-            SearchBox19.SendKeys("C1L");
-            SearchBox19.SendKeys(Keys.Enter);
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.SendKeys("C1L");
+            SearchBox.SendKeys(Keys.Enter);
 
             helperTest.waitElementId(driver, 60, "configurable_img_0");
             helperTest.JsClickElement(driver, "//*[text()='" + "Fabtech +PLUSeries® Composite Adhesive" + "']");
 
             helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct19 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct19.Contains("Fabtech +PLUSeries® Composite Adhesive"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Fabtech +PLUSeries® Composite Adhesive"));
             Assert.AreEqual(mainURLs + "product?productID=6648", driver.Url);
 
             helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div/select", 2);
@@ -2215,8 +2320,8 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
 
             helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-            String bodyReviewTextProduct19 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct19.Contains("Balance Knee Kit"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Balance Knee Kit"));
 
             helperTest.InputStringId(driver, "Patient 19", "patient_id_in_cart0");
             helperTest.InputStringId(driver, "test notes for item BKN12500", "notes_in_cart0");
@@ -2225,16 +2330,16 @@ namespace Selenium.Test
 
             //Patient 20
 
-            IWebElement SearchBox20 = driver.FindElement(By.Id("search"));
-            SearchBox20.SendKeys("sprystep");
-            SearchBox20.SendKeys(Keys.Enter);
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.SendKeys("sprystep");
+            SearchBox.SendKeys(Keys.Enter);
 
             helperTest.waitElementId(driver, 60, "configurable_img_0");
             helperTest.JsClickElement(driver, "//*[text()='" + "Townsend SpryStep®" + "']");
 
             helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            string bodyTextProduct20 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct20.Contains("Townsend SpryStep®"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Townsend SpryStep®"));
             Assert.AreEqual(mainURLs + "product?productID=15363", driver.Url);
 
             helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div/select", 2);
@@ -2248,8 +2353,8 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
 
             helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-            String bodyReviewTextProduct20 = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyReviewTextProduct20.Contains("Balance Knee Kit"));
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Balance Knee Kit"));
 
             helperTest.InputStringId(driver, "Patient 20", "patient_id_in_cart0");
             helperTest.InputStringId(driver, "test notes for item BKN12500", "notes_in_cart0");
@@ -3604,7 +3709,7 @@ namespace Selenium.Test
         public void Cleanup()
         {
             //driver.Quit();
-            driver?.Dispose();           
+            driver?.Dispose();
         }
     }
 }
