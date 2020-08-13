@@ -6,15 +6,6 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
-using System.Linq;
-using OpenQA.Selenium.Support.Extensions;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Net;
-using System.Text.RegularExpressions;
-using System.Text;
-using System.ComponentModel.DataAnnotations;
-using OpenQA.Selenium.Support.UI;
 
 namespace Selenium.Test
 {
