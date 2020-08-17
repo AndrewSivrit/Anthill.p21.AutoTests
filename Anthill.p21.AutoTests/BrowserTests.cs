@@ -94,7 +94,7 @@ namespace Selenium.Test
             ChromeOptions options = new ChromeOptions();
 
             options.AddArguments("--no-sandbox");
-            options.AddArguments("--headless");
+            //options.AddArguments("--headless");
 
             options.AddUserProfilePreference("download.default_directory", "C:/Work/Anthill/Anthill.p21.AutoTests/logs_img");
             options.AddUserProfilePreference("intl.accept_languages", "nl");
@@ -362,6 +362,10 @@ namespace Selenium.Test
             helperTest.waitElementId(driver, 60, "item-name-in-cart0");
             bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
             Assert.IsTrue(bodyTextProduct.Contains("AKL-2636-X"));
+
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
         }
 
         [Test]
@@ -1033,6 +1037,30 @@ namespace Selenium.Test
             Assert.IsTrue(bodyTextCart2.Contains("Orthosis MD"));
             Assert.IsTrue(bodyTextCart2.Contains("Orthosis XS"));
             Assert.IsTrue(bodyTextCart2.Contains("Orthosis 10"));
+
+            //dev env
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            //prod env
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+
         }
 
         //[Test]
@@ -1331,8 +1359,12 @@ namespace Selenium.Test
             bodyTextProduct2 = driver.FindElement(By.Id("item-name-in-cart0")).Text;
             Assert.IsTrue(bodyTextProduct2.Contains("ALC-5067-E"));
 
+            //dev env
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            //prod env            
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
         }
 
         [Test]
@@ -1592,8 +1624,8 @@ namespace Selenium.Test
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
             Assert.IsTrue(bodyTextProduct.Contains("TAMARACK FLEXURE JOINT BLACK LG 5PK"));
-            Assert.IsTrue(bodyTextProduct.Contains("TAMARACK JOINT SCREW LG/MD 12MM"));
-            Assert.IsTrue(bodyTextProduct.Contains("TAMARACK JOINT SCREW LG/MD 7MM"));
+            Assert.IsTrue(bodyTextProduct.Contains("TAMARACK JOINT SCREW LG/MD 9MM"));
+            Assert.IsTrue(bodyTextProduct.Contains("TAMARACK INSTRUCTION VIDEO"));
 
             Thread.Sleep(1000);
 
@@ -2980,13 +3012,16 @@ namespace Selenium.Test
             helperTest.waitElementId(driver, 60, "header_cart_icon");
             CartBtn = driver.FindElement((By.Id("header_cart_icon")));
             CartBtn.Click();
+
             // check sku
             helperTest.waitElementId(driver, 60, "item-name-in-cart0");
             bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
             Assert.IsTrue(bodyTextProduct.Contains("60SL"));
-            // wtite descr
-            helperTest.InputStringId(driver, "patient 12", "patient_id_in_cart0");
-            helperTest.InputStringId(driver, "test notes for item 60SL", "notes_in_cart0");
+
+            Thread.Sleep(2000);
+
+            // delete from cart
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
         }
 
         ////[Test]
@@ -3174,12 +3209,11 @@ namespace Selenium.Test
             // check sku
             helperTest.waitElementId(driver, 60, "item-name-in-cart0");
             bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
-            Assert.IsTrue(bodyTextProduct.Contains("993740"));
-            // wtite descr
-            helperTest.InputStringId(driver, "patient 16", "patient_id_in_cart0");
-            helperTest.InputStringId(driver, "test notes for item 993740", "notes_in_cart0");
+            Assert.IsTrue(bodyTextProduct.Contains("993740"));            
 
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
         }
 
         ////[Test]
@@ -3596,53 +3630,6 @@ namespace Selenium.Test
         }
 
         ////[Test]
-        public void Step28()
-        {
-            UITest(() =>
-            {
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
-
-                helperTest.waitElementId(driver, 60, "toggleQuickOrder");
-
-                Actions actions = new Actions(driver);
-                IWebElement CartBtn;
-                String bodyTextProduct;
-                IWebElement NavigateCusror;
-
-                IWebElement QuickOrderBtn = driver.FindElement(By.Id("toggleQuickOrder"));
-                QuickOrderBtn.Click();
-                Thread.Sleep(1000);
-
-                InputAndCheckAdd("289221012", 0, "");
-                InputAndCheckAdd("17H2001", 1, "");
-                InputAndCheckAdd("H350-6396", 2, "");
-                InputAndCheckAdd("453A3=2-7", 3, "");
-                InputAndCheckAdd("993720", 4, "");
-
-                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-quick-order-pad/div[1]/div[3]/app-tag-button/span/span");
-
-                InputAndCheckAdd("984002", 5, "");
-                InputAndCheckAdd("SFX26-3G", 6, "");
-                InputAndCheckAdd("993730", 7, "");
-                InputAndCheckAdd("289222012", 8, "");
-                InputAndCheckAdd("CD103", 9, "");
-
-                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-quick-order-pad/div[1]/div[3]/app-tag-button/span/span");
-
-                InputAndCheckAdd("3662", 10, "");
-                InputAndCheckAdd("AKL-2638-X", 11, "");
-                InputAndCheckAdd("984202", 12, "");
-                InputAndCheckAdd("1210", 13, "");
-                InputAndCheckAdd("2100", 14, "");
-
-                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-quick-order-pad/div[1]/div[3]/app-tag-button/span/span");
-
-                InputAndCheckAdd("CMR-G", 15, "");
-                InputAndCheckAdd("1SPSRGSH", 16, "");
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
-        }
-
-        ////[Test]
         public void AllStepsExtendedShopCart()
         {
             UITest(() =>
@@ -3671,8 +3658,7 @@ namespace Selenium.Test
                 Step24();
                 Step25();
                 Step26();
-                Step27();
-                Step28();
+                Step27();                
             }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
 
         }
