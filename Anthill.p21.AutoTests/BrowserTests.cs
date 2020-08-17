@@ -365,7 +365,7 @@ namespace Selenium.Test
 
             Thread.Sleep(2000);
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElementID(driver, "remove-button-0");
         }
 
         [Test]
@@ -588,8 +588,8 @@ namespace Selenium.Test
 
             helperTest.waitElementId(driver, 60, "item-name-in-cart0");
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[2]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[2]/section/div/article[4]/div[5]/app-tag-button[1]/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[5]/app-tag-button[1]/span/span");
 
             IWebElement ClickUser2 = driver.FindElement(By.Id("username_button"));
             Actions acti = new Actions(driver);
@@ -795,10 +795,14 @@ namespace Selenium.Test
             helperTest.InputStringId(driver, "Test Address 1", "AddressOne");
             helperTest.InputStringId(driver, "Test Address 2", "AddressTwo");
             helperTest.InputStringId(driver, "Test City", "City");
-            //for dev env
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/div/div/div/div[2]/div/form/select[1]", 2);
-            //for prod env
-            //helperTest.UseDropDown(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/aside/app-order-info-aside/div/div/div/div[2]/div/form/select[1]", 2);
+            if (driver.Url.Contains("v2dev.cascade-usa"))
+            {
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/div/div/div/div[2]/div/form/select[1]", 2);
+            }
+            else
+            {
+                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/aside/app-order-info-aside/div/div/div/div[2]/div/form/select[1]", 2);
+            }
             helperTest.InputStringId(driver, "11111", "ZipCode");
             helperTest.InputStringId(driver, "22222", "Phone");
 
@@ -844,48 +848,8 @@ namespace Selenium.Test
             Thread.Sleep(2000);
         }
 
-        //[Test]
-        public void ChangePass()
-        {
-
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, "54321", mainURL);
-
-            Thread.Sleep(4000);
-
-            driver.Url = mainURLs + "account-info";
-
-            Thread.Sleep(4000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + "Change Password" + "']");
-
-            Thread.Sleep(2000);
-
-            helperTest.InputStringId(driver, "54321", "input-old-password");
-
-            helperTest.InputStringId(driver, "12345", "input-password");
-            helperTest.InputStringId(driver, "12345", "input-confirm");
-
-            helperTest.JsClickElement(driver, "//html/body/app-root/div/app-account-info/div[2]/div/div/div[2]/div/button");
-
-            Thread.Sleep(2000);
-
-            IWebElement ClickUser = driver.FindElement(By.Id("username_button"));
-
-            Actions actions = new Actions(driver);
-            actions.MoveToElement(ClickUser).Build().Perform();
-
-            var LogOut = driver.FindElement(By.Id("logout_button"));
-
-            LogOut.Click();
-
-            Thread.Sleep(4000);
-
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, "12345", mainURL);
-
-        }
-
         [Test]
-        public void ClearAll()
+        public void FilterAndClearAll()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
@@ -927,17 +891,11 @@ namespace Selenium.Test
         [Test]
         public void LoginWrongCreds()
         {
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, "fgdgf", mainURL);
 
-            UITest(() =>
-            {
+            Thread.Sleep(4000);
 
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, "fgdgf", mainURL);
-
-                Thread.Sleep(4000);
-
-                Assert.AreEqual(authUrl, driver.Url);
-
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
+            Assert.AreEqual(authUrl, driver.Url);
         }
 
         [Test]
@@ -968,7 +926,6 @@ namespace Selenium.Test
             IWebElement InpBox = driver.FindElement(By.Id(numInput));
             InpBox.Clear();
             InpBox.SendKeys(productId);
-
 
             Thread.Sleep(3000);
 
@@ -1038,123 +995,12 @@ namespace Selenium.Test
             Assert.IsTrue(bodyTextCart2.Contains("Orthosis XS"));
             Assert.IsTrue(bodyTextCart2.Contains("Orthosis 10"));
 
-            //dev env
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            //prod env
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            for (int j = 0; j < 10; j++)
+            {
+                helperTest.JsClickElementID(driver, "remove-button-0");
 
-        }
-
-        //[Test]
-        public void QuickOrderSergeyTest()
-        {
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
-
-            Thread.Sleep(4000);
-
-            IWebElement QuickOrderButton = driver.FindElement(By.Id("toggleQuickOrder"));
-            QuickOrderButton.Click();
-            Thread.Sleep(1000);
-
-            helperTest.AddItem(driver, "1210", 0, "Grace Plate");
-            helperTest.AddPatientID(driver, "16553854", 0);
-            helperTest.AddNotes(driver, "Quick Order", 0);
-            helperTest.AddItem(driver, "1211", 1, "Thumb Splint SM");
-            helperTest.AddPatientID(driver, "16553854", 1);
-            helperTest.AddNotes(driver, "Quick Order", 1);
-            helperTest.AddItem(driver, "1212", 2, "Thumb Splint MD");
-            helperTest.AddPatientID(driver, "16553854", 2);
-            helperTest.AddNotes(driver, "Quick Order", 2);
-
-            Thread.Sleep(2000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-            Thread.Sleep(4000);
-
-            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-quick-order-pad/app-preview-cart-panel/section/div/div[2]/article/div[2]/app-button/div/button");
-
-            Thread.Sleep(4000);
-
-            Assert.AreEqual(mainURLs + "cart/index", driver.Url);
-
-            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-
-            String bodyTextCart2 = driver.FindElement(By.TagName("body")).Text;
-
-            Assert.IsTrue(bodyTextCart2.Contains("Grace Plate"));
-            Assert.IsTrue(bodyTextCart2.Contains("Splint SM Left"));
-            Assert.IsTrue(bodyTextCart2.Contains("Splint MD Left"));
-
-            var dateNow = DateTime.Now;
-
-            var dateToSringFormat = dateNow.ToString("MM/dd/yyyy");
-
-            IWebElement SearchPoNumber = driver.FindElement(By.Id("poNumber"));
-            SearchPoNumber.Clear();
-            SearchPoNumber.SendKeys(String.Format("Test PO {0}", dateToSringFormat));
-
-            IWebElement SearchPoNotes = driver.FindElement(By.Id("notesInput"));
-            SearchPoNotes.Clear();
-            SearchPoNotes.SendKeys(String.Format("Test Order {0}", dateToSringFormat));
-
-            Thread.Sleep(4000);
-
-            IWebElement ReviewOrder = driver.FindElement(By.Id("submit_order"));
-            ReviewOrder.Click();
-
-            Thread.Sleep(5000);
-
-            Assert.AreEqual(mainURLs + "cart/review", driver.Url);
-
-            IWebElement SubmitOrder = driver.FindElement(By.Id("submit_order"));
-            SubmitOrder.Click();
-
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-review-cart/div[1]/div/div/div[3]/app-button/div/button");
-
-            String SuccessOrder = driver.FindElement(By.TagName("body")).Text;
-
-            Assert.IsTrue(SuccessOrder.Contains("Thank you for your order"));
-
-            Thread.Sleep(4000);
-
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-review-cart/div[1]/div/div/div[3]/app-button/div/button");
-
-            Thread.Sleep(8000);
-
-            IWebElement ClickUser = driver.FindElement(By.Id("username_button"));
-
-            Actions actions = new Actions(driver);
-            actions.MoveToElement(ClickUser).Build().Perform();
-
-            helperTest.JsClickElement(driver, "//*[text()='" + "Orders & Returns" + "']");
-
-            Thread.Sleep(5000);
-
-            Assert.AreEqual(mainURLs + "shopping/order-history", driver.Url);
-
-            String bodyText = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyText.Contains(dateToSringFormat));
-
+                Thread.Sleep(1000);
+            }
         }
 
         public static String GetTimestamp(DateTime value)
@@ -1359,12 +1205,12 @@ namespace Selenium.Test
             bodyTextProduct2 = driver.FindElement(By.Id("item-name-in-cart0")).Text;
             Assert.IsTrue(bodyTextProduct2.Contains("ALC-5067-E"));
 
-            //dev env
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            //prod env            
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            for (int j = 0; j < 2; j++)
+            {
+                helperTest.JsClickElementID(driver, "remove-button-0");
+
+                Thread.Sleep(1000);
+            }
         }
 
         [Test]
@@ -1380,7 +1226,9 @@ namespace Selenium.Test
 
             driver.Url = mainURLs + "product?productID=15678";
 
-            Assert.AreEqual(mainURLs + "product?productID=15678", driver.Url);
+            Thread.Sleep(1000);
+
+            driver.Url.Contains("product?productID=15678");            
 
             helperTest.waitElementId(driver, 60, "product_name_in_product_page");
 
@@ -1396,6 +1244,9 @@ namespace Selenium.Test
 
             Thread.Sleep(5000);
 
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
+
             helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[5]/p/app-qty/input");
 
             string item1 = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[2]/p")).Text;
@@ -1404,6 +1255,9 @@ namespace Selenium.Test
             driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[6]/app-button/div/button")).Click();
 
             Thread.Sleep(5000);
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
 
             driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[4]/div[6]/app-button/div/button")).Click();
 
@@ -1421,14 +1275,12 @@ namespace Selenium.Test
 
             Thread.Sleep(1000);
 
-            //dev env
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            //prod env
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            for (int j = 0; j < 3; j++)
+            {
+                helperTest.JsClickElementID(driver, "remove-button-0");
+
+                Thread.Sleep(1000);
+            }
         }
 
         [Test]
@@ -1485,12 +1337,12 @@ namespace Selenium.Test
 
             Thread.Sleep(2000);
 
-            //dev env
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            //prod env
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            for (int j = 0; j < 2; j++)
+            {
+                helperTest.JsClickElementID(driver, "remove-button-0");
+
+                Thread.Sleep(1000);
+            }
         }
 
         [Test]
@@ -1553,13 +1405,12 @@ namespace Selenium.Test
 
             Thread.Sleep(1000);
 
-            //dev env
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            //prod env
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            for (int j = 0; j < 2; j++)
+            {
+                helperTest.JsClickElementID(driver, "remove-button-0");
+
+                Thread.Sleep(1000);
+            }
         }
 
         [Test]
@@ -1583,7 +1434,7 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + "Tamarack® Flexure Joint™" + "']");
 
             helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            Assert.AreEqual(mainURLs + "product?productID=502", driver.Url);
+            Assert.AreEqual(mainURLs + "product?productID=502&Name=tamarack%C2%AE-flexure-joint%E2%84%A2", driver.Url);
 
             helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[1]/div[2]/div[4]/div[2]/span[1]/span");
             helperTest.JsClickElement(driver, "//*[text()='" + "Accessories" + "']");
@@ -1596,13 +1447,15 @@ namespace Selenium.Test
             PartNumber.SendKeys("740-L-BLK-5PK");
 
             Thread.Sleep(1000);
-
+                        
+            string item1 = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[4]/div/div/div[2]/div/div/div/article[3]/div[4]/p")).Text;
             helperTest.InputStringXpath(driver, "2", "/html/body/app-root/div/app-product/div[4]/div/div/div[2]/div/div/div/article[3]/div[7]/p/app-qty/input");
             driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[4]/div/div/div[2]/div/div/div/article[3]/div[8]/app-button/div/button")).Click();
 
             helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
             driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
 
+            string item2 = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[4]/div/div/div[2]/div/div/div/article[7]/div[4]/p")).Text;
             helperTest.InputStringXpath(driver, "4", "/html/body/app-root/div/app-product/div[4]/div/div/div[2]/div/div/div/article[7]/div[7]/p/app-qty/input");
             driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[4]/div/div/div[2]/div/div/div/article[7]/div[8]/app-button/div/button")).Click();
 
@@ -1624,19 +1477,17 @@ namespace Selenium.Test
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
             Assert.IsTrue(bodyTextProduct.Contains("TAMARACK FLEXURE JOINT BLACK LG 5PK"));
-            Assert.IsTrue(bodyTextProduct.Contains("TAMARACK JOINT SCREW LG/MD 9MM"));
-            Assert.IsTrue(bodyTextProduct.Contains("TAMARACK INSTRUCTION VIDEO"));
+            Assert.IsTrue(bodyTextProduct.Contains(item1));
+            Assert.IsTrue(bodyTextProduct.Contains(item2));
 
             Thread.Sleep(1000);
 
-            //dev env
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
-            //prod env
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/div/article[4]/div[3]/app-tag-button[1]/span/span");
+            for (int j = 0; j < 3; j++)
+            {
+                helperTest.JsClickElementID(driver, "remove-button-0");
+
+                Thread.Sleep(1000);
+            }
         }
 
         //[Test]
@@ -2404,582 +2255,6 @@ namespace Selenium.Test
 
 
 
-
-
-
-
-        //[Test]
-        public void AddToCartStep02()
-        {
-
-            UITest(() =>
-            {
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
-
-                helperTest.waitElementId(driver, 60, "toggleQuickOrder");
-
-                Thread.Sleep(3000);
-
-                Actions actions = new Actions(driver);
-                IWebElement CartBtn;
-                String bodyTextProduct;
-
-                helperTest.waitElementId(driver, 60, "search");
-                IWebElement SearchBox = driver.FindElement(By.Id("search"));
-
-                SearchBox.SendKeys("tlso 464");
-
-                helperTest.JsClickElementId(driver, "product-card-img");
-                Thread.Sleep(2000);
-
-                Assert.AreEqual(mainURLs + "product?productID=8707", driver.Url);
-
-
-                helperTest.InputStringId(driver, "2", "qty_product_page");
-
-                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-                helperTest.waitElementId(driver, 60, "header_cart_icon");
-                CartBtn = driver.FindElement((By.Id("header_cart_icon")));
-                CartBtn.Click();
-
-                helperTest.waitElementId(driver, 60, "item-name-in-cart0");
-                bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
-
-                Assert.IsTrue(bodyTextProduct.Contains("993640"));
-
-                helperTest.InputStringId(driver, "patient 1", "patient_id_in_cart0");
-                helperTest.InputStringId(driver, "test notes for 993640", "notes_in_cart0");
-
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
-        }
-
-        //[Test]
-        public void Step03_4()
-        {
-            UITest(() =>
-            {
-
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
-
-                helperTest.waitElementId(driver, 60, "toggleQuickOrder");
-
-                Thread.Sleep(3000);
-
-                Actions actions = new Actions(driver);
-                IWebElement CartBtn;
-                String bodyTextProduct;
-
-                helperTest.waitElementId(driver, 60, "search");
-                IWebElement SearchBox = driver.FindElement(By.Id("search"));
-
-                SearchBox.Clear();
-                SearchBox.SendKeys("alpha classic");
-
-                Thread.Sleep(3000);
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/app-header/nav/div/div[1]/app-search-panel/div/div[2]/div[2]/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span[3]");
-
-                IWebElement ClickUser = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div/div[1]/app-search-panel/div/div[2]/div[2]/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span[3]"));
-
-                actions = new Actions(driver);
-                actions.MoveToElement(ClickUser).Build().Perform();
-
-                helperTest.JsClickElementId(driver, "product-card-img");
-
-
-                Thread.Sleep(5000);
-
-                Assert.AreEqual(mainURLs + "product?productID=1483", driver.Url);
-
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[1]/select", "Standard Umbrella");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[2]/select", "Green/Grey");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[3]/select", "Original");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[4]/select", "Uniform");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[5]/select", "6 mm");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[6]/select", "Large");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[7]/select", "Locking");
-
-                helperTest.InputStringId(driver, "2", "qty_product_page");
-
-                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-                helperTest.waitElementId(driver, 60, "header_cart_icon");
-                CartBtn = driver.FindElement((By.Id("header_cart_icon")));
-                CartBtn.Click();
-
-                helperTest.waitElementId(driver, 60, "item-name-in-cart0");
-                bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
-                Assert.IsTrue(bodyTextProduct.Contains("ALL-5066-E"));
-
-                helperTest.InputStringId(driver, "patient 2", "patient_id_in_cart0");
-                helperTest.InputStringId(driver, "test notes for item ALL-5066-E", "notes_in_cart0");
-
-                helperTest.JsClickElementId(driver, "product-name-in-cart0");
-
-                Thread.Sleep(5000);
-
-                Assert.AreEqual(mainURLs + "product?productID=1483", driver.Url);
-
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[1]/select", "Standard Umbrella");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[2]/select", "Green/Grey");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[3]/select", "Original");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[4]/select", "Uniform");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[5]/select", "6 mm");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[6]/select", "Large");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[7]/select", "Locking");
-
-                helperTest.InputStringId(driver, "2", "qty_product_page");
-
-                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-                helperTest.waitElementId(driver, 60, "header_cart_icon");
-                CartBtn = driver.FindElement((By.Id("header_cart_icon")));
-                CartBtn.Click();
-
-                helperTest.waitElementId(driver, 60, "item-name-in-cart0");
-                bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
-                Assert.IsTrue(bodyTextProduct.Contains("ALL-5066-E"));
-
-                helperTest.InputStringId(driver, "patient 3", "patient_id_in_cart0");
-                helperTest.InputStringId(driver, "test notes for item ALC-5066-E", "notes_in_cart0");
-
-
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
-
-        }
-
-        //[Test]
-        public void Step05()
-        {
-            UITest(() =>
-            {
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
-
-                helperTest.waitElementId(driver, 60, "toggleQuickOrder");
-
-                Thread.Sleep(3000);
-
-                Actions actions = new Actions(driver);
-                IWebElement CartBtn;
-                String bodyTextProduct;
-                IWebElement NavigateCusror;
-
-
-                helperTest.waitElementId(driver, 60, "search");
-                IWebElement SearchBox = driver.FindElement(By.Id("search"));
-
-                // 5 step
-
-                SearchBox.Clear();
-                SearchBox.SendKeys("Alpha Hybrid® Liners");
-
-                Thread.Sleep(3000);
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/app-header/nav/div/div[1]/app-search-panel/div/div[2]/div[2]/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span[2]");
-
-                NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div/div[1]/app-search-panel/div/div[2]/div[2]/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span[2]"));
-
-                actions = new Actions(driver);
-                actions.MoveToElement(NavigateCusror).Build().Perform();
-
-                helperTest.JsClickElementId(driver, "product-card-img");
-
-                Thread.Sleep(5000);
-
-                Assert.AreEqual(mainURLs + "product?productID=7158", driver.Url);
-
-
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[1]/select", "Accordion Umbrella");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[2]/select", "Progressive");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[3]/select", "Large");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[4]/select", "Locking");
-
-                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-                helperTest.waitElementId(driver, 60, "header_cart_icon");
-                CartBtn = driver.FindElement((By.Id("header_cart_icon")));
-                CartBtn.Click();
-
-                helperTest.waitElementId(driver, 60, "item-name-in-cart0");
-                bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
-                Assert.IsTrue(bodyTextProduct.Contains("H352-6396"));
-
-                helperTest.InputStringId(driver, "patient 4", "patient_id_in_cart0");
-                helperTest.InputStringId(driver, "test notes for item H352-6396", "notes_in_cart0");
-
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
-
-        }
-
-        ////[Test]
-        public void Step06()
-        {
-
-            UITest(() =>
-            {
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
-
-                helperTest.waitElementId(driver, 60, "toggleQuickOrder");
-
-                Thread.Sleep(3000);
-
-                Actions actions = new Actions(driver);
-                IWebElement CartBtn;
-                String bodyTextProduct;
-                IWebElement NavigateCusror;
-
-
-                helperTest.waitElementId(driver, 60, "search");
-                IWebElement SearchBox = driver.FindElement(By.Id("search"));
-
-                // 6 step
-                SearchBox.Clear();
-                SearchBox.SendKeys("aspen summit");
-
-                Thread.Sleep(3000);
-
-                helperTest.waitElementXpath(driver, 60, "//*[text()='" + " Aspen® Summit™ 637 " + "']");
-                NavigateCusror = driver.FindElement(By.XPath("//*[text()='" + " Aspen® Summit™ 637 " + "']"));
-
-                actions = new Actions(driver);
-                actions.MoveToElement(NavigateCusror).Build().Perform();
-
-                helperTest.JsClickElementId(driver, "product-card-img");
-
-                Thread.Sleep(5000);
-
-                Assert.AreEqual(mainURLs + "product?productID=7199", driver.Url);
-
-                helperTest.JsClickElementId(driver, "add_product_to_cart4");
-
-                helperTest.waitElementId(driver, 60, "header_cart_icon");
-                CartBtn = driver.FindElement((By.Id("header_cart_icon")));
-                CartBtn.Click();
-
-                helperTest.waitElementId(driver, 60, "item-name-in-cart0");
-                bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
-                Assert.IsTrue(bodyTextProduct.Contains("992310"));
-
-                helperTest.InputStringId(driver, "patient 5", "patient_id_in_cart0");
-                helperTest.InputStringId(driver, "test notes for item 992310", "notes_in_cart0");
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
-        }
-
-        //[Test]
-        public void Step07()
-        {
-            UITest(() =>
-            {
-
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
-
-                helperTest.waitElementId(driver, 60, "toggleQuickOrder");
-
-                Thread.Sleep(3000);
-
-                Actions actions = new Actions(driver);
-                IWebElement CartBtn;
-                String bodyTextProduct;
-                IWebElement NavigateCusror;
-
-                // 7 step
-                Thread.Sleep(3000);
-                driver.Url = mainURLs + "product?productID=7158";
-
-                //helperTest.UseDropDownByName();
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[1]/select", "Accordion Umbrella");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[2]/select", "Progressive");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[3]/select", "Medium Plus");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[4]/select", "Locking");
-
-                //add to cart
-                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-                Thread.Sleep(3000);
-                // go to cart
-                helperTest.waitElementId(driver, 60, "header_cart_icon");
-                CartBtn = driver.FindElement((By.Id("header_cart_icon")));
-                CartBtn.Click();
-
-                helperTest.waitElementId(driver, 60, "item-name-in-cart0");
-                bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
-                Assert.IsTrue(bodyTextProduct.Contains("H352-6394"));
-
-                helperTest.InputStringId(driver, "patient 6", "patient_id_in_cart0");
-                helperTest.InputStringId(driver, "test notes for item H352-6394", "notes_in_cart0");
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
-        }
-
-        ////[Test]
-        public void Step08()
-        {
-
-            UITest(() =>
-            {
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
-
-                helperTest.waitElementId(driver, 60, "toggleQuickOrder");
-
-                Thread.Sleep(3000);
-
-                Actions actions = new Actions(driver);
-                IWebElement CartBtn;
-                String bodyTextProduct;
-                IWebElement NavigateCusror;
-
-                // 8 step
-                helperTest.waitElementId(driver, 60, "search");
-                IWebElement SearchBox = driver.FindElement(By.Id("search"));
-                SearchBox.Clear();
-                SearchBox.SendKeys("lyn valve");
-
-                Thread.Sleep(3000);
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/app-header/nav/div/div[1]/app-search-panel/div/div[2]/div[2]/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div/div/p[2]/span[4]");
-
-                NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div/div[1]/app-search-panel/div/div[2]/div[2]/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div/div/p[2]/span[4]"));
-
-                actions = new Actions(driver);
-                actions.MoveToElement(NavigateCusror).Build().Perform();
-
-                helperTest.JsClickElementId(driver, "product-card-img");
-
-                Thread.Sleep(5000);
-
-                Assert.AreEqual(mainURLs + "product?productID=19094", driver.Url);
-
-                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[1]/select", 2);
-
-                //add to cart
-                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-                // go to cart
-                helperTest.waitElementId(driver, 60, "header_cart_icon");
-                IWebElement CartBtn7 = driver.FindElement((By.Id("header_cart_icon")));
-                CartBtn7.Click();
-
-                helperTest.waitElementId(driver, 60, "item-name-in-cart0");
-                String bodyTextProduct7 = driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card/article/div[2]/p[2]")).Text;
-                Assert.IsTrue(bodyTextProduct7.Contains("PA0002"));
-
-                helperTest.InputStringId(driver, "patient 7", "patient_id_in_cart0");
-                helperTest.InputStringId(driver, "test notes for item PA0002", "notes_in_cart0");
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
-        }
-
-        ////[Test]
-        public void Step09()
-        {
-
-            UITest(() =>
-            {
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
-
-                helperTest.waitElementId(driver, 60, "toggleQuickOrder");
-
-                Thread.Sleep(3000);
-
-                Actions actions = new Actions(driver);
-                IWebElement CartBtn;
-                String bodyTextProduct;
-                IWebElement NavigateCusror;
-
-                // 8 step
-                helperTest.waitElementId(driver, 60, "search");
-                IWebElement SearchBox = driver.FindElement(By.Id("search"));
-
-                // 9 step
-                SearchBox.Clear();
-                SearchBox.SendKeys("limblogic");
-
-                Thread.Sleep(3000);
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/app-header/nav/div/div[1]/app-search-panel/div/div[2]/div[2]/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div/div/p[2]/span[1]");
-
-                NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div/div[1]/app-search-panel/div/div[2]/div[2]/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div/div/p[2]/span[1]"));
-
-                actions = new Actions(driver);
-                actions.MoveToElement(NavigateCusror).Build().Perform();
-
-                // click to image of product
-                helperTest.JsClickElementId(driver, "product-card-img");
-
-                Thread.Sleep(5000);
-
-                Assert.AreEqual(mainURLs + "product?productID=3723", driver.Url);
-
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[1]/select", "Bilateral");
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[2]/select", "Lamination Kit");
-
-                //add to cart
-                //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-product/div[1]/div[3]/div[1]/article[1]/div[6]/app-button/div/button");
-                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-product/div[5]/div/div/div[1]/app-close-button/p/span");
-                // go to cart
-                helperTest.waitElementId(driver, 60, "header_cart_icon");
-                CartBtn = driver.FindElement((By.Id("header_cart_icon")));
-                CartBtn.Click();
-
-                helperTest.waitElementId(driver, 60, "item-name-in-cart0");
-                bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
-                Assert.IsTrue(bodyTextProduct.Contains("LLV-2002-L"));
-
-                helperTest.InputStringId(driver, "patient 8", "patient_id_in_cart0");
-                helperTest.InputStringId(driver, "test notes for item LLV-2000-L", "notes_in_cart0");
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
-        }
-
-        ////[Test]
-        public void Step10()
-        {
-            UITest(() =>
-            {
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
-
-                helperTest.waitElementId(driver, 60, "toggleQuickOrder");
-
-                Thread.Sleep(3000);
-
-                Actions actions = new Actions(driver);
-                IWebElement CartBtn;
-                String bodyTextProduct;
-                IWebElement NavigateCusror;
-
-                // 8 step
-                helperTest.waitElementId(driver, 60, "search");
-                IWebElement SearchBox = driver.FindElement(By.Id("search"));
-
-
-                // 10 step
-                Thread.Sleep(3000);
-                driver.Url = mainURLs + "product?productID=14278";
-
-                //add to cart
-                //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-product/div[1]/div[3]/div[1]/article[1]/div[6]/app-button/div/button");
-                helperTest.JsClickElementId(driver, "add_product_to_cart2");
-
-                // go to cart
-                helperTest.waitElementId(driver, 60, "header_cart_icon");
-                CartBtn = driver.FindElement((By.Id("header_cart_icon")));
-                CartBtn.Click();
-
-                helperTest.waitElementId(driver, 60, "item-name-in-cart0");
-                bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
-                Assert.IsTrue(bodyTextProduct.Contains("PK2010-320-05"));
-
-                helperTest.InputStringId(driver, "patient 9", "patient_id_in_cart0");
-                helperTest.InputStringId(driver, "test notes for item PK2000-320-05", "notes_in_cart0");
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
-        }
-
-        //[Test]
-        public void Step11()
-        {
-
-            UITest(() =>
-            {
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
-
-                helperTest.waitElementId(driver, 60, "toggleQuickOrder");
-
-                Actions actions = new Actions(driver);
-                IWebElement CartBtn;
-                String bodyTextProduct;
-                IWebElement NavigateCusror;
-
-
-                helperTest.waitElementId(driver, 60, "search");
-                IWebElement SearchBox = driver.FindElement(By.Id("search"));
-                SearchBox.SendKeys("tamarack");
-
-                Thread.Sleep(3000);
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/app-header/nav/div/div[1]/app-search-panel/div/div[2]/div[2]/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span[2]");
-
-                NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div/div[1]/app-search-panel/div/div[2]/div[2]/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span[2]"));
-                actions.MoveToElement(NavigateCusror).Build().Perform();
-
-                helperTest.JsClickElement(driver, "/html/body/app-root/app-header/nav/div/div[1]/app-search-panel/div/div[2]/div[2]/form/div[1]/app-search-panel-dropdown/div[1]/div/div[2]/p[1]");
-
-                Thread.Sleep(5000);
-
-                Assert.AreEqual(mainURLs + "product?productID=502", driver.Url);
-
-                helperTest.InputStringXpath(driver, "740-L", "/html/body/app-root/div/app-product/div[1]/div[3]/section/div/h6[1]/input");
-                Thread.Sleep(2000);
-                helperTest.InputStringId(driver, "10", "qty_product_page1");
-
-                helperTest.JsClickElementId(driver, "add_product_to_cart1");
-
-
-                // go to cart
-                helperTest.waitElementId(driver, 60, "header_cart_icon");
-                CartBtn = driver.FindElement((By.Id("header_cart_icon")));
-                CartBtn.Click();
-
-                helperTest.waitElementId(driver, 60, "item-name-in-cart0");
-                bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
-                Assert.IsTrue(bodyTextProduct.Contains("740-L"));
-
-                helperTest.InputStringId(driver, "patient 10", "patient_id_in_cart0");
-                helperTest.InputStringId(driver, "test notes for item 740-L", "notes_in_cart0");
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
-        }
-
-        ////[Test]
-        public void Step12()
-        {
-            UITest(() =>
-            {
-                helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
-
-                helperTest.waitElementId(driver, 60, "toggleQuickOrder");
-
-                Assert.AreEqual(homeUrl, driver.Url);
-                Actions actions = new Actions(driver);
-                IWebElement CartBtn;
-                String bodyTextProduct;
-                IWebElement NavigateCusror;
-
-                helperTest.waitElementId(driver, 60, "search");
-                IWebElement SearchBox = driver.FindElement(By.Id("search"));
-
-
-                SearchBox.SendKeys("knee");
-                SearchBox.SendKeys(Keys.Enter);
-
-                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[1]/app-filter-panel/div[1]/div/mdb-card/div/mdb-card-body/div/mdb-card-text/p/div[1]/div/div[6]/p/span[1]");
-
-                helperTest.JsClickElement(driver, "//*[text()='" + " Ossur (54) " + "']");
-                helperTest.JsClickElement(driver, "//*[text()='" + "Balance™ Knee" + "']");
-
-
-                Thread.Sleep(5000);
-                Assert.AreEqual(mainURLs + "product?productID=8911", driver.Url);
-
-                //helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[1]/select", 2);
-                helperTest.UseDropDownByName(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div/app-attributes/form/div/div[1]/select", "With Lock");
-
-                Thread.Sleep(2000);
-                //add to cart
-                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-                Thread.Sleep(2000);
-
-                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-product/div[5]/div/div/div[1]/app-close-button/p/span");
-
-                // go to cart
-                helperTest.waitElementId(driver, 60, "header_cart_icon");
-                CartBtn = driver.FindElement((By.Id("header_cart_icon")));
-                CartBtn.Click();
-                // check sku
-                helperTest.waitElementId(driver, 60, "item-name-in-cart0");
-                bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
-                Assert.IsTrue(bodyTextProduct.Contains("BKN12511"));
-                // wtite descr
-                helperTest.InputStringId(driver, "patient 11", "patient_id_in_cart0");
-                helperTest.InputStringId(driver, "test notes for item BKN12511", "notes_in_cart0");
-            }, driver, MethodBase.GetCurrentMethod().ToString() + DateTime.Now.ToString("yyyyMMddHHmmss"));
-
-        }
-
         [Test]
         public void AddToCartStep13()
         {
@@ -3003,7 +2278,7 @@ namespace Selenium.Test
 
             Thread.Sleep(5000);
 
-            Assert.AreEqual(mainURLs + "product?productID=6646", driver.Url);
+            driver.Url.Contains("product?productID=6646");            
 
             helperTest.InputStringId(driver, "5", "qty_product_page1");
             helperTest.JsClickElementId(driver, "add_product_to_cart1");
@@ -3020,8 +2295,7 @@ namespace Selenium.Test
 
             Thread.Sleep(2000);
 
-            // delete from cart
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElementID(driver, "remove-button-0");
         }
 
         ////[Test]
@@ -3213,7 +2487,7 @@ namespace Selenium.Test
 
             Thread.Sleep(2000);
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
+            helperTest.JsClickElementID(driver, "remove-button-0");
         }
 
         ////[Test]
@@ -3635,15 +2909,6 @@ namespace Selenium.Test
             UITest(() =>
             {
                 //Step02();
-                Step03_4();
-                Step05();
-                Step06();
-                Step07();
-                //Step08();
-                Step09();
-                Step10();
-                Step11();
-                Step12();
                 //Step13();
                 Step14();
                 Step15();
