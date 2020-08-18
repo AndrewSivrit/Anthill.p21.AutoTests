@@ -58,7 +58,7 @@ namespace Selenium.Test
         private string login;
 
         string currentFile = string.Empty;
-        string mainURLs = "https://v2dev.cascade-usa.com/";
+        string mainURLs = "https://cascade-usa.com/";
 
         [SetUp]
         public void SetUp()
@@ -72,11 +72,11 @@ namespace Selenium.Test
             //login = "Anthony.Kosenko@gmail.com";
             //password = "12345";
 
-            login = "artvbashuk@gmail.com";
-            password = "9999";
+            //login = "artvbashuk@gmail.com";
+            //password = "9999";
 
-            //login = "sergeykorolevsky2015@gmail.com";
-            //password = "5555";
+            login = "sergeykorolevsky2015@gmail.com";
+            password = "4444";
 
             //login = "artvbashuk@gmail.com";
             //password = "123";
@@ -614,7 +614,7 @@ namespace Selenium.Test
             RemoveTheList2.MoveToElement(RemoveList2).Build().Perform();
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span[1]/i");
 
-            Thread.Sleep(4000);
+            Thread.Sleep(1000);
         }
 
         [Test]
@@ -683,7 +683,6 @@ namespace Selenium.Test
             Assert.IsFalse(bodyTextProduct.Contains("Medical RevoLock Upper Extremity"));
 
             Thread.Sleep(1000);
-
         }
 
         [Test]
@@ -701,21 +700,32 @@ namespace Selenium.Test
 
             s1[0] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[2]/div/div[1]/span[1]")).Text;
             s1[1] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[3]/div/div[1]/span[1]")).Text;
-            s1[2] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[4]/div/div[1]/span[1]")).Text;
-            s1[3] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[5]/div/div[1]/span[1]")).Text;
+            s1[2] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[4]/div/div[1]/span[1]")).Text;            
 
             driver.Url = mainURLs + "cart/index";
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[2]/div[1]/div/div/div/input");
-
-            Thread.Sleep(4000);
+            if (driver.Url.Contains("v2dev.cascade-usa"))
+            {
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/p");
+            }
+            else
+            {
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/p");
+            }                       
 
             helperTest.JsClickElement(driver, "//*[text()='" + "Edit" + "']");
 
-            driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/aside/div[1]/div/select")).Click();
+            if (driver.Url.Contains("v2dev.cascade-usa"))
+            {
+                driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/aside/div[1]/div/select")).Click();
+            }
+            else
+            {
+                driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/aside/app-order-info-aside/aside/div[1]/div/select")).Click();
+            }                      
 
             String bodyText = driver.FindElement(By.TagName("body")).Text;
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Assert.IsTrue(bodyText.Contains(s1[i]));
             }
@@ -725,37 +735,45 @@ namespace Selenium.Test
             Thread.Sleep(4000);
 
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[3]/div/div[2]/div[2]/label");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[4]/div/div[2]/div[2]/label");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[5]/div/div[2]/div[2]/label");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[4]/div/div[2]/div[2]/label");            
 
             driver.Url = mainURLs + "cart/index";
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[2]/div[1]/div/div/div/input");
-
-            Thread.Sleep(2000);
+            if (driver.Url.Contains("v2dev.cascade-usa"))
+            {
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/p");
+            }
+            else
+            {
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/p");
+            }                       
 
             helperTest.JsClickElement(driver, "//*[text()='" + "Edit" + "']");
 
-            driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/aside/div[1]/div/select")).Click();
+            if (driver.Url.Contains("v2dev.cascade-usa"))
+            {
+                driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/aside/div[1]/div/select")).Click();
+            }
+            else
+            {
+                driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/aside/app-order-info-aside/aside/div[1]/div/select")).Click();
+            }
 
             bodyText = driver.FindElement(By.TagName("body")).Text;
-
-            Assert.IsFalse(bodyText.Contains(s1[1]));
+            
             Assert.IsFalse(bodyText.Contains(s1[2]));
-            Assert.IsFalse(bodyText.Contains(s1[3]));
 
             driver.Url = mainURLs + "account-info";
 
             Thread.Sleep(4000);
 
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[3]/div/div[2]/div[2]/label");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[4]/div/div[2]/div[2]/label");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[5]/div/div[2]/div[2]/label");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[4]/div/div[2]/div[2]/label");            
 
             Thread.Sleep(4000);
         }
 
-        [Test]
+        //[Test]
         public void NewShipAddress()
         {
             String bodyTextProduct;
@@ -981,11 +999,9 @@ namespace Selenium.Test
             IWebElement CartBtn = driver.FindElement((By.Id("header_cart_icon")));
             CartBtn.Click();
 
-            Thread.Sleep(5000);
-
-            Assert.AreEqual(mainURLs + "cart/index", driver.Url);
-
             helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+            Assert.AreEqual(mainURLs + "cart/index", driver.Url);           
 
             String bodyTextCart2 = driver.FindElement(By.TagName("body")).Text;
 
@@ -1013,7 +1029,7 @@ namespace Selenium.Test
             return value.ToString("yyyyMMddHHmmssffff");
         }
 
-        [Test]
+        //[Test]
         public void SubmitOrder()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
@@ -1074,7 +1090,7 @@ namespace Selenium.Test
             Thread.Sleep(2000);
         }
 
-        [Test]
+        //[Test]
         public void submitRMAs()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);

@@ -21,7 +21,7 @@ namespace Selenium.Test
         private string password;
         private string login;
         
-        string mainURLs = "https://v2dev.cascade-usa.com/";
+        string mainURLs = "https://cascade-usa.com/";
         
 
         [SetUp]
@@ -36,11 +36,11 @@ namespace Selenium.Test
             //login = "Anthony.Kosenko@gmail.com";
             //password = "12345";
 
-            //login = "sergeykorolevsky2015@gmail.com";
-            //password = "5555";
+            login = "sergeykorolevsky2015@gmail.com";
+            password = "4444";
 
-            login = "artvbashuk@gmail.com";
-            password = "9999";
+            //login = "artvbashuk@gmail.com";
+            //password = "9999";
 
             //login = "artvbashuk@gmail.com";
             //password = "123";
@@ -126,7 +126,7 @@ namespace Selenium.Test
         [Test]
         public void MobileSearchByPartName()
         {
-            Actions actions = new Actions(driver);
+            //Actions actions = new Actions(driver);
             IWebElement OpenItem;
             String bodyTextProduct;
 
@@ -168,8 +168,16 @@ namespace Selenium.Test
             OpenItem = driver.FindElement((By.Id("mobile-add-to-cart")));
             OpenItem.Click();
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[1]/app-product-card/article/div[2]/p[2]");
-            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[1]/app-product-card/article/div[2]/p[2]")).Text;
+            if (driver.Url.Contains("v2dev.cascade-usa"))
+            {
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[1]/app-product-card/article/div[2]/p[2]");
+                bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[1]/app-product-card/article/div[2]/p[2]")).Text;
+            }
+            else
+            {
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card/article/div[2]/p[2]");
+                bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card/article/div[2]/p[2]")).Text;
+            }
 
             Assert.IsTrue(bodyTextProduct.Contains("ALC-9460-E"));
 
@@ -209,8 +217,16 @@ namespace Selenium.Test
             OpenItem = driver.FindElement((By.Id("mobile-add-to-cart")));
             OpenItem.Click();
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[1]/app-product-card/article/div[2]/p[2]");
-            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[1]/app-product-card/article/div[2]/p[2]")).Text;
+            if (driver.Url.Contains("v2dev.cascade-usa"))
+            {
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[1]/app-product-card/article/div[2]/p[2]");
+                bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[1]/app-product-card/article/div[2]/p[2]")).Text;
+            }
+            else
+            {
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card/article/div[2]/p[2]");
+                bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card/article/div[2]/p[2]")).Text;
+            }
 
             Assert.IsTrue(bodyTextProduct.Contains("ALC-5067-E"));
 
@@ -220,7 +236,7 @@ namespace Selenium.Test
         [Test]
         public void MobileSearchByHCPCS()
         {
-            Actions actions = new Actions(driver);
+            //Actions actions = new Actions(driver);
             String bodyTextProduct;
 
             helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
@@ -414,7 +430,7 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + " Apply " + "']");
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® AK Liner"));
+            Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® Liner"));
 
             Thread.Sleep(2000);
         }
@@ -477,27 +493,30 @@ namespace Selenium.Test
 
             Thread.Sleep(3000);
 
-            String bodyTextCart2 = driver.FindElement(By.TagName("body")).Text;                      
+            String bodyTextCart = driver.FindElement(By.TagName("body")).Text;                      
 
-            Assert.IsTrue(bodyTextCart2.Contains("Profile Orthosis 2XL"));
-            Assert.IsTrue(bodyTextCart2.Contains("Profile Orthosis 3XL"));
-            Assert.IsTrue(bodyTextCart2.Contains("Splint SM Left"));
-            Assert.IsTrue(bodyTextCart2.Contains("Splint MD Left"));
-            Assert.IsTrue(bodyTextCart2.Contains("Profile Orthosis XL"));
-            Assert.IsTrue(bodyTextCart2.Contains("Splint LG Left"));            
-            Assert.IsTrue(bodyTextCart2.Contains("Orthosis MD"));
-            Assert.IsTrue(bodyTextCart2.Contains("Orthosis XS"));
-            Assert.IsTrue(bodyTextCart2.Contains("Orthosis 10"));
+            Assert.IsTrue(bodyTextCart.Contains("Profile Orthosis 2XL"));
+            Assert.IsTrue(bodyTextCart.Contains("Profile Orthosis 3XL"));
+            Assert.IsTrue(bodyTextCart.Contains("Splint SM Left"));
+            Assert.IsTrue(bodyTextCart.Contains("Splint MD Left"));
+            Assert.IsTrue(bodyTextCart.Contains("Profile Orthosis XL"));
+            Assert.IsTrue(bodyTextCart.Contains("Splint LG Left"));            
+            Assert.IsTrue(bodyTextCart.Contains("Orthosis MD"));
+            Assert.IsTrue(bodyTextCart.Contains("Orthosis XS"));
+            Assert.IsTrue(bodyTextCart.Contains("Orthosis 10"));
 
             Thread.Sleep(1000);
 
-            for (int j = 1; j < 10; j++)
+            for (int j = 0; j < 9; j++)
             {
-                //for dev env
-                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
-
-                //for prod env
-                //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
+                if (driver.Url.Contains("v2dev.cascade-usa"))
+                {
+                    helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
+                }
+                else
+                {
+                    helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
+                }
 
                 Thread.Sleep(1000);
             }
@@ -725,19 +744,22 @@ namespace Selenium.Test
             
             Thread.Sleep(1000);
 
-            for (int j = 1; j < 3; j++)
+            for (int j = 0; j < 2; j++)
             {
-                //for dev env
-                helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
-
-                //for prod env
-                //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
+                if (driver.Url.Contains("v2dev.cascade-usa"))
+                {
+                    helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
+                }
+                else
+                {
+                    helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
+                }
 
                 Thread.Sleep(1000);
             }
         }           
 
-        [Test]
+        //[Test]
         public void MobileSubmitOrder()
         {
             helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
@@ -794,7 +816,7 @@ namespace Selenium.Test
             Thread.Sleep(4000);
         }
 
-        [Test]
+        //[Test]
         public void MobileSubmitRMAs()
         {
             helperTest.LoginToSiteMobile(driver, authUrl, homeUrl, login, password, mainURL);
