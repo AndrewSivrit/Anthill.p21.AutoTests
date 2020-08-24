@@ -2264,8 +2264,6 @@ namespace Selenium.Test
             helperTest.InputStringId(driver, "test notes for item BKN12500", "notes_in_cart0");
 
             Thread.Sleep(1000);
-
-
         }
 
 
@@ -2280,10 +2278,6 @@ namespace Selenium.Test
         public void AddToCartStep13()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
-
-            helperTest.waitElementId(driver, 60, "toggleQuickOrder");
-
-            Thread.Sleep(2000);
 
             IWebElement CartBtn;
             String bodyTextProduct;
@@ -2303,13 +2297,11 @@ namespace Selenium.Test
 
             helperTest.InputStringId(driver, "5", "qty_product_page1");
             helperTest.JsClickElementId(driver, "add_product_to_cart1");
+                       
+            Thread.Sleep(4000);
 
-            // go to cart
-            helperTest.waitElementId(driver, 60, "header_cart_icon");
-            CartBtn = driver.FindElement((By.Id("header_cart_icon")));
-            CartBtn.Click();
+            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
 
-            // check sku
             helperTest.waitElementId(driver, 60, "item-name-in-cart0");
             bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
             Assert.IsTrue(bodyTextProduct.Contains("60SL"));
