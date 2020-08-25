@@ -706,11 +706,11 @@ namespace Selenium.Test
 
             if (driver.Url.Contains("v2dev.cascade-usa"))
             {
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/p");
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/aside/div[1]/div/div[1]/app-tag-button/span/span");
             }
             else
             {
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/p");
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/aside/app-order-info-aside/aside/div[1]/div[2]/div[1]/app-tag-button/span/span");
             }                       
 
             helperTest.JsClickElement(driver, "//*[text()='" + "Edit" + "']");
@@ -741,11 +741,11 @@ namespace Selenium.Test
 
             if (driver.Url.Contains("v2dev.cascade-usa"))
             {
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[1]/div[2]/p");
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/aside/div[1]/div/div[1]/app-tag-button/span/span");
             }
             else
             {
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/p");
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/aside/app-order-info-aside/aside/div[1]/div[2]/div[1]/app-tag-button/span/span");
             }                       
 
             helperTest.JsClickElement(driver, "//*[text()='" + "Edit" + "']");
@@ -770,7 +770,7 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[3]/div/div[2]/div[2]/label");
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[4]/div/div[2]/div[2]/label");            
 
-            Thread.Sleep(4000);
+            Thread.Sleep(2000);
         }
 
         //[Test]
@@ -2293,10 +2293,12 @@ namespace Selenium.Test
 
             Thread.Sleep(5000);
 
-            driver.Url.Contains("product?productID=6646");            
+            driver.Url.Contains("product?productID=6646");
 
-            helperTest.InputStringId(driver, "5", "qty_product_page1");
-            helperTest.JsClickElementId(driver, "add_product_to_cart1");
+            helperTest.InputStringXpath(driver, "60SL", "/html/body/app-root/div/app-product/div[1]/div[3]/section/div/h6[1]/input");
+
+            helperTest.InputStringId(driver, "5", "qty_product_page0");
+            helperTest.JsClickElementId(driver, "add_product_to_cart0");
                        
             Thread.Sleep(4000);
 
