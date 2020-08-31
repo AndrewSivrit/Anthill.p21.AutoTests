@@ -94,7 +94,7 @@ namespace Selenium.Test
             ChromeOptions options = new ChromeOptions();
 
             options.AddArguments("--no-sandbox");
-            //options.AddArguments("--headless");
+            options.AddArguments("--headless");
 
             options.AddUserProfilePreference("download.default_directory", "C:/Work/Anthill/Anthill.p21.AutoTests/logs_img");
             options.AddUserProfilePreference("intl.accept_languages", "nl");
@@ -1332,15 +1332,15 @@ namespace Selenium.Test
                 {
                     NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span[2]"));
                     NavigateAction.MoveToElement(NavigateCusror).Build().Perform();
-                    helperTest.JsClickElement(driver, "//*[text()='" + "View all products in the ottobock Sleeves category." + "']");
+                    helperTest.JsClickElement(driver, "//*[text()='" + "View all products in the ottobock Feet category." + "']");
 
                     Thread.Sleep(2000);
 
-                    helperTest.JsClickElement(driver, "//*[text()='" + "Gaitor Sleeve" + "']");
+                    helperTest.JsClickElement(driver, "//*[text()='" + "1E91 Runner" + "']");
 
                     helperTest.waitElementId(driver, 60, "product_name_in_product_page");
                     bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
-                    Assert.IsTrue(bodyTextProduct.Contains("Gaitor Sleeve"));
+                    Assert.IsTrue(bodyTextProduct.Contains("1E91 Runner"));
 
                     helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[1]/select", 4);
 
