@@ -36,11 +36,11 @@ namespace Selenium.Test
             //login = "Anthony.Kosenko@gmail.com";
             //password = "12345";
 
-            login = "sergeykorolevsky2015@gmail.com";
-            password = "4444";
-
             //login = "artvbashuk@gmail.com";
             //password = "9999";
+
+            login = "sergeykorolevsky2015@gmail.com";
+            password = "4444";
 
             //login = "artvbashuk@gmail.com";
             //password = "123";
@@ -49,7 +49,7 @@ namespace Selenium.Test
             ChromeOptions options = new ChromeOptions();
 
             options.AddArguments("--no-sandbox");
-            options.AddArguments("--headless");
+            //options.AddArguments("--headless");
 
             options.AddUserProfilePreference("download.default_directory", "C:/Work/Anthill/Anthill.p21.AutoTests/logs_img");
             options.AddUserProfilePreference("intl.accept_languages", "nl");
@@ -430,7 +430,7 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + " Apply " + "']");
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® Liner"));
+            Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® AK Liner"));
 
             Thread.Sleep(2000);
         }

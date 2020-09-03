@@ -94,7 +94,7 @@ namespace Selenium.Test
             ChromeOptions options = new ChromeOptions();
 
             options.AddArguments("--no-sandbox");
-            options.AddArguments("--headless");
+            //options.AddArguments("--headless");
 
             options.AddUserProfilePreference("download.default_directory", "C:/Work/Anthill/Anthill.p21.AutoTests/logs_img");
             options.AddUserProfilePreference("intl.accept_languages", "nl");
@@ -608,11 +608,13 @@ namespace Selenium.Test
             Actions RemoveTheList1 = new Actions(driver);
             RemoveTheList1.MoveToElement(RemoveList1).Build().Perform();
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span[2]/i");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/div/div/div/div[2]/app-button[2]/div/button");
 
             IWebElement RemoveList2 = driver.FindElement(By.XPath("/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span[1]/i"));
             Actions RemoveTheList2 = new Actions(driver);
             RemoveTheList2.MoveToElement(RemoveList2).Build().Perform();
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span[1]/i");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/div/div/div/div[2]/app-button[2]/div/button");
 
             Thread.Sleep(1000);
         }
@@ -698,9 +700,9 @@ namespace Selenium.Test
 
             String[] s1 = new String[4];
 
-            s1[0] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[2]/div/div[1]/span[1]")).Text;
-            s1[1] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[3]/div/div[1]/span[1]")).Text;
-            s1[2] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[4]/div/div[1]/span[1]")).Text;            
+            s1[0] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[5]/div/div/div[2]/div/div[1]/span[1]")).Text;
+            s1[1] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[5]/div/div/div[3]/div/div[1]/span[1]")).Text;
+            s1[2] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[5]/div/div/div[4]/div/div[1]/span[1]")).Text;            
 
             driver.Url = mainURLs + "cart/index";
 
@@ -734,8 +736,8 @@ namespace Selenium.Test
 
             Thread.Sleep(4000);
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[3]/div/div[2]/div[2]/label");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[4]/div/div[2]/div[2]/label");            
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[5]/div/div/div[3]/div/div[2]/div[2]/label");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[5]/div/div/div[4]/div/div[2]/div[2]/label");            
 
             driver.Url = mainURLs + "cart/index";
 
@@ -767,8 +769,8 @@ namespace Selenium.Test
 
             Thread.Sleep(4000);
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[3]/div/div[2]/div[2]/label");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[4]/div/div/div[4]/div/div[2]/div[2]/label");            
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[5]/div/div/div[3]/div/div[2]/div[2]/label");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[5]/div/div/div[4]/div/div[2]/div[2]/label");            
 
             Thread.Sleep(2000);
         }
@@ -1234,7 +1236,7 @@ namespace Selenium.Test
             }
         }
 
-        [Test]
+        //[Test]
         public void ExtendedSearchProducts()
         {
             Actions NavigateAction;
@@ -1275,84 +1277,27 @@ namespace Selenium.Test
             helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
             driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
 
-            helperTest.JsClickElementId(driver, "search");
-
-            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span[2]")).Text;
+            helperTest.JsClickElementId(driver, "search");            
 
             NavigateAction = new Actions(driver);
 
-            if (bodyTextProduct.Contains("ottobock Valves"))
-            {
-                NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span[2]"));
-                NavigateAction.MoveToElement(NavigateCusror).Build().Perform();                
-                helperTest.JsClickElement(driver, "//*[text()='" + "View all products in the ottobock Valves category." + "']");
+            NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span[2]"));
+            NavigateAction.MoveToElement(NavigateCusror).Build().Perform();                
+            helperTest.JsClickElement(driver, "/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[2]/div/app-tag-button/span/span");
 
-                Thread.Sleep(2000);
+            Thread.Sleep(2000);
 
-                helperTest.JsClickElement(driver, "//*[text()='" + "PushValve" + "']");
+            helperTest.JsClickElementId(driver, "configurable_img_0");
 
-                helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-                bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
-                Assert.IsTrue(bodyTextProduct.Contains("PushValve"));
+            helperTest.waitElementId(driver, 60, "product_name_in_product_page");                       
 
-                helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
 
-                Thread.Sleep(2000);
+            Thread.Sleep(2000);
 
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
-                driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
-            }
-            else
-            {
-                if (bodyTextProduct.Contains("ottobock Knees"))
-                {
-                    NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span[2]"));
-                    NavigateAction.MoveToElement(NavigateCusror).Build().Perform();
-                    helperTest.JsClickElement(driver, "//*[text()='" + "View all products in the ottobock Knees category." + "']");
-
-                    Thread.Sleep(2000);
-
-                    helperTest.JsClickElement(driver, "//*[text()='" + "Pheon" + "']");
-
-                    helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-                    bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
-                    Assert.IsTrue(bodyTextProduct.Contains("Pheon"));
-
-                    helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[1]/select", 2);
-                    helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[2]/select", 3);
-
-                    helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-                    Thread.Sleep(2000);
-
-                    helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
-                    driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
-                }
-                else
-                {
-                    NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span[2]"));
-                    NavigateAction.MoveToElement(NavigateCusror).Build().Perform();
-                    helperTest.JsClickElement(driver, "//*[text()='" + "View all products in the ottobock Feet category." + "']");
-
-                    Thread.Sleep(2000);
-
-                    helperTest.JsClickElement(driver, "//*[text()='" + "1E91 Runner" + "']");
-
-                    helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-                    bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
-                    Assert.IsTrue(bodyTextProduct.Contains("1E91 Runner"));
-
-                    helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[1]/select", 4);
-
-                    helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-                    Thread.Sleep(2000);
-
-                    helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
-                    driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
-                }                
-            }
-
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
+            
             string item = driver.FindElement(By.Id("product_name_in_product_page")).Text;
 
             Thread.Sleep(2000);
