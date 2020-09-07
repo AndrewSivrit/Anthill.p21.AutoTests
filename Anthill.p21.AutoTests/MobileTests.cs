@@ -40,10 +40,7 @@ namespace Selenium.Test
             //password = "9999";
 
             login = "sergeykorolevsky2015@gmail.com";
-            password = "4444";
-
-            //login = "artvbashuk@gmail.com";
-            //password = "123";
+            password = "7777";
 
             helperTest = new HelperTest();
             ChromeOptions options = new ChromeOptions();
@@ -430,7 +427,7 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + " Apply " + "']");
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® AK Liner"));
+            Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® Liner"));
 
             Thread.Sleep(2000);
         }
@@ -637,25 +634,25 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[4]/div[3]/div/app-tag-button[1]/span");
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[4]/div[3]/div/app-tag-button[1]/span");
 
-            //IWebElement ClickUser2 = driver.FindElement(By.Id("username_button"));
-            //Actions acti = new Actions(driver);
-            //acti.MoveToElement(ClickUser2).Build().Perform();
+            IWebElement ClickUser2 = driver.FindElement(By.Id("username_button"));
+            Actions acti = new Actions(driver);
+            acti.MoveToElement(ClickUser2).Build().Perform();
 
-            //helperTest.JsClickElement(driver, "//*[text()='" + "Shopping Lists" + "']");
+            helperTest.JsClickElement(driver, "//*[text()='" + "Shopping Lists" + "']");
 
-            //Thread.Sleep(4000);
+            Thread.Sleep(4000);
 
-            //IWebElement RemoveList1 = driver.FindElement(By.XPath("/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span[2]/i"));
-            //Actions RemoveTheList1 = new Actions(driver);
-            //RemoveTheList1.MoveToElement(RemoveList1).Build().Perform();
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span[2]/i");
+            IWebElement RemoveList1 = driver.FindElement(By.XPath("/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span[2]/i"));
+            Actions RemoveTheList1 = new Actions(driver);
+            RemoveTheList1.MoveToElement(RemoveList1).Build().Perform();
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span[2]/i");
 
-            //IWebElement RemoveList2 = driver.FindElement(By.XPath("/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span[1]/i"));
-            //Actions RemoveTheList2 = new Actions(driver);
-            //RemoveTheList2.MoveToElement(RemoveList2).Build().Perform();
-            //helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span[1]/i");
+            IWebElement RemoveList2 = driver.FindElement(By.XPath("/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span[1]/i"));
+            Actions RemoveTheList2 = new Actions(driver);
+            RemoveTheList2.MoveToElement(RemoveList2).Build().Perform();
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span[1]/i");
 
-            //Thread.Sleep(4000);
+            Thread.Sleep(4000);
         }
 
         //[Test]
