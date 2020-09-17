@@ -92,10 +92,11 @@ namespace Selenium.Test
 
             options.AddArguments("--no-sandbox");
             options.AddArguments("--headless");
+            options.AddArguments("--incognito");
 
             options.AddUserProfilePreference("download.default_directory", "C:/Work/Anthill/Anthill.p21.AutoTests/logs_img");
             options.AddUserProfilePreference("intl.accept_languages", "nl");
-            options.AddUserProfilePreference("disable-popup-blocking", "true");
+            options.AddUserProfilePreference("disable-popup-blocking", "true");            
 
             driver = new ChromeDriver(pathDrivers, options);
             //driver = new InternetExplorerDriver(pathDrivers);            
@@ -614,6 +615,214 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/div/div/div/div[2]/app-button[2]/div/button");
 
             Thread.Sleep(1000);
+        }
+
+        [Test]
+        public void ExtendedShoppingList()
+        {
+            Actions NavigateAction;
+            IWebElement NavigateCusror;
+            IWebElement SearchBox;
+            string bodyTextProduct;
+
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+
+            Thread.Sleep(4000);
+            Assert.AreEqual(homeUrl, driver.Url);
+            IWebElement ClickUser = driver.FindElement(By.Id("username_button"));
+
+            Actions actions = new Actions(driver);
+            actions.MoveToElement(ClickUser).Build().Perform();
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "Shopping Lists" + "']");
+
+            Thread.Sleep(4000);
+
+            Assert.AreEqual(mainURLs + "shopping/list", driver.Url);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "Create new list" + "']");
+
+            helperTest.InputStringXpath(driver, "test list", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[1]/div[2]/input");
+            helperTest.InputStringXpath(driver, "test shopping list", "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[2]/div[2]/div[2]/textarea");
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/app-create-list-modal/div/div/div[3]/button");
+
+            Thread.Sleep(4000);
+
+            helperTest.waitElementId(driver, 60, "search");
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.Clear();
+            SearchBox.SendKeys("knee");
+
+            Thread.Sleep(2000);
+
+            NavigateAction = new Actions(driver);
+
+            NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span[4]"));
+            NavigateAction.MoveToElement(NavigateCusror).Build().Perform();
+            helperTest.JsClickElement(driver, "/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[2]/div[1]/div/div/div/span");
+            helperTest.JsClickElement(driver, "//*[text()='" + "test list" + "']");
+
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "Continue shopping" + "']");
+
+            Thread.Sleep(2000);
+
+            helperTest.waitElementId(driver, 60, "search");
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.Clear();
+            SearchBox.SendKeys("sensor knee");
+            SearchBox.SendKeys(Keys.Enter);
+
+            NavigateAction = new Actions(driver);
+
+            helperTest.waitElementId(driver, 60, "configurable_img_0");
+            NavigateCusror = driver.FindElement(By.Id("configurable_img_0"));
+            NavigateAction.MoveToElement(NavigateCusror).Build().Perform();
+            helperTest.JsClickElement(driver, "//*[text()='" + " Add to List " + "']");
+            helperTest.JsClickElement(driver, "//*[text()='" + "test list" + "']");
+
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-added-to-list-modal/div/div/div[3]/button[2]");
+
+            Thread.Sleep(2000);
+
+            driver.Navigate().Refresh();
+
+            helperTest.waitElementId(driver, 60, "search");
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.Clear();
+            SearchBox.SendKeys("ProCarve Knee");
+            SearchBox.SendKeys(Keys.Enter);
+
+            NavigateAction = new Actions(driver);
+
+            helperTest.waitElementId(driver, 60, "configurable_img_0");
+            NavigateCusror = driver.FindElement(By.Id("configurable_img_0"));
+            NavigateAction.MoveToElement(NavigateCusror).Build().Perform();
+
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Preview " + "']");
+
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div[2]/div/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[2]/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div[2]/div/div/span");
+
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/app-added-to-list-modal/div/div/div[3]/button[2]");
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[1]/app-close-button/p/span");
+
+            Thread.Sleep(2000);
+
+            helperTest.waitElementId(driver, 60, "search");
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.Clear();
+            SearchBox.SendKeys("OH5 Knee");
+            SearchBox.SendKeys(Keys.Enter);
+
+            helperTest.waitElementId(driver, 60, "configurable_img_0");
+            helperTest.JsClickElementID(driver, "configurable_img_0");
+
+            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[1]/select", 2);
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[4]/div[2]/div/span[1]/div/div/span");
+            helperTest.JsClickElement(driver, "//*[text()='" + "test list" + "']");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-product/app-added-to-list-modal/div/div/div[3]/button[2]");
+
+            Thread.Sleep(2000);
+
+            helperTest.UseDropDownIdByName(driver, "basic-addon1", "Part Number");
+
+            helperTest.waitElementId(driver, 60, "search");
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.Clear();
+            SearchBox.SendKeys("1210");
+
+            Thread.Sleep(2000);
+
+            NavigateAction = new Actions(driver);
+
+            NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div/p[2]"));
+            NavigateAction.MoveToElement(NavigateCusror).Build().Perform();
+            helperTest.JsClickElement(driver, "/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[2]/div[1]/div/div/span");
+            helperTest.JsClickElement(driver, "//*[text()='" + "test list" + "']");
+            helperTest.JsClickElement(driver, "//*[text()='" + "Continue shopping" + "']");
+
+            Thread.Sleep(2000);
+
+            helperTest.UseDropDownIdByName(driver, "basic-addon1", "Part Number");
+
+            helperTest.waitElementId(driver, 60, "search");
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.Clear();
+            SearchBox.SendKeys("1210");
+            SearchBox.SendKeys(Keys.Enter);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-details/div[1]/div/table/tbody/tr[2]/td[7]/div/div[2]/div/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-details/div[1]/div/table/tbody/tr[2]/td[7]/div/div[2]/div/div/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-details/app-added-to-list-modal/div/div/div[3]/button[2]");
+
+            Thread.Sleep(2000);
+
+            helperTest.UseDropDownIdByName(driver, "basic-addon1", "Search All");
+
+            helperTest.waitElementId(driver, 60, "search");
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.Clear();
+            SearchBox.SendKeys("Aqua Knee");
+            SearchBox.SendKeys(Keys.Enter);
+
+            helperTest.waitElementId(driver, 60, "configurable_img_0");
+            helperTest.JsClickElementID(driver, "configurable_img_0");
+
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
+
+            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/div/article[4]/div[3]/div/div/span");
+            helperTest.JsClickElement(driver, "//*[text()='" + "test list" + "']");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/app-added-to-list-modal/div/div/div[3]/button[2]");
+
+            helperTest.JsClickElementID(driver, "remove-button-0");            
+
+            driver.Url = mainURLs + "shopping/order-history";
+
+            Thread.Sleep(2000);
+
+            string item1 = driver.FindElement(By.XPath("/html/body/app-root/div/app-main/div/app-order-history/section/section/app-history-order-item[1]/article/article/section/div[2]/section[1]/div[1]/div/div[2]/p[3]/span")).Text;
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/section/section/app-history-order-item[1]/article/article/section/div[2]/section[1]/div[2]/div[3]/div/span");
+            helperTest.JsClickElement(driver, "//*[text()='" + "test list" + "']");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/app-added-to-list-modal/div/div/div[3]/button[1]");
+
+            Thread.Sleep(2000);
+
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+
+            Assert.IsTrue(bodyTextProduct.Contains("Symphony Knee"));
+            Assert.IsTrue(bodyTextProduct.Contains("Sensor Knee"));
+            Assert.IsTrue(bodyTextProduct.Contains("ProCarve Knee"));
+            Assert.IsTrue(bodyTextProduct.Contains("OH5 Knee"));
+            Assert.IsTrue(bodyTextProduct.Contains("Original Grace Plate"));
+            Assert.IsTrue(bodyTextProduct.Contains("Pediatric 4-Hole Socket"));
+            Assert.IsTrue(bodyTextProduct.Contains("Aqua Knee"));            
+            Assert.IsTrue(bodyTextProduct.Contains(item1));
+
+            IWebElement RemoveList1 = driver.FindElement(By.XPath("/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span/i"));
+            Actions RemoveTheList1 = new Actions(driver);
+            RemoveTheList1.MoveToElement(RemoveList1).Build().Perform();
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span/i");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/div/div/div/div[2]/app-button[2]/div/button");
         }
 
         [Test]
@@ -1274,31 +1483,6 @@ namespace Selenium.Test
             helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
             driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
 
-            //helperTest.JsClickElementId(driver, "search");            
-
-            //NavigateAction = new Actions(driver);
-
-            //NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span[2]"));
-            //NavigateAction.MoveToElement(NavigateCusror).Build().Perform();                
-            //helperTest.JsClickElement(driver, "/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[2]/div/app-tag-button/span/span");
-
-            //Thread.Sleep(2000);
-
-            //helperTest.JsClickElementId(driver, "configurable_img_0");
-
-            //helperTest.waitElementId(driver, 60, "product_name_in_product_page");                       
-
-            //helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
-
-            //Thread.Sleep(2000);
-
-            //helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
-            //driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
-            
-            //string item = driver.FindElement(By.Id("product_name_in_product_page")).Text;
-
-            //Thread.Sleep(2000);
-
             helperTest.JsClickElementId(driver, "search");
             driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[3]/div/p[2]/span[1]")).Click();
 
@@ -1379,13 +1563,13 @@ namespace Selenium.Test
 
             helperTest.waitElementId(driver, 60, "configurable_img_0");
             bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/div/app-search-result-info-panel[1]/div/div[2]/span[1]/span[2]/span")).Text;
-            Assert.IsTrue(bodyTextProduct.Contains("Search All: \"ottobock Dyneva\""));
+            Assert.IsTrue(bodyTextProduct.Contains("Search All: \"ottobock WalkOn® Flex\""));
 
             Thread.Sleep(2000);
 
-            helperTest.JsClickElement(driver, "//*[text()='" + "ottobock Dyneva" + "']");
+            helperTest.JsClickElement(driver, "//*[text()='" + "ottobock WalkOn®" + "']");
 
-            helperTest.InputStringXpath(driver, "50R300=XXL", "/html/body/app-root/div/app-product/div[1]/div[3]/section/div/h6[1]/input");
+            helperTest.InputStringXpath(driver, "28U11=L36-39", "/html/body/app-root/div/app-product/div[1]/div[3]/section/div/h6[1]/input");
             helperTest.waitElementId(driver, 60, "add_product_to_cart0");
             helperTest.JsClickElementID(driver, "add_product_to_cart0");
 
@@ -1541,14 +1725,13 @@ namespace Selenium.Test
             Assert.IsTrue(bodyTextProduct.Contains("AIRSELECT STANDARD SM"));
             Assert.IsTrue(bodyTextProduct.Contains("Tie-In Grace Plate Single Bore Notches"));
             Assert.IsTrue(bodyTextProduct.Contains("Grace Lanyard Strap Kit"));
-            Assert.IsTrue(bodyTextProduct.Contains("Modified Grace Plate"));
+            Assert.IsTrue(bodyTextProduct.Contains("Original Grace Plate"));
             Assert.IsTrue(bodyTextProduct.Contains("Ped 4-Hole Plate AL"));
             Assert.IsTrue(bodyTextProduct.Contains("Original Grace Plate"));
-            Assert.IsTrue(bodyTextProduct.Contains("Dyneva Spinal Support 2XL"));
+            Assert.IsTrue(bodyTextProduct.Contains("WalkOn AFO LT SM"));
             Assert.IsTrue(bodyTextProduct.Contains("WalkOn Reaction AFO LT SM"));
             Assert.IsTrue(bodyTextProduct.Contains("OttoBock TLSO Black"));
-            Assert.IsTrue(bodyTextProduct.Contains("WalkOn AFO LT XL"));
-            //Assert.IsTrue(bodyTextProduct.Contains(item));
+            Assert.IsTrue(bodyTextProduct.Contains("WalkOn AFO LT XL"));            
             Assert.IsTrue(bodyTextProduct.Contains("EBS-PRO Knee KD Lamination Anchor"));
 
             Thread.Sleep(1000);

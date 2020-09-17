@@ -47,6 +47,7 @@ namespace Selenium.Test
 
             options.AddArguments("--no-sandbox");
             options.AddArguments("--headless");
+            options.AddArguments("--incognito");
 
             options.AddUserProfilePreference("download.default_directory", "C:/Work/Anthill/Anthill.p21.AutoTests/logs_img");
             options.AddUserProfilePreference("intl.accept_languages", "nl");
@@ -228,6 +229,20 @@ namespace Selenium.Test
             Assert.IsTrue(bodyTextProduct.Contains("ALC-5067-E"));
 
             Thread.Sleep(3000);
+
+            for (int j = 0; j < 2; j++)
+            {
+                if (driver.Url.Contains("v2dev.cascade-usa"))
+                {
+                    helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
+                }
+                else
+                {
+                    helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
+                }
+
+                Thread.Sleep(1000);
+            }
         }
 
         [Test]
