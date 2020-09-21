@@ -78,6 +78,9 @@ namespace Selenium.Test
             login = "sergeykorolevsky2015@gmail.com";
             password = "7777";
 
+            //login = "osipenkom@gmail.com";
+            //password = "password1";
+
             //FirstName = "Sergey";
             //LastName = "Korolevsky";
             //Email = "sergeykorolevsky2015@gmail.com";
@@ -660,6 +663,7 @@ namespace Selenium.Test
 
             NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div[2]/div/p[2]/span[4]"));
             NavigateAction.MoveToElement(NavigateCusror).Build().Perform();
+            string item1 = driver.FindElement(By.Id("product_name")).Text;
             helperTest.JsClickElement(driver, "/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[2]/div[1]/div/div/div/span");
             helperTest.JsClickElement(driver, "//*[text()='" + "test list" + "']");
 
@@ -715,7 +719,6 @@ namespace Selenium.Test
             Thread.Sleep(2000);
 
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/app-added-to-list-modal/div/div/div[3]/button[2]");
-
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-details-panel/section/div/div[1]/app-close-button/p/span");
 
             Thread.Sleep(2000);
@@ -749,6 +752,7 @@ namespace Selenium.Test
 
             NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div/p[2]"));
             NavigateAction.MoveToElement(NavigateCusror).Build().Perform();
+            string item2 = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[2]/p")).Text;
             helperTest.JsClickElement(driver, "/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[2]/div[1]/div/div/span");
             helperTest.JsClickElement(driver, "//*[text()='" + "test list" + "']");
             helperTest.JsClickElement(driver, "//*[text()='" + "Continue shopping" + "']");
@@ -763,6 +767,9 @@ namespace Selenium.Test
             SearchBox.SendKeys("1210");
             SearchBox.SendKeys(Keys.Enter);
 
+            Thread.Sleep(2000);
+
+            string item3 = driver.FindElement(By.XPath("/html/body/app-root/div/app-category/div/div/div[2]/app-details/div[1]/div/table/tbody/tr[2]/td[3]/a")).Text;
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-details/div[1]/div/table/tbody/tr[2]/td[7]/div/div[2]/div/span");
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-details/div[1]/div/table/tbody/tr[2]/td[7]/div/div[2]/div/div/span");
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-details/app-added-to-list-modal/div/div/div[3]/button[2]");
@@ -799,7 +806,7 @@ namespace Selenium.Test
 
             Thread.Sleep(2000);
 
-            string item1 = driver.FindElement(By.XPath("/html/body/app-root/div/app-main/div/app-order-history/section/section/app-history-order-item[1]/article/article/section/div[2]/section[1]/div[1]/div/div[2]/p[3]/span")).Text;
+            string item4 = driver.FindElement(By.XPath("/html/body/app-root/div/app-main/div/app-order-history/section/section/app-history-order-item[1]/article/article/section/div[2]/section[1]/div[1]/div/div[2]/p[3]/span")).Text;
 
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-order-history/section/section/app-history-order-item[1]/article/article/section/div[2]/section[1]/div[2]/div[3]/div/span");
             helperTest.JsClickElement(driver, "//*[text()='" + "test list" + "']");
@@ -809,14 +816,14 @@ namespace Selenium.Test
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsTrue(bodyTextProduct.Contains("Symphony Knee"));
+            Assert.IsTrue(bodyTextProduct.Contains(item1));
             Assert.IsTrue(bodyTextProduct.Contains("Sensor Knee"));
             Assert.IsTrue(bodyTextProduct.Contains("ProCarve Knee"));
             Assert.IsTrue(bodyTextProduct.Contains("OH5 Knee"));
-            Assert.IsTrue(bodyTextProduct.Contains("Original Grace Plate"));
-            Assert.IsTrue(bodyTextProduct.Contains("Pediatric 4-Hole Socket"));
+            Assert.IsTrue(bodyTextProduct.Contains(item2));
+            Assert.IsTrue(bodyTextProduct.Contains(item3));
             Assert.IsTrue(bodyTextProduct.Contains("Aqua Knee"));            
-            Assert.IsTrue(bodyTextProduct.Contains(item1));
+            Assert.IsTrue(bodyTextProduct.Contains(item4));
 
             IWebElement RemoveList1 = driver.FindElement(By.XPath("/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span/i"));
             Actions RemoveTheList1 = new Actions(driver);
