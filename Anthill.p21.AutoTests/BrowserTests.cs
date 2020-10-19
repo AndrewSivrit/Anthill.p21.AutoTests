@@ -94,7 +94,7 @@ namespace Selenium.Test
             ChromeOptions options = new ChromeOptions();
 
             options.AddArguments("--no-sandbox");
-            //AddArguments("--headless");
+            options.AddArguments("--headless");
             options.AddArguments("--incognito");
 
             options.AddUserProfilePreference("download.default_directory", "C:/Work/Anthill/Anthill.p21.AutoTests/logs_img");
