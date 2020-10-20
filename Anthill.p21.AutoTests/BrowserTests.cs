@@ -615,7 +615,7 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span[1]/i");
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/div/div/div/div[2]/app-button[2]/div/button");
 
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
         }
 
         [Test]
@@ -828,6 +828,8 @@ namespace Selenium.Test
             RemoveTheList1.MoveToElement(RemoveList1).Build().Perform();
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/mdb-card/div/mdb-card-body/mdb-card-text/p/div/div/span/i");
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[1]/app-my-shopping-list/div/div/div/div[2]/app-button[2]/div/button");
+
+            Thread.Sleep(2000);
         }
 
         [Test]
@@ -1446,7 +1448,7 @@ namespace Selenium.Test
         public void ExtendedSearchProducts()
         {
             Actions NavigateAction;
-            IWebElement NavigateCusror;           
+            IWebElement NavigateCusror;
             IWebElement SearchBox;
             string bodyTextProduct;
             
@@ -1632,8 +1634,10 @@ namespace Selenium.Test
             Thread.Sleep(2000);
 
             helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
-            Assert.IsTrue(bodyTextProduct.Contains("Pediatric 4-Hole Socket Adapter Plate, Thermoplastic/Lamination - Aluminum"));
+
+            Thread.Sleep(1000);
+
+            string item1 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[1]/div[2]/div[3]/div[1]/p[1]")).Text;            
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
 
@@ -1655,6 +1659,10 @@ namespace Selenium.Test
 
             NavigateCusror = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[1]/div/p[4]"));
             NavigateAction.MoveToElement(NavigateCusror).Build().Perform();
+
+            Thread.Sleep(1000);
+            string item2 = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[2]/p")).Text;
+
             helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
 
             Thread.Sleep(2000);
@@ -1675,8 +1683,10 @@ namespace Selenium.Test
             Thread.Sleep(2000);
 
             helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
-            Assert.IsTrue(bodyTextProduct.Contains("Grace Lanyard Strap Kit"));
+
+            Thread.Sleep(1000);
+
+            string item3 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[1]/div[2]/div[3]/div[1]/p[1]")).Text;
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
 
@@ -1701,6 +1711,8 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + "View Similar Products" + "']");
 
             Thread.Sleep(2000);
+
+            string item4 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-category/div/div/div[2]/app-details/div[1]/div/table/tbody/tr[1]/td[4]/a")).Text;
 
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-details/div[1]/div/table/tbody/tr[1]/td[7]/div/div[1]/app-button/div/button");
 
@@ -1747,10 +1759,10 @@ namespace Selenium.Test
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
             Assert.IsTrue(bodyTextProduct.Contains("AIRSELECT STANDARD SM"));
-            Assert.IsTrue(bodyTextProduct.Contains("Tie-In Grace Plate Single Bore Notches"));
-            Assert.IsTrue(bodyTextProduct.Contains("Grace Lanyard Strap Kit"));
-            Assert.IsTrue(bodyTextProduct.Contains("Modified Grace Plate"));
-            Assert.IsTrue(bodyTextProduct.Contains("Ped 4-Hole Plate AL"));
+            Assert.IsTrue(bodyTextProduct.Contains(item4));
+            Assert.IsTrue(bodyTextProduct.Contains(item3));
+            Assert.IsTrue(bodyTextProduct.Contains(item2));
+            Assert.IsTrue(bodyTextProduct.Contains(item1));
             Assert.IsTrue(bodyTextProduct.Contains("Original Grace Plate"));
             Assert.IsTrue(bodyTextProduct.Contains("WalkOn AFO LT SM"));
             Assert.IsTrue(bodyTextProduct.Contains("WalkOn AFO LT MD"));
