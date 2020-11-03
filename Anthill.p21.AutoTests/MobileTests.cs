@@ -21,8 +21,7 @@ namespace Selenium.Test
         private string password;
         private string login;
         
-        string mainURLs = "https://cascade-usa.com/";
-        
+        string mainURLs = "https://cascade-usa.com/";        
 
         [SetUp]
         public void SetUp()
@@ -33,9 +32,6 @@ namespace Selenium.Test
             homeUrl = mainURLs + "home";
             authUrl = mainURLs + "auth/login";
 
-            //login = "Anthony.Kosenko@gmail.com";
-            //password = "12345";
-
             //login = "artvbashuk@gmail.com";
             //password = "9999";
 
@@ -44,6 +40,9 @@ namespace Selenium.Test
 
             //login = "sergeycascade01@yandex.com";
             //password = "StevenGerrard_01";
+
+            //login = "Anthony.Kosenko@gmail.com";
+            //password = "12345";
 
             helperTest = new HelperTest();
             ChromeOptions options = new ChromeOptions();

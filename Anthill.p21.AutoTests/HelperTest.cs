@@ -59,7 +59,7 @@ namespace Selenium.Test
             TimeSpan ts = TimeSpan.FromSeconds(time);
             WebDriverWait wait = new WebDriverWait(driver, ts);
             wait.Until(ExpectedConditions.ElementToBeClickable(By.Id(Id)));
-            Thread.Sleep(400);
+            Thread.Sleep(1000);
         }
 
         public void waitElementTagName(IWebDriver driver, int time)
@@ -67,7 +67,7 @@ namespace Selenium.Test
             TimeSpan ts = TimeSpan.FromSeconds(time);
             WebDriverWait wait = new WebDriverWait(driver, ts);
             wait.Until(ExpectedConditions.ElementIsVisible(By.TagName("body")));
-            Thread.Sleep(400);
+            Thread.Sleep(1000);
         }
 
         public void JsClickElementId(IWebDriver driver, string Id)
@@ -182,34 +182,51 @@ namespace Selenium.Test
         }
 
         public void LoginToSite(IWebDriver driver, string urlSite, string homeUrl, string login, string password, string mainURL)
-        {
-            if ((driver.Url.Contains(mainURL)) & (!(driver.Url.Contains("auth"))))
+        {                        
+            if ((driver.Url.Contains(mainURL)) & ((!driver.Url.Contains("auth"))))
             {
-
+                JsClickElement(driver, "/html/body/app-root/app-header/nav/div[1]/div[3]/links/ul/li[2]/a");
             }
             else
             {
                 driver.Url = urlSite;
-
-                if (driver.Url != homeUrl)
-                {
-                    waitElementId(driver, 60, "input-mail");
-                    
-                    Thread.Sleep(3000);
-
-                    IWebElement InpBox = driver.FindElement(By.Id("input-mail"));
-                    InpBox.SendKeys(login);
-
-                    IWebElement PassBox = driver.FindElement(By.Id("input-pass"));
-                    PassBox.SendKeys(password);
-
-                    JsClickElementId(driver, "login_button");
-
-                    Thread.Sleep(2000);
-                }
-
             }
 
+            waitElementId(driver, 60, "input-mail");
+
+            Thread.Sleep(1000);
+
+            IWebElement InpBox = driver.FindElement(By.Id("input-mail"));
+            InpBox.SendKeys(login);
+
+            IWebElement PassBox = driver.FindElement(By.Id("input-pass"));
+            PassBox.SendKeys(password);
+
+            JsClickElementId(driver, "login_button");
+
+            Thread.Sleep(1000);
+
+            if (!driver.Url.Contains("auth/login"))
+            {
+                waitElementId(driver, 60, "toggleQuickOrder");
+            }
+             
+            Thread.Sleep(2000);
+        }
+
+        public void LogOut(IWebDriver driver, string authUrl)
+        {
+            IWebElement ClickUser = driver.FindElement(By.Id("username_button"));
+            Actions actions = new Actions(driver);
+            actions.MoveToElement(ClickUser).Build().Perform();
+
+            waitElementId(driver, 60, "logout_button");
+            var LogOut = driver.FindElement(By.Id("logout_button"));
+            LogOut.Click();
+
+            Thread.Sleep(1000);
+
+            Assert.AreEqual(authUrl, driver.Url);
         }
 
         public void LoginToSiteMobile(IWebDriver driver, string urlSite, string homeUrl, string login, string password, string mainURL)
@@ -274,7 +291,7 @@ namespace Selenium.Test
 
                 IWebElement AccBox = driver.FindElement(By.Id("defaultForm-acc"));
                 AccBox.SendKeys(CascadeAccountNumber);
-                            
+
             }
 
         }
@@ -302,7 +319,7 @@ namespace Selenium.Test
 
             driver.FindElement(By.Id(numInput)).SendKeys(Keys.Enter);
 
-            Thread.Sleep(2000);                      
+            Thread.Sleep(2000);
         }
         public void AddNotes(IWebDriver driver, string Item, int num)
         {
