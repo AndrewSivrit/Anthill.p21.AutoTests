@@ -32,44 +32,30 @@ namespace Selenium.Test
             homeUrl = mainURLs + "home";
             authUrl = mainURLs + "auth/login";
 
-            //login = "artvbashuk@gmail.com";
-            //password = "9999";
-
             login = "sergeykorolevsky2015@gmail.com";
             password = "StevenGerrard_2015";
 
             //login = "sergeycascade01@yandex.com";
             //password = "StevenGerrard_01";
 
-            //login = "Anthony.Kosenko@gmail.com";
-            //password = "12345";
-
             helperTest = new HelperTest();
+
             ChromeOptions options = new ChromeOptions();
 
-            options.AddArguments("--no-sandbox");
+            //options.AddArguments("--no-sandbox");
             options.AddArguments("--headless");
-            options.AddArguments("--incognito");
+            //options.AddArguments("--incognito");
 
-            options.AddUserProfilePreference("download.default_directory", "C:/Work/Anthill/Anthill.p21.AutoTests/logs_img");
-            options.AddUserProfilePreference("intl.accept_languages", "nl");
-            options.AddUserProfilePreference("disable-popup-blocking", "true");
+            //options.AddUserProfilePreference("download.default_directory", "C:/Work/Anthill/Anthill.p21.AutoTests/logs_img");
+            //options.AddUserProfilePreference("intl.accept_languages", "nl");
+            //options.AddUserProfilePreference("disable-popup-blocking", "true");
 
             options.EnableMobileEmulation("iPhone X");
 
             driver = new ChromeDriver(pathDrivers, options);
-            //driver = new InternetExplorerDriver(pathDrivers);
 
             driver.Manage().Cookies.DeleteAllCookies();
-            driver.Manage().Window.Size = new System.Drawing.Size(1910, 1024);
-            //driver.Manage().Window.Maximize();
-
-            //driver.Url = mainURLs + "auth/login";
-            //driver.Manage().Window.Maximize();
-            //_edge = new EdgeDriver(pathDrivers);
-            //_firefox = new FirefoxDriver(pathDrivers);
-
-            //((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("Test3.png", ScreenshotImageFormat.Png); - screenshots
+            driver.Manage().Window.Size = new System.Drawing.Size(1910, 1024);                     
         }
 
         [Test]
@@ -480,8 +466,9 @@ namespace Selenium.Test
             Thread.Sleep(4000);
 
             IWebElement QuickOrderBtn = driver.FindElement(By.Id("toggleQuickOrder"));
-            QuickOrderBtn.Click();
-            Thread.Sleep(3000);
+            QuickOrderBtn.Click();            
+
+            helperTest.waitElementId(driver, 60, "mobile-add-item");            
 
             Assert.AreEqual(mainURLs + "quick-order", driver.Url);
 

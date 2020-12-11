@@ -34,14 +34,8 @@ namespace Selenium.Test
             homeUrl = mainURLs + "home";
             authUrl = mainURLs + "auth/login";
 
-            //login = "artvbashuk@gmail.com";
-            //password = "9999";
-
             login = "sergeykorolevsky2015@gmail.com";
             password = "StevenGerrard_2015";
-
-            //login = "osipenkom@gmail.com";
-            //password = "password1";
 
             //login = "sergeycascade01@yandex.com";
             //password = "StevenGerrard_01";
@@ -49,31 +43,26 @@ namespace Selenium.Test
             helperTest = new HelperTest();
 
             //Chrome
-            ChromeOptions options = new ChromeOptions();   
-
-            //Firefox
-            //FirefoxOptions options = new FirefoxOptions();    
-            //FirefoxDriverService geckoService = FirefoxDriverService.CreateDefaultService(pathDrivers);
-            //geckoService.Host = "::1";
-
-            options.AddArguments("--no-sandbox");
+            ChromeOptions options = new ChromeOptions();
             options.AddArguments("--headless");
-            options.AddArguments("--incognito");
-
-            //Chrome
-            options.AddUserProfilePreference("download.default_directory", "C:/Work/Anthill/Anthill.p21.AutoTests/logs_img");
-            options.AddUserProfilePreference("intl.accept_languages", "nl");
-            options.AddUserProfilePreference("disable-popup-blocking", "true");            
-
-            //Chrome
             driver = new ChromeDriver(pathDrivers, options);
 
             //Firefox
+            //FirefoxOptions options = new FirefoxOptions();
+            //FirefoxDriverService geckoService = FirefoxDriverService.CreateDefaultService(pathDrivers);
+            //geckoService.Host = "::1";
             //driver = new FirefoxDriver(geckoService, options);
+
+            //Edge
+            //EdgeOptions edgeOptions = new EdgeOptions();
+            //string msedgedriverExe = @"msedgedriver.exe";
+            //EdgeDriverService service = EdgeDriverService.CreateDefaultService(pathDrivers, msedgedriverExe);
+            //driver = new EdgeDriver(service, edgeOptions);
 
             driver.Manage().Cookies.DeleteAllCookies();
             driver.Manage().Window.Size = new System.Drawing.Size(1910, 1024);
-            //driver.Manage().Window.Maximize();          
+
+            //((ITakesScreenshot)driver).GetScreenshot().SaveAsFile("Test3.png", ScreenshotImageFormat.Png); - screenshots
         }
 
         [Test]
@@ -121,24 +110,24 @@ namespace Selenium.Test
 
             Thread.Sleep(3000);
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-product/div[4]/div/div/div/div[1]/div[2]/div/div[1]/section/div/h6[1]/input");
-            IWebElement PartNumber = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[4]/div/div/div/div[1]/div[2]/div/div[1]/section/div/h6[1]/input"));
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-product/div[4]/div/div[1]/div[2]/div/div[1]/section/div/h6[1]/input");
+            IWebElement PartNumber = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[4]/div/div[1]/div[2]/div/div[1]/section/div/h6[1]/input"));
             PartNumber.Clear();
             PartNumber.SendKeys("740-L-BLK-5PK");
 
             Thread.Sleep(3000);
 
-            string item1 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[4]/div/div/div/div[1]/div[2]/div/div[1]/div/article[2]/div[3]/p")).Text;
-            helperTest.InputStringXpath(driver, "2", "/html/body/app-root/div[1]/app-product/div[4]/div/div/div/div[1]/div[2]/div/div[1]/div/article[2]/div[7]/p/app-qty/input");
+            string item1 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[4]/div/div[1]/div[2]/div/div[1]/div/article[2]/div[3]/p")).Text;
+            helperTest.InputStringXpath(driver, "2", "/html/body/app-root/div[1]/app-product/div[4]/div/div[1]/div[2]/div/div[1]/div/article[2]/div[7]/p/app-qty/input");
             helperTest.JsClickElementID(driver, "accessory_add_to_cart_1");
             Thread.Sleep(6000);
 
-            string item2 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[4]/div/div/div/div[1]/div[2]/div/div[1]/div/article[6]/div[3]/p")).Text;
-            helperTest.InputStringXpath(driver, "4", "/html/body/app-root/div[1]/app-product/div[4]/div/div/div/div[1]/div[2]/div/div[1]/div/article[6]/div[7]/p/app-qty/input");
+            string item2 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[4]/div/div[1]/div[2]/div/div[1]/div/article[6]/div[3]/p")).Text;
+            helperTest.InputStringXpath(driver, "4", "/html/body/app-root/div[1]/app-product/div[4]/div/div[1]/div[2]/div/div[1]/div/article[6]/div[7]/p/app-qty/input");
             helperTest.JsClickElementID(driver, "accessory_add_to_cart_5");
             Thread.Sleep(6000);
 
-            driver.FindElement(By.XPath("//html/body/app-root/div[1]/app-product/div[4]/div/div/div/div[1]/div[1]/app-close-button/p/span")).Click();
+            driver.FindElement(By.XPath("//html/body/app-root/div[1]/app-product/div[4]/div/div[1]/div[1]/app-close-button/p/span")).Click();
             helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
             driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
             Thread.Sleep(1000);
@@ -283,7 +272,7 @@ namespace Selenium.Test
             }
         }
 
-        [Test]
+        //[Test]
         public void CMSpages()
         {
             IWebElement Img;
