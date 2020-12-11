@@ -1,11 +1,13 @@
-﻿using System;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Interactions;
+using System;
 using System.IO;
 using System.Reflection;
 using System.Threading;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Interactions;
 
 namespace Selenium.Test
 {
@@ -41,25 +43,36 @@ namespace Selenium.Test
             //login = "osipenkom@gmail.com";
             //password = "password1";
 
-            //login = "sergeycascade01@yandex.com";        
+            //login = "sergeycascade01@yandex.com";
             //password = "StevenGerrard_01";
 
             helperTest = new HelperTest();
 
-            ChromeOptions options = new ChromeOptions();
+            //Chrome
+            ChromeOptions options = new ChromeOptions();   
+
+            //Firefox
+            //FirefoxOptions options = new FirefoxOptions();    
+            //FirefoxDriverService geckoService = FirefoxDriverService.CreateDefaultService(pathDrivers);
+            //geckoService.Host = "::1";
 
             options.AddArguments("--no-sandbox");
             options.AddArguments("--headless");
             options.AddArguments("--incognito");
 
+            //Chrome
             options.AddUserProfilePreference("download.default_directory", "C:/Work/Anthill/Anthill.p21.AutoTests/logs_img");
             options.AddUserProfilePreference("intl.accept_languages", "nl");
             options.AddUserProfilePreference("disable-popup-blocking", "true");            
 
-            driver = new ChromeDriver(pathDrivers, options);                       
+            //Chrome
+            driver = new ChromeDriver(pathDrivers, options);
+
+            //Firefox
+            //driver = new FirefoxDriver(geckoService, options);
 
             driver.Manage().Cookies.DeleteAllCookies();
-            driver.Manage().Window.Size = new System.Drawing.Size(1920, 1024);
+            driver.Manage().Window.Size = new System.Drawing.Size(1910, 1024);
             //driver.Manage().Window.Maximize();          
         }
 
@@ -68,9 +81,7 @@ namespace Selenium.Test
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
-            Assert.AreEqual(homeUrl, driver.Url);
-
-            Thread.Sleep(2000);
+            Assert.AreEqual(homeUrl, driver.Url);            
 
             helperTest.LogOut(driver, authUrl);
         }
@@ -90,7 +101,7 @@ namespace Selenium.Test
         {
             string bodyTextProduct;
 
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);            
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
             Assert.AreEqual(homeUrl, driver.Url);
             
@@ -110,32 +121,34 @@ namespace Selenium.Test
 
             Thread.Sleep(3000);
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-product/div[4]/div/div/div[1]/div[2]/div/div[1]/section/div/h6[1]/input");
-            IWebElement PartNumber = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[4]/div/div/div[1]/div[2]/div/div[1]/section/div/h6[1]/input"));
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-product/div[4]/div/div/div/div[1]/div[2]/div/div[1]/section/div/h6[1]/input");
+            IWebElement PartNumber = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[4]/div/div/div/div[1]/div[2]/div/div[1]/section/div/h6[1]/input"));
             PartNumber.Clear();
             PartNumber.SendKeys("740-L-BLK-5PK");
 
             Thread.Sleep(3000);
 
-            string item1 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[4]/div/div/div[1]/div[2]/div/div[1]/div/article[3]/div[3]/p")).Text;
-            helperTest.InputStringXpath(driver, "2", "/html/body/app-root/div[1]/app-product/div[4]/div/div/div[1]/div[2]/div/div[1]/div/article[3]/div[7]/p/app-qty/input");
-            driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[4]/div/div/div[1]/div[2]/div/div[1]/div/article[3]/div[8]/app-button/div/button")).Click();
+            string item1 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[4]/div/div/div/div[1]/div[2]/div/div[1]/div/article[2]/div[3]/p")).Text;
+            helperTest.InputStringXpath(driver, "2", "/html/body/app-root/div[1]/app-product/div[4]/div/div/div/div[1]/div[2]/div/div[1]/div/article[2]/div[7]/p/app-qty/input");
+            helperTest.JsClickElementID(driver, "accessory_add_to_cart_1");
+            Thread.Sleep(6000);
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
-            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
+            string item2 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[4]/div/div/div/div[1]/div[2]/div/div[1]/div/article[6]/div[3]/p")).Text;
+            helperTest.InputStringXpath(driver, "4", "/html/body/app-root/div[1]/app-product/div[4]/div/div/div/div[1]/div[2]/div/div[1]/div/article[6]/div[7]/p/app-qty/input");
+            helperTest.JsClickElementID(driver, "accessory_add_to_cart_5");
+            Thread.Sleep(6000);
 
-            string item2 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[4]/div/div/div[1]/div[2]/div/div[1]/div/article[7]/div[3]/p")).Text;
-            helperTest.InputStringXpath(driver, "4", "/html/body/app-root/div[1]/app-product/div[4]/div/div/div[1]/div[2]/div/div[1]/div/article[7]/div[7]/p/app-qty/input");
-            driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[4]/div/div/div[1]/div[2]/div/div[1]/div/article[7]/div[8]/app-button/div/button")).Click();
-
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
-            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
-            driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[4]/div/div/div[1]/div[1]/app-close-button/p/span")).Click();
+            driver.FindElement(By.XPath("//html/body/app-root/div[1]/app-product/div[4]/div/div/div/div[1]/div[1]/app-close-button/p/span")).Click();
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
+            driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
             Thread.Sleep(1000);
 
-            helperTest.InputStringXpath(driver, "740-L-BLK-5PK", "/html/body/app-root/div/app-product/div[1]/div[3]/section/div/h6[1]/input");
+            helperTest.InputStringXpath(driver, "740-L-BLK-5PK", "/html/body/app-root/div[1]/app-product/div[1]/div[3]/section/div/h6[1]/input");
             helperTest.waitElementId(driver, 60, "add_product_to_cart0");
             helperTest.JsClickElementID(driver, "add_product_to_cart0");
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-product/div[5]/div/div/div[1]/app-close-button/p/span");
+            driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[5]/div/div/div[1]/app-close-button/p/span")).Click();
 
             Thread.Sleep(3000);
 
@@ -196,7 +209,9 @@ namespace Selenium.Test
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
 
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-cart-panel/section/div/div[2]/article/div[1]/div[1]/app-product-card[1]/article/div[2]/div[1]/p[2]");
 
             bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/app-preview-cart-panel/section/div/div[2]/article/div[1]/div[1]/app-product-card[1]/article/div[2]/div[1]/p[2]")).Text;
             Assert.IsTrue(bodyTextProduct.Contains("AKL-2636-X"));            
@@ -266,6 +281,352 @@ namespace Selenium.Test
 
                 Assert.IsTrue(ImagePresent);
             }
+        }
+
+        [Test]
+        public void CMSpages()
+        {
+            IWebElement Img;
+            Boolean ImagePresent;
+            String bodyTextProduct;
+            string path;
+
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+
+            //About Cascade
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "About Cascade" + "']");            
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[1]/h1");
+
+            Assert.IsTrue(driver.Url.Contains("pages/aboutus"));
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-page/div/div/div/div/div[1]/h1")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("About Us"));
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-page/div/div/div/div/div[2]/div")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Cascade is a wholesale distributor of orthotics, prosthetics, materials, and equipment."));
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-page/div/div/div/div/div[3]/div")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Provide solutions that improve the quality of life."));
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-page/div/div/div/div/div[4]/div")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Continually innovate and expand our solutions through a culture of partnership, excellence in operations and service, and technological efficiency."));
+
+            Thread.Sleep(2000);
+
+            for (int i = 1; i <= 9; i++)
+            {
+                path = "/html/body/app-root/div[1]/app-page/div/div/div/div/div[6]/div[" + i.ToString() + "]/a/img";
+                Img = driver.FindElement(By.XPath(path));
+                ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+                Assert.IsTrue(ImagePresent);
+            }
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[6]/div[1]/a/img");            
+            driver.SwitchTo().Window(driver.WindowHandles[1]);
+            Thread.Sleep(3000);
+            Assert.IsTrue(driver.Url.Contains("v2prodbackend.azurewebsites.net/api/digital/asset/get?fileName=2020+Cascade+Major+Landmarks.pdf"));
+            driver.Close();
+            driver.SwitchTo().Window(driver.WindowHandles[0]);
+
+            Thread.Sleep(1000);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[6]/div[2]/a/img");
+            driver.SwitchTo().Window(driver.WindowHandles[1]);
+            Thread.Sleep(8000);
+            Assert.IsTrue(driver.Url.Contains("v2prodbackend.azurewebsites.net/api/digital/asset/get?fileName=Cascade_DC+Map_FINAL_2020.pdf"));
+            driver.Close();
+            driver.SwitchTo().Window(driver.WindowHandles[0]);
+
+            Thread.Sleep(1000);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[6]/div[5]/a/img");
+            driver.SwitchTo().Window(driver.WindowHandles[1]);
+            Thread.Sleep(8000);
+            Assert.IsTrue(driver.Url.Contains("v2prodbackend.azurewebsites.net/api/digital/asset/get?fileName=transit_timeCOS.pdf"));
+            driver.Close();
+            driver.SwitchTo().Window(driver.WindowHandles[0]);
+
+            Thread.Sleep(1000);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[6]/div[8]/a/img");
+            driver.SwitchTo().Window(driver.WindowHandles[1]);
+            Thread.Sleep(3000);
+            Assert.IsTrue(driver.Url.Contains("v2prodbackend.azurewebsites.net/api/digital/asset/get?fileName=2020+Integrations+Logo+Sheet.pdf"));
+            driver.Close();
+            driver.SwitchTo().Window(driver.WindowHandles[0]);
+
+            //Resources
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "Resources" + "']");            
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[1]/h1");
+
+            Assert.IsTrue(driver.Url.Contains("/pages/resources"));
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-page/div/div/div/div/div[1]/h1")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Resources"));
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-page/div/div/div/div/div[2]/div")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("For over 47 years, Cascade Orthopedic Supply has been a leader provider of orthotic and prosthetic products across North America."));
+
+            Thread.Sleep(2000);
+
+            for (int i = 1; i <= 6; i++)
+            {
+                path = "/html/body/app-root/div[1]/app-page/div/div/div/div/div[3]/div[" + i.ToString() + "]/a/img";
+                Img = driver.FindElement(By.XPath(path));
+                ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+                Assert.IsTrue(ImagePresent);
+            }
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[3]/div[1]/a/img");            
+            driver.SwitchTo().Window(driver.WindowHandles[1]);
+            Thread.Sleep(3000);
+            Assert.IsTrue(driver.Url.Contains("v2prodbackend.azurewebsites.net/api/digital/asset/get?fileName=credit_app.pdf"));
+            driver.Close();
+            driver.SwitchTo().Window(driver.WindowHandles[0]);
+
+            //Industry Partners
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[3]/div[5]/a/img");
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[1]/h1");
+
+            Assert.IsTrue(driver.Url.Contains("/pages/partners"));
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-page/div/div/div/div/div[1]/h1")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Industry Partners"));
+
+            Thread.Sleep(4000);
+
+            path = "/html/body/app-root/div[1]/app-page/div/div/div/div/div[2]/div[1]/a/img";
+            Img = driver.FindElement(By.XPath(path));
+            ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+            Assert.IsTrue(ImagePresent);
+
+            path = "/html/body/app-root/div[1]/app-page/div/div/div/div/div[2]/div[2]/img";
+            Img = driver.FindElement(By.XPath(path));
+            ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+            Assert.IsTrue(ImagePresent);
+
+            path = "/html/body/app-root/div[1]/app-page/div/div/div/div/div[2]/div[3]/a/img";
+            Img = driver.FindElement(By.XPath(path));
+            ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+            Assert.IsTrue(ImagePresent);
+
+            for (int i = 1; i <= 7; i++)
+            {
+                path = "/html/body/app-root/div[1]/app-page/div/div/div/div/div[3]/div[" + i.ToString() + "]/div[1]/a/img";
+                Img = driver.FindElement(By.XPath(path));
+                ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+                Assert.IsTrue(ImagePresent);
+            }
+
+            for (int i = 1; i <= 7; i++)
+            {
+                path = "/html/body/app-root/div[1]/app-page/div/div/div/div/div[3]/div[" + i.ToString() + "]/div[2]/a/img";
+                Img = driver.FindElement(By.XPath(path));
+                ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+                Assert.IsTrue(ImagePresent);
+            }
+
+            path = "/html/body/app-root/div[1]/app-page/div/div/div/div/div[3]/div[8]/div/a/img";
+            Img = driver.FindElement(By.XPath(path));
+            ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+            Assert.IsTrue(ImagePresent);
+
+            path = "/html/body/app-root/div[1]/app-page/div/div/div/div/div[3]/div[9]/div[1]/a/img";
+            Img = driver.FindElement(By.XPath(path));
+            ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+            Assert.IsTrue(ImagePresent);
+
+            path = "/html/body/app-root/div[1]/app-page/div/div/div/div/div[3]/div[9]/div[2]/a/img";
+            Img = driver.FindElement(By.XPath(path));
+            ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+            Assert.IsTrue(ImagePresent);
+
+            //Industry Pressroom
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "Resources" + "']");
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[3]/div[6]/a/img");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[3]/div[6]/a/img");
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[1]/h1");
+
+            Assert.IsTrue(driver.Url.Contains("/pages/pressroom"));
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-page/div/div/div/div/div[1]/h1")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Industry Pressroom"));
+
+            Thread.Sleep(4000);
+
+            for (int i = 1; i <= 3; i++)
+            {
+                path = "/html/body/app-root/div[1]/app-page/div/div/div/div/div[3]/div[1]/div[" + i.ToString() + "]/a/img";
+                Img = driver.FindElement(By.XPath(path));
+                ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+                Assert.IsTrue(ImagePresent);
+            }
+
+            for (int i = 1; i <= 3; i++)
+            {
+                path = "/html/body/app-root/div[1]/app-page/div/div/div/div/div[3]/div[2]/div[" + i.ToString() + "]/a/img";
+                Img = driver.FindElement(By.XPath(path));
+                ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+                Assert.IsTrue(ImagePresent);
+            }
+
+            for (int i = 1; i <= 2; i++)
+            {
+                path = "/html/body/app-root/div[1]/app-page/div/div/div/div/div[3]/div[3]/div[" + i.ToString() + "]/a/img";
+                Img = driver.FindElement(By.XPath(path));
+                ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+                Assert.IsTrue(ImagePresent);
+            }
+
+            //Suppliers
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "Suppliers" + "']");
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-page/div/div[1]/div/div[1]/h1");
+
+            Assert.IsTrue(driver.Url.Contains("/pages/suppliers"));
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-page/div/div[1]/div/div[1]/h1")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Supplier Partners"));
+
+            Thread.Sleep(4000);
+
+            path = "/html/body/app-root/div[1]/app-page/div/div[1]/div/div[2]/div/img";
+            Img = driver.FindElement(By.XPath(path));
+            ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+            Assert.IsTrue(ImagePresent);
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-page/div/div[2]/div/span[2]/a")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("3M Company"));
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-page/div/div[2]/div/span[2]/a");
+
+            helperTest.waitElementId(driver, 60, "configurable_img_0");
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/div/app-search-result-info-panel[1]/div/div[2]/span[1]/span[2]/span")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Supplier: \"3M Company\""));
+
+            //COVID19 update
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "COVID19 Update" + "']");
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-page/div/div/h3[5]");
+
+            Assert.IsTrue(driver.Url.Contains("/pages/covid19-update"));
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-page/div/div/h3[5]")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("COVID-19 Workplace Safety and Operational Resources"));
+
+            Thread.Sleep(4000);
+
+            path = "/html/body/app-root/div[1]/app-page/div/div/p[1]/strong/img";
+            Img = driver.FindElement(By.XPath(path));
+            ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+            Assert.IsTrue(ImagePresent);
+
+            //Privacy Police
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "Privacy Policy" + "']");
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-page/div/div/div[2]/p[2]/span/b");
+
+            Assert.IsTrue(driver.Url.Contains("/pages/privacy-policy"));
+
+            Thread.Sleep(2000);
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-page/div/div/div[2]/p[2]/span/b")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Privacy Policy"));
+
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Please read this Policy carefully to understand our policies and practices regarding your personal information and how we will treat it"));
+
+            //Terms of Sale
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "Terms of Sale" + "']");
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-page/div/div/h1/span/span/span");
+
+            Assert.IsTrue(driver.Url.Contains("/pages/terms-of-sale"));
+
+            Thread.Sleep(2000);
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-page/div/div/h1/span/span/span")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Terms of Sale"));
+
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Shipping charges are assessed according to the carrier service rate at the time of service."));
+
+            //Continuing Education
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "Continuing Education" + "']");
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[1]/h1");
+
+            Assert.IsTrue(driver.Url.Contains("/pages/continuing-education"));
+            driver.Url.Contains("/pages/continuing-education");
+
+            Thread.Sleep(2000);
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-page/div/div/div/div/div[1]/h1")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Continuing Education"));
+
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("All courses will be offered remotely until further notice. Please fill out the form below and a Cascade Team member will be happy to help you!"));
+
+            Thread.Sleep(2000);
+
+            for (int i = 1; i <= 2; i++)
+            {
+                path = "/html/body/app-root/div[1]/app-page/div/div/div/div/div[2]/div/div[" + i.ToString() + "]/a/img";
+                Img = driver.FindElement(By.XPath(path));
+                ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+                Assert.IsTrue(ImagePresent);
+            }
+
+            //Contact Us
+
+            helperTest.JsClickElement(driver, "//*[text()='" + "Contact Us" + "']");
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-page/div/div/div/div[1]/div[1]/h1");
+
+            Assert.IsTrue(driver.Url.Contains("/pages/contact-us"));
+
+            Thread.Sleep(2000);
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-page/div/div/div/div[1]/div[1]/h1")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Contact Us"));
+
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Have questions on the products or services Cascade offers? Fill out the form below and someone will be happy to help you!"));
+
+            Thread.Sleep(2000);
+
+            for (int i = 1; i <= 4; i++)
+            {
+                path = "/html/body/app-root/div[1]/app-page/div/div/div/div[1]/div[2]/div[1]/div[" + i.ToString() + "]/a/img";
+                Img = driver.FindElement(By.XPath(path));
+                ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+                Assert.IsTrue(ImagePresent);
+            }
+
+            for (int i = 1; i <= 2; i++)
+            {
+                path = "/html/body/app-root/div[1]/app-page/div/div/div/div[1]/div[2]/div[2]/div[" + i.ToString() + "]/img";
+                Img = driver.FindElement(By.XPath(path));
+                ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
+                Assert.IsTrue(ImagePresent);
+            }
+
+            Thread.Sleep(1000);
         }
 
         [Test]
@@ -398,22 +759,21 @@ namespace Selenium.Test
 
             Thread.Sleep(5000);
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
-            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
-
             helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[5]/p/app-qty/input");
 
             string item1 = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[2]/p")).Text;
             string item2 = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[4]/div[2]/p")).Text;
             helperTest.InputStringXpath(driver, "5", "/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[5]/p/app-qty/input");
-            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[1]/div[6]/app-button/div/button")).Click();
+            helperTest.JsClickElementID(driver, "accessory_add_to_cart_0");
 
             Thread.Sleep(5000);
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
-            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
+            helperTest.JsClickElementID(driver, "accessory_add_to_cart_3");
 
-            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[2]/div/div/div/article[4]/div[6]/app-button/div/button")).Click();
+            Thread.Sleep(5000);
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-product/div[5]/div/div/div[1]/app-close-button/p/span");
+            driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[5]/div/div/div[1]/app-close-button/p/span")).Click();                       
 
             Thread.Sleep(3000);
 
@@ -573,17 +933,19 @@ namespace Selenium.Test
 
             Thread.Sleep(5000);
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
-            driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
-
             helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-product/div[3]/div/div/div[1]/app-close-button/p/span");
             driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[3]/div/div/div[1]/app-close-button/p/span")).Click();
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
+            driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
 
             Thread.Sleep(1000);
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
 
-            Thread.Sleep(3000);
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
+
+            Thread.Sleep(1000);
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
 
@@ -778,7 +1140,7 @@ namespace Selenium.Test
             SearchBox.SendKeys("Knee");
             SearchBox.SendKeys(Keys.Enter);
 
-            Thread.Sleep(4000);
+            helperTest.waitElementId(driver, 60, "configurable_img_0");
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
@@ -853,11 +1215,11 @@ namespace Selenium.Test
 
             Thread.Sleep(2000);
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
-            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
-
             helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[5]/div/div/div[1]/app-close-button/p/span");
             driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[1]/app-close-button/p/span")).Click();
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
 
             helperTest.JsClickElementId(driver, "search");
 
@@ -881,11 +1243,11 @@ namespace Selenium.Test
 
             Thread.Sleep(2000);
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
-            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
-
             helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[5]/div/div/div[1]/app-close-button/p/span");
             driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[1]/app-close-button/p/span")).Click();
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
 
             helperTest.JsClickElementId(driver, "search");
 
@@ -909,11 +1271,11 @@ namespace Selenium.Test
 
             Thread.Sleep(2000);
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
-            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
-
             helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[5]/div/div/div[1]/app-close-button/p/span");
             driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[1]/app-close-button/p/span")).Click();
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
 
             helperTest.JsClickElementId(driver, "search");
 
@@ -939,11 +1301,11 @@ namespace Selenium.Test
 
             Thread.Sleep(2000);
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
-            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
-
             helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[5]/div/div/div[1]/app-close-button/p/span");
             driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[5]/div/div/div[1]/app-close-button/p/span")).Click();
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
+            driver.FindElement(By.XPath("/html/body/app-root/div/app-product/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
 
             helperTest.UseDropDownIdByName(driver, "basic-addon1", "Part Number");
 
@@ -1089,7 +1451,10 @@ namespace Selenium.Test
 
             helperTest.InputStringXpath(driver, "01EF-S", "/html/body/app-root/div/app-product/div[1]/div[3]/section/div/h6[1]/input");
             helperTest.waitElementId(driver, 60, "add_product_to_cart0");
-            helperTest.JsClickElementID(driver, "add_product_to_cart0");
+            helperTest.JsClickElementID(driver, "add_product_to_cart0");            
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-product/div[5]/div/div/div[1]/app-close-button/p/span");
+            driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[5]/div/div/div[1]/app-close-button/p/span")).Click();
 
             Thread.Sleep(2000);
 
@@ -1152,7 +1517,9 @@ namespace Selenium.Test
 
             driver.Url = mainURLs + "account-info";
 
-            Thread.Sleep(4000);
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-account-info/div[1]/div[5]/div/div/div[2]/div/div[1]/span[1]");
+
+            Thread.Sleep(2000);
 
             String[] s1 = new String[4];
 
@@ -1164,7 +1531,7 @@ namespace Selenium.Test
 
             if (driver.Url.Contains("v2dev.cascade-usa"))
             {
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/aside/div[1]/div/div[1]/app-tag-button/span/span");
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/aside/app-order-info-aside/aside/div[1]/div[2]/div[1]/app-tag-button/span/span");
             }
             else
             {
@@ -1175,7 +1542,7 @@ namespace Selenium.Test
 
             if (driver.Url.Contains("v2dev.cascade-usa"))
             {
-                driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/aside/div[1]/div/select")).Click();
+                driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/aside/app-order-info-aside/aside/div[1]/div/select")).Click();
             }
             else
             {
@@ -1199,7 +1566,7 @@ namespace Selenium.Test
 
             if (driver.Url.Contains("v2dev.cascade-usa"))
             {
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/aside/div[1]/div/div[1]/app-tag-button/span/span");
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/aside/app-order-info-aside/aside/div[1]/div[2]/div[1]/app-tag-button/span/span");
             }
             else
             {
@@ -1210,7 +1577,7 @@ namespace Selenium.Test
 
             if (driver.Url.Contains("v2dev.cascade-usa"))
             {
-                driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/aside/div[1]/div/select")).Click();
+                driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/aside/app-order-info-aside/aside/div[1]/div/select")).Click();
             }
             else
             {
@@ -1278,7 +1645,7 @@ namespace Selenium.Test
             helperTest.InputStringId(driver, "Test City", "City");
             if (driver.Url.Contains("v2dev.cascade-usa"))
             {
-                helperTest.UseDropDown(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/div/div/div/div[2]/div/form/select[1]", 2);
+                helperTest.UseDropDown(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/aside/app-order-info-aside/div/div/div/div[2]/div/form/select[1]", 2);
             }
             else
             {
@@ -1622,7 +1989,9 @@ namespace Selenium.Test
             SearchBox.SendKeys("1210");
             SearchBox.SendKeys(Keys.Enter);
 
-            Thread.Sleep(2000);
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-category/div/div/div[2]/app-details/div[1]/div/table/tbody/tr[1]/td[1]/a/app-tooltip-image/div/img");
+
+            Thread.Sleep(1000);
 
             string item3 = driver.FindElement(By.XPath("/html/body/app-root/div/app-category/div/div/div[2]/app-details/div[1]/div/table/tbody/tr[2]/td[3]/a")).Text;
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-details/div[1]/div/table/tbody/tr[2]/td[7]/div/div[2]/div/span");
@@ -1651,7 +2020,7 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
 
             helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/div/article[4]/div[3]/div/div/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/div/article[4]/div[3]/div/div/span");
             helperTest.JsClickElement(driver, "//*[text()='" + "test list" + "']");
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/app-added-to-list-modal/div/div/div[3]/button[2]");
 
@@ -1714,8 +2083,11 @@ namespace Selenium.Test
             helperTest.InputStringXpath(driver, "60SL", "/html/body/app-root/div/app-product/div[1]/div[3]/section/div/h6[1]/input");
 
             helperTest.InputStringXpath(driver, "5", "/html/body/app-root/div[1]/app-product/div[1]/div[3]/div[1]/article[1]/div[5]/p/input");
-            helperTest.JsClickElementId(driver, "add_product_to_cart0");
-                       
+            helperTest.JsClickElementId(driver, "add_product_to_cart0");            
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-product/div[5]/div/div/div[1]/app-close-button/p/span");
+            driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[5]/div/div/div[1]/app-close-button/p/span")).Click();
+
             Thread.Sleep(4000);
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
@@ -1780,6 +2152,8 @@ namespace Selenium.Test
         //[Test]
         public void SubmitOrder()
         {
+            IWebElement InpBox;
+
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
             helperTest.waitElementId(driver, 60, "toggleQuickOrder");
@@ -1806,14 +2180,13 @@ namespace Selenium.Test
 
             Assert.AreEqual(mainURLs + "cart/index", driver.Url);
 
-            IWebElement InpBox = driver.FindElement(By.Id("poNumber"));
-
+            InpBox = driver.FindElement(By.Id("poNumber"));
             InpBox.Clear();
             InpBox.SendKeys("TESTPO " + DateTime.Now.ToString("yyyyMMdd"));
 
-            IWebElement InpBox2 = driver.FindElement(By.Id("notesInput"));
-            InpBox2.Clear();
-            InpBox2.SendKeys("TEST ORDER PLEASE DO NOT PROCESS " + DateTime.Now.ToString("yyyyMMdd"));
+            InpBox = driver.FindElement(By.Id("notesInput"));
+            InpBox.Clear();
+            InpBox.SendKeys("TEST ORDER PLEASE DO NOT PROCESS " + DateTime.Now.ToString("yyyyMMdd"));
 
             Thread.Sleep(1000);
 
@@ -2647,82 +3020,182 @@ namespace Selenium.Test
         }
 
         //[Test]
-        public void SubmitterApproval()
+        public void SubmitterApprover()
         {
+            Actions actions = new Actions(driver);
+            IWebElement SearchBox;
+            IWebElement InpBox;
+            string bodyTextProduct;
+
             login = "sergeycascade11@yandex.com";
             password = "StevenGerrard_11";
 
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
-
-            helperTest.waitElementId(driver, 60, "toggleQuickOrder");
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);                        
 
             Assert.AreEqual(homeUrl, driver.Url);
 
-            driver.Url = mainURLs + "product?productID=1282&Name=original-grace-plate";
+            helperTest.UseDropDownIdByName(driver, "basic-addon1", "Part Number");
 
-            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+            helperTest.waitElementId(driver, 60, "search");
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.Clear();
+            SearchBox.SendKeys("1210");
+            SearchBox.SendKeys(Keys.Enter);
 
-            driver.Url.Contains("product?productID=1282&Name=original-grace-plate");
+            Thread.Sleep(3000);
 
-            helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-category/div/div/div[2]/app-details/div[1]/div/table/tbody/tr[1]/td[7]/div/div[1]/app-button/div/button");
+            helperTest.CloseShoppingCartPreview(driver);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-category/div/div/div[2]/app-details/div[1]/div/table/tbody/tr[2]/td[7]/div/div[1]/app-button/div/button");
+            helperTest.CloseShoppingCartPreview(driver);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-category/div/div/div[2]/app-details/div[1]/div/table/tbody/tr[3]/td[7]/div/div[1]/app-button/div/button");
 
             Thread.Sleep(3000);
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
 
-            Thread.Sleep(2000);
+            helperTest.waitElementId(driver, 60, "item-name-in-cart0");
+            bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("1210"));
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-submitter/section/section/article/div[2]/app-cart-product-order-for-submitter/section/article[2]/div/input[1]");
+            Thread.Sleep(1000);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-submitter/section/section/article/div[2]/app-cart-product-order-for-submitter[1]/section/div/article[2]/div/div[1]/div/label");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-submitter/section/section/article/div[2]/app-cart-product-order-for-submitter[2]/section/div/article[2]/div/div[1]/div/label");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-submitter/section/section/article/div[2]/app-cart-product-order-for-submitter[3]/section/div/article[2]/div/div[1]/div/label");
+
+            helperTest.InputStringId(driver, "Patient 1", "patient_id_in_cart0");
+            helperTest.InputStringId(driver, "test notes for item 1", "notes_in_cart0");
+            helperTest.InputStringId(driver, "Patient 2", "patient_id_in_cart1");
+            helperTest.InputStringId(driver, "test notes for item 2", "notes_in_cart1");
+            helperTest.InputStringId(driver, "Patient 3", "patient_id_in_cart2");
+            helperTest.InputStringId(driver, "test notes for item 3", "notes_in_cart2");
+
+            helperTest.UseDropDown(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-submitter/section/aside/app-order-info-aside-for-submitter/aside/div[3]/select", 1);
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-submitter/section/aside/app-order-info-aside-for-submitter/aside/div[1]/p[3]")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("2638 Aztexc Drive"));
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Submit for Approval " + "']");
 
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
 
-            string bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct.Contains("submitted to Andrew"));
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-submitter/div/div/div/div/div");
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-submitter/div/div/div/div/div");
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Your order has been submitted"));
 
-            IWebElement ClickUser = driver.FindElement(By.Id("username_button"));
+            driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-submitter/div/div/div/div/div")).Click();
 
-            Actions actions = new Actions(driver);
-            actions.MoveToElement(ClickUser).Build().Perform();
+            Thread.Sleep(3000);
 
-            helperTest.waitElementId(driver, 60, "logout_button");
-            var LogOut = driver.FindElement(By.Id("logout_button"));
+            IWebElement SwitchUser = driver.FindElement(By.Id("username_button"));
+            actions.MoveToElement(SwitchUser).Build().Perform();
 
-            LogOut.Click();
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/app-header/nav/div[1]/div[3]/links/ul/li[1]/div/div/a[4]");
+            driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[3]/links/ul/li[1]/div/div/a[4]")).Click();
 
-            login = "nikitin_andrew@bk.ru";
-            password = "12345";
+            Thread.Sleep(3000);
 
-            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
-
-            Thread.Sleep(5000);
+            helperTest.waitElementId(driver, 60, "home_img_0");
 
             helperTest.JsClickElementId(driver, "header_cart_icon");
-
             helperTest.waitElementId(driver, 60, "submit_order");
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Modified Grace Plate"));
+            Assert.IsTrue(bodyTextProduct.Contains("Ped 4-Hole Plate AL"));
             Assert.IsTrue(bodyTextProduct.Contains("Original Grace Plate"));
 
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/aside/div[1]/p[3]")).Text;
+
+            if (bodyTextProduct.Contains("1415 Kilborn Drive"))
+            {
+                helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[2]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[2]/span/span");
+            }
+            else
+            {
+                helperTest.JsClickElement(driver, "//*[text()='" + "Edit" + "']");
+
+                helperTest.UseDropDown(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/aside/div[1]/div/select", 2);
+
+                bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/aside/div[1]/p[3]")).Text;
+                Assert.IsTrue(bodyTextProduct.Contains("1415 Kilborn Drive"));                
+
+                Thread.Sleep(1000);
+
+                helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[2]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[2]/span/span");
+            }                      
+
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Keep Current " + "']");
+
+            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+            bodyTextProduct = driver.FindElement(By.Id("product-name-in-cart0")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Ped 4-Hole Plate AL"));
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/aside/div[1]/p[3]")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("1415 Kilborn Drive"));
+
             Thread.Sleep(1000);
 
-            helperTest.JsClickElement(driver, "//*[text()='" + "Move to Cart" + "']");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[2]/div[2]/app-cart-product-order-for-approver[1]/section/div/article[4]/div[4]/app-tag-button[2]/span/span");
+
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Use Requested " + "']");
+
+            helperTest.waitElementId(driver, 60, "product-name-in-cart1");
+            bodyTextProduct = driver.FindElement(By.Id("product-name-in-cart1")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("Modified Grace Plate"));
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/aside/app-order-info-aside-for-approver/aside/div[1]/p[3]")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("1225 West Front Street"));
 
             Thread.Sleep(1000);
 
-            helperTest.JsClickElement(driver, "//*[text()='" + "Keep Current" + "']");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[2]/div[2]/app-cart-product-order-for-approver/section/div/article[4]/div[4]/app-tag-button[1]/span/span");
 
-            IWebElement InpBox = driver.FindElement(By.Id("poNumber"));
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[2]/div[2]/app-cart-product-order-for-approver/div/div/div/div[2]/div[2]/div/button[1]");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article[2]/div[2]/app-cart-product-order-for-approver/div/div/div/div[2]/div[2]/div/button[1]");
+
+            Thread.Sleep(1000);
+
+            InpBox = driver.FindElement(By.Id("poNumber"));
+            InpBox.Clear();
             InpBox.SendKeys("TESTPO " + DateTime.Now.ToString("yyyyMMdd"));
 
-            IWebElement InpBox2 = driver.FindElement(By.Id("notesInput"));
-            InpBox2.Clear();
-            InpBox2.SendKeys("TEST ORDER PLEASE DO NOT PROCESS " + DateTime.Now.ToString("yyyyMMdd"));
+            InpBox = driver.FindElement(By.Id("notesInput"));
+            InpBox.Clear();
+            InpBox.SendKeys("TEST ORDER PLEASE DO NOT PROCESS " + DateTime.Now.ToString("yyyyMMdd"));
 
             Thread.Sleep(1000);
+
+            helperTest.JsClickElementId(driver, "submit_order");
+
+            helperTest.waitElementId(driver, 180, "product-name-in-cartundefined");
+
+            Assert.AreEqual(mainURLs + "cart/review", driver.Url);
+
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-cart-root/div/div/app-review-cart/section/aside/app-order-info-aside/aside/div[1]/p[2]")).Text;
+            Assert.IsTrue(bodyTextProduct.Contains("1225 West Front Street"));
+
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-review-cart/section/aside/app-order-info-aside/aside/div[3]/div[3]/app-button/div/button");
+
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-review-cart/div[1]/div/div/div[3]/app-button/div/button");
+
+            helperTest.FindTextInBody(driver, "Thank you for your order. Your order number is");
+
+            Thread.Sleep(4000);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " OK " + "']");
+
+            Thread.Sleep(2000);
         }
 
         [TearDown]

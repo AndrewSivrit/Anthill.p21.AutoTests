@@ -21,7 +21,7 @@ namespace Selenium.Test
         private string password;
         private string login;
         
-        string mainURLs = "https://cascade-usa.com/";        
+        string mainURLs = "https://cascade-usa.com/";
 
         [SetUp]
         public void SetUp()
@@ -61,7 +61,7 @@ namespace Selenium.Test
             //driver = new InternetExplorerDriver(pathDrivers);
 
             driver.Manage().Cookies.DeleteAllCookies();
-            driver.Manage().Window.Size = new System.Drawing.Size(1920, 1024);
+            driver.Manage().Window.Size = new System.Drawing.Size(1910, 1024);
             //driver.Manage().Window.Maximize();
 
             //driver.Url = mainURLs + "auth/login";
@@ -170,8 +170,8 @@ namespace Selenium.Test
 
             if (driver.Url.Contains("v2dev.cascade-usa"))
             {
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[1]/app-product-card/article/div[2]/p[2]");
-                bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[1]/app-product-card/article/div[2]/p[2]")).Text;
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card/article/div[2]/p[2]");
+                bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card/article/div[2]/p[2]")).Text;
             }
             else
             {
@@ -214,13 +214,13 @@ namespace Selenium.Test
             Thread.Sleep(3000);
 
             helperTest.waitElementId(driver, 60, "mobile-add-to-cart");
-            OpenItem = driver.FindElement((By.Id("mobile-add-to-cart")));
+            OpenItem = driver.FindElement(By.Id("mobile-add-to-cart"));
             OpenItem.Click();
 
             if (driver.Url.Contains("v2dev.cascade-usa"))
             {
-                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[1]/app-product-card/article/div[2]/p[2]");
-                bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[1]/app-product-card/article/div[2]/p[2]")).Text;
+                helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card/article/div[2]/p[2]");
+                bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card/article/div[2]/p[2]")).Text;
             }
             else
             {
@@ -236,7 +236,7 @@ namespace Selenium.Test
             {
                 if (driver.Url.Contains("v2dev.cascade-usa"))
                 {
-                    helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
+                    helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
                 }
                 else
                 {
@@ -525,7 +525,7 @@ namespace Selenium.Test
             {
                 if (driver.Url.Contains("v2dev.cascade-usa"))
                 {
-                    helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
+                    helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
                 }
                 else
                 {
@@ -762,7 +762,7 @@ namespace Selenium.Test
             {
                 if (driver.Url.Contains("v2dev.cascade-usa"))
                 {
-                    helperTest.JsClickElement(driver, "/html/body/app-root/div/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-approver/section/section/article/div[2]/app-cart-product-order-for-approver[1]/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
+                    helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[4]/div[3]/div/app-tag-button[1]/span/span");
                 }
                 else
                 {

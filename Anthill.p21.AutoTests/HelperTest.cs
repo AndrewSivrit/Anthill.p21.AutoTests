@@ -88,6 +88,12 @@ namespace Selenium.Test
             Assert.IsTrue(bodyText.Contains(Path));
         }
 
+        public void FindTextById(IWebDriver driver, string Id, string Text)
+        {
+            String bodyText = driver.FindElement(By.Id(Id)).Text;
+            Assert.IsTrue(bodyText.Contains(Text));
+        }
+
         public void NotFindTextInBody(IWebDriver driver, string Path)
         {
             waitElementTagName(driver, 60);
@@ -204,14 +210,12 @@ namespace Selenium.Test
 
             JsClickElementId(driver, "login_button");
 
-            Thread.Sleep(1000);
+            Thread.Sleep(4000);
 
             if (!driver.Url.Contains("auth/login"))
             {
-                waitElementId(driver, 60, "toggleQuickOrder");
-            }
-             
-            Thread.Sleep(2000);
+                waitElementId(driver, 60, "home_img_0");
+            }            
         }
 
         public void LogOut(IWebDriver driver, string authUrl)
@@ -260,41 +264,6 @@ namespace Selenium.Test
 
         }
 
-        public void RegisterToSite(IWebDriver driver, string homeUrl, string FirstName, string LastName, string Email, string PhoneNumber, string RegPassword, string ConfirmPassword, string CascadeAccountNumber)
-        {
-            driver.Url = homeUrl;
-            {
-
-                Thread.Sleep(4000);
-
-                JsClickElementID(driver, "header_register_button");
-
-                Thread.Sleep(4000);
-
-                IWebElement FNBox = driver.FindElement(By.Id("defaultForm-firstname"));
-                FNBox.SendKeys(FirstName);
-
-                IWebElement LNBox = driver.FindElement(By.Id("defaultForm-lastname"));
-                LNBox.SendKeys(LastName);
-
-                IWebElement EmailBox = driver.FindElement(By.Id("defaultForm-email"));
-                EmailBox.SendKeys(Email);
-
-                IWebElement PhoneBox = driver.FindElement(By.Id("defaultForm-phone"));
-                PhoneBox.SendKeys(PhoneNumber);
-
-                IWebElement PassBox = driver.FindElement(By.Id("defaultForm-pass"));
-                PassBox.SendKeys(RegPassword);
-
-                IWebElement ComfPassBox = driver.FindElement(By.Id("defaultForm-cpass"));
-                ComfPassBox.SendKeys(ConfirmPassword);
-
-                IWebElement AccBox = driver.FindElement(By.Id("defaultForm-acc"));
-                AccBox.SendKeys(CascadeAccountNumber);
-
-            }
-
-        }
         public void AddItem(IWebDriver driver, string Item, int num, string Desc)
         {
 
@@ -331,6 +300,16 @@ namespace Selenium.Test
             driver.FindElement(By.Id(numInput)).SendKeys(Keys.Enter);
 
             Thread.Sleep(2000);
+        }
+
+        public void CloseShoppingCartPreview(IWebDriver driver)
+        {
+            Thread.Sleep(2000);
+
+            waitElementXpath(driver, 60, "/html/body/app-root/div[1]/app-category/div/div/div[2]/app-details/div[1]/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");
+            driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-category/div/div/div[2]/app-details/div[1]/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span")).Click();
+
+            Thread.Sleep(1000);
         }
     }
 }
