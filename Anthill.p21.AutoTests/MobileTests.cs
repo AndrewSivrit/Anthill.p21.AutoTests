@@ -132,7 +132,9 @@ namespace Selenium.Test
             OpenItem = driver.FindElement((By.XPath("/html/body/app-root/app-header/nav/div[2]/app-search-panel/div/div/div/app-search-panel-dropdown/div[1]/div/div/div[2]/div/p[2]/span[1]")));
             OpenItem.Click();
 
-            Thread.Sleep(3000);
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[13]/app-product/div[1]/div/p[1]");
+
+            Thread.Sleep(2000);
 
             bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[13]/app-product/div[1]/div/p[1]")).Text;
             Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® Liner"));
