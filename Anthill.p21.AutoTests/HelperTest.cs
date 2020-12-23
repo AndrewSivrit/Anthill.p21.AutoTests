@@ -74,7 +74,7 @@ namespace Selenium.Test
         {
 
             waitElementId(driver, 60, Id);
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             IWebElement ele = driver.FindElement(By.Id(Id));
             IJavaScriptExecutor executor = (IJavaScriptExecutor)driver;
             executor.ExecuteScript("arguments[0].click();", ele);
@@ -171,17 +171,6 @@ namespace Selenium.Test
             waitElementXpath(driver, 120, path);
             Thread.Sleep(100);
             IWebElement ele = driver.FindElement(By.XPath(path));
-            IJavaScriptExecutor executor = (IJavaScriptExecutor)driver;
-            executor.ExecuteScript("arguments[0].click();", ele);
-            Thread.Sleep(500);
-        }
-
-        public void JsClickElementID(IWebDriver driver, string path)
-        {
-
-            //waitElementXpath(driver, 120, path);
-            Thread.Sleep(100);
-            IWebElement ele = driver.FindElement(By.Id(path));
             IJavaScriptExecutor executor = (IJavaScriptExecutor)driver;
             executor.ExecuteScript("arguments[0].click();", ele);
             Thread.Sleep(500);
