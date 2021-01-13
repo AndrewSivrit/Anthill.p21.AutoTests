@@ -443,15 +443,15 @@ namespace Selenium.Test
 
             Assert.AreEqual(mainURLs + "quick-order", driver.Url);
 
-            InputAndCheckAdd("3244", "Profile Orthosis 2XL");
-            InputAndCheckAdd("3245", "Profile Orthosis 3XL");
+            InputAndCheckAdd("28U11=L36-39", "WalkOn AFO LT SM");
+            InputAndCheckAdd("28U11=L39-42", "WalkOn AFO LT MD");
             InputAndCheckAdd("1211", "Splint SM Left");
             InputAndCheckAdd("1212", "Splint MD Left");
-            InputAndCheckAdd("3243", "Profile Orthosis XL");
+            InputAndCheckAdd("28U11=R36-39", "WalkOn AFO RT SM");
             InputAndCheckAdd("1213", "Splint LG Left");
-            InputAndCheckAdd("3241", "Orthosis MD");
-            InputAndCheckAdd("3239", "Orthosis XS");
-            InputAndCheckAdd("3231", "Orthosis 10");
+            InputAndCheckAdd("28U23=L36-39", "WalkOn Trimable LT SM");
+            InputAndCheckAdd("28U23=R36-39", "WalkOn Trimable RT SM");
+            InputAndCheckAdd("28U23=R45-48", "WalkOn Trimable RT XL");
 
             Thread.Sleep(3000);
 
@@ -467,15 +467,15 @@ namespace Selenium.Test
 
             String bodyTextCart = driver.FindElement(By.TagName("body")).Text;                      
 
-            Assert.IsTrue(bodyTextCart.Contains("Profile Orthosis 2XL"));
-            Assert.IsTrue(bodyTextCart.Contains("Profile Orthosis 3XL"));
+            Assert.IsTrue(bodyTextCart.Contains("WalkOn AFO LT SM"));
+            Assert.IsTrue(bodyTextCart.Contains("WalkOn AFO LT MD"));
             Assert.IsTrue(bodyTextCart.Contains("Splint SM Left"));
             Assert.IsTrue(bodyTextCart.Contains("Splint MD Left"));
-            Assert.IsTrue(bodyTextCart.Contains("Profile Orthosis XL"));
+            Assert.IsTrue(bodyTextCart.Contains("WalkOn AFO RT SM"));
             Assert.IsTrue(bodyTextCart.Contains("Splint LG Left"));            
-            Assert.IsTrue(bodyTextCart.Contains("Orthosis MD"));
-            Assert.IsTrue(bodyTextCart.Contains("Orthosis XS"));
-            Assert.IsTrue(bodyTextCart.Contains("Orthosis 10"));
+            Assert.IsTrue(bodyTextCart.Contains("WalkOn Trimable LT SM"));
+            Assert.IsTrue(bodyTextCart.Contains("WalkOn Trimable RT SM"));
+            Assert.IsTrue(bodyTextCart.Contains("WalkOn Trimable RT XL"));
 
             Thread.Sleep(1000);
 

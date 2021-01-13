@@ -237,7 +237,7 @@ namespace Selenium.Test
 
             Thread.Sleep(2000);
 
-            Img = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[1]/div[2]/div[2]/lib-ngx-image-zoom/div/img"));
+            Img = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[1]/div[2]/div[2]/img"));
 
             ImagePresent = (Boolean)((IJavaScriptExecutor)driver).ExecuteScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", Img);
 
@@ -824,16 +824,16 @@ namespace Selenium.Test
             helperTest.waitElementId(driver, 60, "add_more_items");
             helperTest.JsClickElementId(driver, "add_more_items");
 
-            InputAndCheckAdd("3244", 0, "Profile Orthosis 2XL");
-            InputAndCheckAdd("3245", 1, "Profile Orthosis 3XL");
+            InputAndCheckAdd("28U11=L36-39", 0, "WalkOn AFO LT SM");
+            InputAndCheckAdd("28U11=L39-42", 1, "WalkOn AFO LT MD");
             InputAndCheckAdd("1211", 2, "Splint SM Left");
             InputAndCheckAdd("1212", 3, "Splint MD Left");
-            InputAndCheckAdd("3243", 4, "Profile Orthosis XL");
+            InputAndCheckAdd("28U11=R36-39", 4, "WalkOn AFO RT SM");
             InputAndCheckAdd("1213", 5, "Splint LG Left");
             InputAndCheckAdd("1213", 6, "Splint LG Left");
-            InputAndCheckAdd("3241", 7, "Orthosis MD");
-            InputAndCheckAdd("3239", 8, "Orthosis XS");
-            InputAndCheckAdd("3231", 9, "Orthosis 10");
+            InputAndCheckAdd("28U23=L36-39", 7, "WalkOn Trimable LT SM");
+            InputAndCheckAdd("28U23=R36-39", 8, "WalkOn Trimable RT SM");
+            InputAndCheckAdd("28U23=R45-48", 9, "WalkOn Trimable RT XL");
 
             Thread.Sleep(1000);
 
@@ -847,16 +847,16 @@ namespace Selenium.Test
 
             String bodyTextCart2 = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsTrue(bodyTextCart2.Contains("Profile Orthosis 2XL"));
-            Assert.IsTrue(bodyTextCart2.Contains("Profile Orthosis 3XL"));
+            Assert.IsTrue(bodyTextCart2.Contains("WalkOn AFO LT SM"));
+            Assert.IsTrue(bodyTextCart2.Contains("WalkOn AFO LT MD"));
             Assert.IsTrue(bodyTextCart2.Contains("Splint SM Left"));
             Assert.IsTrue(bodyTextCart2.Contains("Splint MD Left"));
-            Assert.IsTrue(bodyTextCart2.Contains("Profile Orthosis XL"));
+            Assert.IsTrue(bodyTextCart2.Contains("WalkOn AFO RT SM"));
             Assert.IsTrue(bodyTextCart2.Contains("Splint LG Left"));
             Assert.IsTrue(bodyTextCart2.Contains("Splint LG Left"));
-            Assert.IsTrue(bodyTextCart2.Contains("Orthosis MD"));
-            Assert.IsTrue(bodyTextCart2.Contains("Orthosis XS"));
-            Assert.IsTrue(bodyTextCart2.Contains("Orthosis 10"));
+            Assert.IsTrue(bodyTextCart2.Contains("WalkOn Trimable LT SM"));
+            Assert.IsTrue(bodyTextCart2.Contains("WalkOn Trimable RT SM"));
+            Assert.IsTrue(bodyTextCart2.Contains("WalkOn Trimable RT XL"));
 
             for (int j = 0; j < 10; j++)
             {
@@ -1594,7 +1594,6 @@ namespace Selenium.Test
             Assert.AreEqual(homeUrl, driver.Url);
             IWebElement ClickUser = driver.FindElement(By.Id("username_button"));
 
-
             Actions actions = new Actions(driver);
             actions.MoveToElement(ClickUser).Build().Perform();
 
@@ -1646,13 +1645,13 @@ namespace Selenium.Test
 
             Assert.IsTrue(bodyTextCart.Contains("112-10"));
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[2]/div/div[2]/div[1]/app-my-current-list/section/div[3]/div[3]/app-tag-button/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[2]/div/div[2]/div[1]/app-my-current-list/section/div[3]/div[3]/app-tag-button/span/span");
 
             bodyTextCart = driver.FindElement(By.TagName("body")).Text;
 
             Assert.IsFalse(bodyTextCart.Contains("62471-AM"));
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[2]/div/div[2]/div[1]/app-my-current-list/section/div[3]/div[2]/app-button/div/button");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[2]/div/div[2]/div/app-my-current-list/section/div[3]/div[2]/app-button/div/button");
 
             Thread.Sleep(2000);
 
@@ -1682,7 +1681,7 @@ namespace Selenium.Test
 
             Assert.IsTrue(bodyTextCart.Contains("62471-AM"));
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-main/div/app-shopping-list/div/div/div[2]/div/div[2]/div[1]/app-my-current-list/section/div[3]/div[3]/app-tag-button/span/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[2]/div/div[2]/div[1]/app-my-current-list/section/div[3]/div[3]/app-tag-button/span/span");
 
             bodyTextCart = driver.FindElement(By.TagName("body")).Text;
 
@@ -1714,18 +1713,18 @@ namespace Selenium.Test
 
             Thread.Sleep(4000);
 
-            IWebElement RemoveList1 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/mdb-card/mdb-card-body/mdb-card-text/p/div/div/span[1]/i"));
+            IWebElement RemoveList1 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/mdb-card/mdb-card-body/mdb-card-text/p/div/div/span[1]/span[2]/i[2]"));
             Actions RemoveTheList1 = new Actions(driver);
             RemoveTheList1.MoveToElement(RemoveList1).Build().Perform();
-            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/mdb-card/mdb-card-body/mdb-card-text/p/div/div/span[1]/i");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/mdb-card/mdb-card-body/mdb-card-text/p/div/div/span[1]/span[2]/i[2]");
             helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/div[5]/div/div/div[2]/app-button[2]/div/button");
 
             Thread.Sleep(2000);
 
-            IWebElement RemoveList2 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/mdb-card/mdb-card-body/mdb-card-text/p/div/div/span/i"));
+            IWebElement RemoveList2 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/mdb-card/mdb-card-body/mdb-card-text/p/div/div/span[1]/span[2]/i[2]"));
             Actions RemoveTheList2 = new Actions(driver);
             RemoveTheList2.MoveToElement(RemoveList2).Build().Perform();
-            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/mdb-card/mdb-card-body/mdb-card-text/p/div/div/span/i");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/mdb-card/mdb-card-body/mdb-card-text/p/div/div/span[1]/span[2]/i[2]");
             helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/div[5]/div/div/div[2]/app-button[2]/div/button");
 
             Thread.Sleep(2000);
@@ -1950,10 +1949,10 @@ namespace Selenium.Test
             Assert.IsTrue(bodyTextProduct.Contains("Aqua Knee"));
             Assert.IsTrue(bodyTextProduct.Contains(item4));
 
-            IWebElement RemoveList1 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/mdb-card/mdb-card-body/mdb-card-text/p/div/div/span/i"));
-            Actions RemoveTheList1 = new Actions(driver);
-            RemoveTheList1.MoveToElement(RemoveList1).Build().Perform();
-            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/mdb-card/mdb-card-body/mdb-card-text/p/div/div/span/i");
+            IWebElement RemoveList2 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/mdb-card/mdb-card-body/mdb-card-text/p/div/div/span[1]/span[2]/i[2]"));
+            Actions RemoveTheList2 = new Actions(driver);
+            RemoveTheList2.MoveToElement(RemoveList2).Build().Perform();
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/mdb-card/mdb-card-body/mdb-card-text/p/div/div/span[1]/span[2]/i[2]");
             helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/div[5]/div/div/div[2]/app-button[2]/div/button");
 
             Thread.Sleep(2000);
@@ -1973,9 +1972,9 @@ namespace Selenium.Test
             SearchBox.SendKeys("60SL");
             Thread.Sleep(3000);
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[2]/p[1]");
+            helperTest.JsClickElement(driver, "/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[2]/p[1]");            
 
-            Thread.Sleep(5000);
+            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
 
             Assert.AreEqual(mainURLs + "product?productID=6646&Name=fabtech-%2Bpluseries%C2%AE-60-second-adhesive", driver.Url);
 
