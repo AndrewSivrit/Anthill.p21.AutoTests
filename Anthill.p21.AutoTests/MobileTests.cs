@@ -35,15 +35,15 @@ namespace Selenium.Test
             login = "sergeykorolevsky2015@gmail.com";
             password = "StevenGerrard_2015";
 
-            //login = "sergeycascade01@yandex.com";
-            //password = "StevenGerrard_01";
+            //login = "sergeycascade02@yandex.com";
+            //password = "StevenGerrard_02";
 
             helperTest = new HelperTest();
 
             ChromeOptions options = new ChromeOptions();
 
             //options.AddArguments("--no-sandbox");
-            options.AddArguments("--headless");
+            //options.AddArguments("--headless");
             //options.AddArguments("--incognito");
 
             //options.AddUserProfilePreference("download.default_directory", "C:/Work/Anthill/Anthill.p21.AutoTests/logs_img");
@@ -220,7 +220,7 @@ namespace Selenium.Test
             IWebElement SearchBox = driver.FindElement(By.Id("search"));
 
             SearchBox.Clear();
-            SearchBox.SendKeys("L5450");
+            SearchBox.SendKeys("L5850");
 
             SearchBox.SendKeys(Keys.Enter);
 
@@ -228,13 +228,13 @@ namespace Selenium.Test
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsTrue(bodyTextProduct.Contains("Respond ROM BKA Rigid Dressing"));
-            Assert.IsTrue(bodyTextProduct.Contains("SafeLimb"));
-            Assert.IsTrue(bodyTextProduct.Contains("Limbguard™"));
-            Assert.IsTrue(bodyTextProduct.Contains("ProtectOR"));
+            Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee OFM2"));
+            Assert.IsTrue(bodyTextProduct.Contains("3R80 Modular Knee"));
+            Assert.IsTrue(bodyTextProduct.Contains("Capital"));
+            Assert.IsTrue(bodyTextProduct.Contains("Symphony Knee"));
 
             SearchBox.Clear();
-            SearchBox.SendKeys("L8417");
+            SearchBox.SendKeys("L5988");
 
             SearchBox.SendKeys(Keys.Enter);
 
@@ -242,9 +242,8 @@ namespace Selenium.Test
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsTrue(bodyTextProduct.Contains("One Sleeve"));
-            Assert.IsTrue(bodyTextProduct.Contains("One® Gel Sock"));
-            Assert.IsTrue(bodyTextProduct.Contains("Skin Reliever Gel Sheath"));
+            Assert.IsTrue(bodyTextProduct.Contains("MiniShock"));
+            Assert.IsTrue(bodyTextProduct.Contains("MiniShock Dampening Ring"));
         }
 
         [Test]
@@ -319,7 +318,7 @@ namespace Selenium.Test
             IWebElement SearchBox = driver.FindElement(By.Id("search"));
 
             SearchBox.Clear();
-            SearchBox.SendKeys("Liners");
+            SearchBox.SendKeys("ossur");
             SearchBox.SendKeys(Keys.Enter);
 
             Thread.Sleep(5000);

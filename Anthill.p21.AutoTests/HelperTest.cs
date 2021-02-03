@@ -147,7 +147,6 @@ namespace Selenium.Test
             var pushParam = driver.FindElement(By.XPath(pathOpt));
             pushParam.Click();
             Thread.Sleep(500);
-
         }
 
         public void InputStringXpath(IWebDriver driver, string Value, string Path)
@@ -157,6 +156,7 @@ namespace Selenium.Test
             InpBox.Clear();
             InpBox.SendKeys(Value);
         }
+
         public void InputStringId(IWebDriver driver, string Value, string Path)
         {
             waitElementId(driver, 60, Path);
@@ -165,9 +165,15 @@ namespace Selenium.Test
             InpBox.SendKeys(Value);
         }
 
+        public void CheckInput(IWebDriver driver, string path, int num)
+        {
+            IWebElement checkInput = driver.FindElement(By.Id(path));
+            var Input = Convert.ToInt32(checkInput.GetAttribute("value"));
+            Assert.AreEqual(Input, num);
+        }
+
         public void JsClickElement(IWebDriver driver, string path)
         {
-
             waitElementXpath(driver, 120, path);
             Thread.Sleep(100);
             IWebElement ele = driver.FindElement(By.XPath(path));
