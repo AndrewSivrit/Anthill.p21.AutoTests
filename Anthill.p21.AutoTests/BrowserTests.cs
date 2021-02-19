@@ -37,8 +37,8 @@ namespace Selenium.Test
             login = "sergeykorolevsky2015@gmail.com";
             password = "StevenGerrard_2015";
 
-            //login = "sergeycascade02@yandex.com";
-            //password = "StevenGerrard_02";
+            //login = "sergeycascade05@yandex.com";
+            //password = "StevenGerrard_05";
 
             helperTest = new HelperTest();
 
@@ -349,7 +349,7 @@ namespace Selenium.Test
             }
         }
 
-        [Test]
+        //[Test]
         public void CMSpages()
         {
             IWebElement Img;
@@ -876,6 +876,8 @@ namespace Selenium.Test
             SearchBox.SendKeys(Keys.Enter);
 
             helperTest.waitElementId(driver, 60, "configurable_img_0");
+
+            Thread.Sleep(2000);
 
             for (int j = 1; j < 3; j++)
             {
