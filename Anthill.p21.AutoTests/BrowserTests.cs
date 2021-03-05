@@ -953,6 +953,82 @@ namespace Selenium.Test
             }
         }
 
+        //[Test]
+        public void ReorderItems()
+        {
+            string bodyTextProduct;
+
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+
+            Assert.AreEqual(homeUrl, driver.Url);
+
+            driver.Url = mainURLs + "product?productID=1282";
+
+            Assert.AreEqual(mainURLs + "product?productID=1282", driver.Url);
+
+            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+
+            bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
+
+            Assert.IsTrue(bodyTextProduct.Contains("Original Grace Plate"));
+
+
+
+
+            driver.Url = mainURLs + "product?productID=11300";
+
+            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+            Assert.AreEqual(mainURLs + "product?productID=11300", driver.Url);
+
+            bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
+
+            Assert.IsTrue(bodyTextProduct.Contains("Alpha Basic Liner"));
+
+            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[1]/select", 2);
+            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[2]/select", 7);
+            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[3]/select", 3);
+
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElementId(driver, "replacement_button");
+
+            helperTest.waitElementId(driver, 60, "part_number_replacement");
+            IWebElement BasicPart = driver.FindElement(By.Id("part_number_replacement"));
+            var PartNumber = BasicPart.GetAttribute("value");
+            Assert.AreEqual(PartNumber, "ABKL-32-6");
+
+            string item = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[18]/div/div/div[2]/div/div/div/article[1]/div[3]/p")).Text;
+            helperTest.InputStringId(driver, "5", "replacement_qty_0");
+            helperTest.JsClickElementId(driver, "replacement_add_to_cart_0");
+
+            Thread.Sleep(5000);
+
+            helperTest.JsClickElementId(driver, "close_replacement_modal");
+
+            helperTest.waitElementId(driver, 60, "close_shopping_cart_preview_modal");
+            helperTest.JsClickElementId(driver, "close_shopping_cart_preview_modal");
+
+            Thread.Sleep(1000);
+
+            helperTest.JsClickElementId(driver, "main_add_to_cart");
+
+            helperTest.JsClickElementId(driver, "review_cart_button");
+
+            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+
+            Assert.IsTrue(bodyTextProduct.Contains(item));
+            Assert.IsTrue(bodyTextProduct.Contains("Alpha Basic Large Lck Umbrella 32"));
+
+            for (int j = 0; j < 2; j++)
+            {
+                helperTest.JsClickElementId(driver, "remove-button-0");
+
+                Thread.Sleep(1000);
+            }
+        }
+
         [Test]
         public void ReplacementParts()
         {
@@ -1539,15 +1615,15 @@ namespace Selenium.Test
 
             driver.Url = mainURLs + "account-info";
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-account-info/div[1]/div[5]/div/div/div[2]/div/div[1]/span[1]");
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-account-info/div[1]/div[6]/div/div/div[2]/div/div[1]/span[1]");
 
             Thread.Sleep(2000);
 
             String[] s1 = new String[4];
 
-            s1[0] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[5]/div/div/div[2]/div/div[1]/span[1]")).Text;
-            s1[1] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[5]/div/div/div[3]/div/div[1]/span[1]")).Text;
-            s1[2] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[5]/div/div/div[4]/div/div[1]/span[1]")).Text;
+            s1[0] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[6]/div/div/div[2]/div/div[1]/span[1]")).Text;
+            s1[1] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[6]/div/div/div[3]/div/div[1]/span[1]")).Text;
+            s1[2] = driver.FindElement(By.XPath("/html/body/app-root/div/app-account-info/div[1]/div[6]/div/div/div[4]/div/div[1]/span[1]")).Text;
 
             driver.Url = mainURLs + "cart/index";
 
@@ -1567,8 +1643,8 @@ namespace Selenium.Test
 
             Thread.Sleep(4000);
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[5]/div/div/div[3]/div/div[2]/div[2]/label");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[5]/div/div/div[4]/div/div[2]/div[2]/label");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[6]/div/div/div[3]/div/div[2]/div[2]/label");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[6]/div/div/div[4]/div/div[2]/div[2]/label");
 
             driver.Url = mainURLs + "cart/index";
 
@@ -1586,8 +1662,8 @@ namespace Selenium.Test
 
             Thread.Sleep(4000);
 
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[5]/div/div/div[3]/div/div[2]/div[2]/label");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[5]/div/div/div[4]/div/div[2]/div[2]/label");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[6]/div/div/div[3]/div/div[2]/div[2]/label");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div/app-account-info/div[1]/div[6]/div/div/div[4]/div/div[2]/div[2]/label");
 
             Thread.Sleep(2000);
         }
