@@ -27,9 +27,10 @@ namespace Selenium.Test
 
 
         public static Values FromCsv(string csvLine)
+            
         {
-
-            Regex CSVParser = new Regex(",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
+            Regex CSVParser = new Regex
+            (",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
             String[] values = CSVParser.Split(csvLine);
 
             Values yValues = new Values();

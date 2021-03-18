@@ -37,8 +37,8 @@ namespace Selenium.Test
             login = "sergeykorolevsky2015@gmail.com";
             password = "StevenGerrard_2015";
 
-            //login = "sergeycascade05@yandex.com";
-            //password = "StevenGerrard_05";
+            //login = "sergeycascade34@yandex.com";
+            //password = "StevenGerrard_34";
 
             helperTest = new HelperTest();
 
@@ -278,8 +278,8 @@ namespace Selenium.Test
 
             Thread.Sleep(1000);
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/div[6]/app-preview-cart-panel/section/div/div[2]/article/div[1]/div/app-product-card/article/div[2]/div[1]/p[2]");
-            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/div[6]/app-preview-cart-panel/section/div/div[2]/article/div[1]/div/app-product-card/article/div[2]/div[1]/p[2]")).Text;
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/div[6]/app-preview-cart-panel/section/div/div[2]/article/div[1]/div/app-product-card-preview-cart/article/div[2]/div[1]/p[2]");
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/div[6]/app-preview-cart-panel/section/div/div[2]/article/div[1]/div/app-product-card-preview-cart/article/div[2]/div[1]/p[2]")).Text;
             Assert.IsTrue(bodyTextProduct.Contains("AKL-2636-X"));
 
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/div[6]/app-preview-cart-panel/section/div/div[2]/article/div[2]/app-button/div/button");
@@ -392,7 +392,7 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[6]/div[1]/a/img");            
             driver.SwitchTo().Window(driver.WindowHandles[1]);
             Thread.Sleep(3000);
-            Assert.IsTrue(driver.Url.Contains("v2prodbackend.azurewebsites.net/api/digital/asset/get?fileName=2020+Cascade+Major+Landmarks.pdf"));
+            Assert.IsTrue(driver.Url.Contains("v2backend.cascade-usa.com/api/digital/asset/get?fileName=2020+Cascade+Major+Landmarks.pdf"));
             driver.Close();
             driver.SwitchTo().Window(driver.WindowHandles[0]);
 
@@ -401,7 +401,7 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[6]/div[2]/a/img");
             driver.SwitchTo().Window(driver.WindowHandles[1]);
             Thread.Sleep(8000);
-            Assert.IsTrue(driver.Url.Contains("v2prodbackend.azurewebsites.net/api/digital/asset/get?fileName=Cascade_DC+Map_FINAL_2020.pdf"));
+            Assert.IsTrue(driver.Url.Contains("v2backend.cascade-usa.com/api/digital/asset/get?fileName=Cascade_DC+Map_FINAL_2020.pdf"));
             driver.Close();
             driver.SwitchTo().Window(driver.WindowHandles[0]);
 
@@ -410,7 +410,7 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[6]/div[5]/a/img");
             driver.SwitchTo().Window(driver.WindowHandles[1]);
             Thread.Sleep(8000);
-            Assert.IsTrue(driver.Url.Contains("v2prodbackend.azurewebsites.net/api/digital/asset/get?fileName=transit_timeCOS.pdf"));
+            Assert.IsTrue(driver.Url.Contains("v2backend.cascade-usa.com/api/digital/asset/get?fileName=transit_timeCOS.pdf"));
             driver.Close();
             driver.SwitchTo().Window(driver.WindowHandles[0]);
 
@@ -419,7 +419,7 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[6]/div[8]/a/img");
             driver.SwitchTo().Window(driver.WindowHandles[1]);
             Thread.Sleep(3000);
-            Assert.IsTrue(driver.Url.Contains("v2prodbackend.azurewebsites.net/api/digital/asset/get?fileName=2020+Integrations+Logo+Sheet.pdf"));
+            Assert.IsTrue(driver.Url.Contains("v2backend.cascade-usa.com/api/digital/asset/get?fileName=2020+Integrations+Logo+Sheet.pdf"));
             driver.Close();
             driver.SwitchTo().Window(driver.WindowHandles[0]);
 
@@ -450,7 +450,7 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-page/div/div/div/div/div[3]/div[1]/a/img");            
             driver.SwitchTo().Window(driver.WindowHandles[1]);
             Thread.Sleep(3000);
-            Assert.IsTrue(driver.Url.Contains("v2prodbackend.azurewebsites.net/api/digital/asset/get?fileName=credit_app.pdf"));
+            Assert.IsTrue(driver.Url.Contains("v2backend.cascade-usa.com/api/digital/asset/get?fileName=credit_app.pdf"));
             driver.Close();
             driver.SwitchTo().Window(driver.WindowHandles[0]);
 
@@ -1445,7 +1445,7 @@ namespace Selenium.Test
 
             Thread.Sleep(1000);
 
-            string item1 = driver.FindElement(By.XPath("/html/body/app-root/div[13]/app-product/div[3]/app-preview-cart-panel/section/div/div[2]/article/div[1]/div/app-product-card[1]/article/div[2]/div[1]/p[2]")).Text;
+            string item1 = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[3]/app-preview-cart-panel/section/div/div[2]/article/div[1]/div/app-product-card-preview-cart[1]/article/div[2]/div[1]/p[2]")).Text;
 
             helperTest.JsClickElementId(driver, "close_shopping_cart_preview_modal");
 
@@ -1464,7 +1464,8 @@ namespace Selenium.Test
             NavigateAction.MoveToElement(NavigateCusror).Build().Perform();
 
             Thread.Sleep(1000);
-            string item2 = driver.FindElement(By.XPath("/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[2]/p")).Text;
+
+            string item2 = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[3]/app-preview-cart-panel/section/div/div[2]/article/div[1]/div/app-product-card-preview-cart[1]/article/div[2]/div[1]/p[2]")).Text;
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
 
