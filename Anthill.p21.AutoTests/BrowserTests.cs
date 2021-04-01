@@ -37,8 +37,8 @@ namespace Selenium.Test
             login = "sergeykorolevsky2015@gmail.com";
             password = "StevenGerrard_2015";
 
-            //login = "sergeycascade34@yandex.com";
-            //password = "StevenGerrard_34";
+            //login = "sergeycascade02@yandex.com";
+            //password = "StevenGerrard_02";
 
             helperTest = new HelperTest();
 
@@ -147,12 +147,11 @@ namespace Selenium.Test
 
             Thread.Sleep(1000);
 
-            for (int j = 0; j < 3; j++)
-            {
-                helperTest.JsClickElementId(driver, "remove-button-0");
+            helperTest.JsClickElementId(driver, "remove-all");            
 
-                Thread.Sleep(1000);
-            }
+            helperTest.JsClickElementId(driver, "remove-all-confirm");
+
+            Thread.Sleep(3000);
         }
 
         [Test]
@@ -232,12 +231,11 @@ namespace Selenium.Test
 
             Thread.Sleep(1000);
 
-            for (int j = 0; j < 5; j++)
-            {
-                helperTest.JsClickElementId(driver, "remove-button-0");
+            helperTest.JsClickElementId(driver, "remove-all");
 
-                Thread.Sleep(1000);
-            }
+            helperTest.JsClickElementId(driver, "remove-all-confirm");
+
+            Thread.Sleep(3000);
         }
 
         [Test]
@@ -281,7 +279,7 @@ namespace Selenium.Test
             helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/div[6]/app-preview-cart-panel/section/div/div[2]/article/div[1]/div/app-product-card-preview-cart/article/div[2]/div[1]/p[2]");
             bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/div[6]/app-preview-cart-panel/section/div/div[2]/article/div[1]/div/app-product-card-preview-cart/article/div[2]/div[1]/p[2]")).Text;
             Assert.IsTrue(bodyTextProduct.Contains("AKL-2636-X"));
-
+            
             helperTest.JsClickElement(driver, "/html/body/app-root/div/app-category/div/div/div[2]/app-configurable/div[6]/app-preview-cart-panel/section/div/div[2]/article/div[2]/app-button/div/button");
 
             Thread.Sleep(3000);
@@ -293,6 +291,8 @@ namespace Selenium.Test
             Thread.Sleep(2000);
 
             helperTest.JsClickElementId(driver, "remove-button-0");
+
+            Thread.Sleep(1000);
         }
 
         [Test]
@@ -850,12 +850,11 @@ namespace Selenium.Test
 
             Thread.Sleep(1000);
 
-            for (int j = 0; j < 3; j++)
-            {
-                helperTest.JsClickElementId(driver, "remove-button-0");
+            helperTest.JsClickElementId(driver, "remove-all");
 
-                Thread.Sleep(1000);
-            }
+            helperTest.JsClickElementId(driver, "remove-all-confirm");
+
+            Thread.Sleep(3000);
         }
 
         [Test]
@@ -945,12 +944,11 @@ namespace Selenium.Test
             Assert.IsTrue(bodyTextCart2.Contains("WalkOn Trimable RT SM"));
             Assert.IsTrue(bodyTextCart2.Contains("WalkOn Trimable RT XL"));
 
-            for (int j = 0; j < 10; j++)
-            {
-                helperTest.JsClickElementId(driver, "remove-button-0");
+            helperTest.JsClickElementId(driver, "remove-all");
 
-                Thread.Sleep(1000);
-            }
+            helperTest.JsClickElementId(driver, "remove-all-confirm");
+
+            Thread.Sleep(3000);
         }
 
         //[Test]
@@ -1082,14 +1080,13 @@ namespace Selenium.Test
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
             Assert.IsTrue(bodyTextProduct.Contains(item));
-            Assert.IsTrue(bodyTextProduct.Contains("Alpha Basic Large Lck Umbrella 32"));            
+            Assert.IsTrue(bodyTextProduct.Contains("Alpha Basic Large Lck Umbrella 32"));
 
-            for (int j = 0; j < 2; j++)
-            {
-                helperTest.JsClickElementId(driver, "remove-button-0");
+            helperTest.JsClickElementId(driver, "remove-all");
 
-                Thread.Sleep(1000);
-            }
+            helperTest.JsClickElementId(driver, "remove-all-confirm");
+
+            Thread.Sleep(3000);
         }
 
         [Test]
@@ -1191,12 +1188,11 @@ namespace Selenium.Test
             bodyTextProduct = driver.FindElement(By.Id("item-name-in-cart0")).Text;
             Assert.IsTrue(bodyTextProduct.Contains("ALC-5067-E"));
 
-            for (int j = 0; j < 2; j++)
-            {
-                helperTest.JsClickElementId(driver, "remove-button-0");
+            helperTest.JsClickElementId(driver, "remove-all");
 
-                Thread.Sleep(1000);
-            }
+            helperTest.JsClickElementId(driver, "remove-all-confirm");
+
+            Thread.Sleep(3000);
         }
 
         [Test]
@@ -1247,14 +1243,11 @@ namespace Selenium.Test
             Assert.IsTrue(bodyTextProduct.Contains("9820-BLACK-XL"));
             Assert.IsTrue(bodyTextProduct.Contains("Soft Shell Helmet Black XS"));
 
-            Thread.Sleep(2000);
+            helperTest.JsClickElementId(driver, "remove-all");
 
-            for (int j = 0; j < 2; j++)
-            {
-                helperTest.JsClickElementId(driver, "remove-button-0");
+            helperTest.JsClickElementId(driver, "remove-all-confirm");
 
-                Thread.Sleep(1000);
-            }
+            Thread.Sleep(3000);
         }
 
         [Test]
@@ -1577,12 +1570,11 @@ namespace Selenium.Test
 
             Thread.Sleep(1000);
 
-            for (int j = 0; j < 11; j++)
-            {
-                helperTest.JsClickElementId(driver, "remove-button-0");
+            helperTest.JsClickElementId(driver, "remove-all");
 
-                Thread.Sleep(1000);
-            }
+            helperTest.JsClickElementId(driver, "remove-all-confirm");
+
+            Thread.Sleep(3000);
         }
 
         public void InputAndCheckAdd(string productId, int num, string nameCheck)

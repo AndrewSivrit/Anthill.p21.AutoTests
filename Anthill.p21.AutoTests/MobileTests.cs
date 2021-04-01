@@ -151,8 +151,8 @@ namespace Selenium.Test
             OpenItem = driver.FindElement((By.Id("mobile-add-to-cart")));
             OpenItem.Click();
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[13]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card/article/div[2]/p[2]");
-            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[13]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card/article/div[2]/p[2]")).Text;
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[13]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card-cart/article/div[2]/p[2]");
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[13]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card-cart/article/div[2]/p[2]")).Text;
 
             Assert.IsTrue(bodyTextProduct.Contains("ALC-9460-E"));
 
@@ -172,6 +172,7 @@ namespace Selenium.Test
 
             Thread.Sleep(3000);
 
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div/app-product/div[1]/div/p[1]");
             bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div/app-product/div[1]/div/p[1]")).Text;
             Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic® Liner"));
 
@@ -189,8 +190,8 @@ namespace Selenium.Test
             OpenItem = driver.FindElement(By.Id("mobile-add-to-cart"));
             OpenItem.Click();
 
-            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[13]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card/article/div[2]/p[2]");
-            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[13]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card/article/div[2]/p[2]")).Text;
+            helperTest.waitElementXpath(driver, 60, "/html/body/app-root/div[13]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card-cart/article/div[2]/p[2]");
+            bodyTextProduct = driver.FindElement(By.XPath("/html/body/app-root/div[13]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card-cart/article/div[2]/p[2]")).Text;
 
             Assert.IsTrue(bodyTextProduct.Contains("ALC-5067-E"));
 
@@ -230,8 +231,8 @@ namespace Selenium.Test
 
             Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee OFM2"));
             Assert.IsTrue(bodyTextProduct.Contains("3R80 Modular Knee"));
-            Assert.IsTrue(bodyTextProduct.Contains("Capital"));
-            Assert.IsTrue(bodyTextProduct.Contains("Symphony Knee"));
+            Assert.IsTrue(bodyTextProduct.Contains("2000"));
+            Assert.IsTrue(bodyTextProduct.Contains("2100"));
 
             SearchBox.Clear();
             SearchBox.SendKeys("L5988");
@@ -456,7 +457,7 @@ namespace Selenium.Test
 
             helperTest.JsClickElement(driver, "//*[text()='" + " Add to Cart " + "']");
 
-            Thread.Sleep(5000);
+            Thread.Sleep(7000);
 
             helperTest.waitElementId(driver, 60, "submit_order");
 
@@ -767,7 +768,7 @@ namespace Selenium.Test
 
             Thread.Sleep(3000);
 
-            helperTest.JsClickElementId(driver, "submit_order");
+            //helperTest.JsClickElementId(driver, "submit_order");
 
             helperTest.waitElementId(driver, 60, "message_ok_button");
 
