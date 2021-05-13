@@ -433,7 +433,7 @@ namespace Selenium.Test
             }
         }
 
-        [Test]
+        //[Test]
         public void CMSpages()
         {
             IWebElement Img;
