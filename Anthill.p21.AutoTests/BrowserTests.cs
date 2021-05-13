@@ -238,6 +238,90 @@ namespace Selenium.Test
             Thread.Sleep(3000);
         }
 
+        //[Test]
+        public void AddAlltoCartMagento()
+        {
+            string bodyTextProduct;
+
+            helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
+
+            Assert.AreEqual(homeUrl, driver.Url);
+
+            IWebElement SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.Clear();
+            SearchBox.SendKeys("Juzo® Soft 2000");
+            SearchBox.SendKeys(Keys.Enter);
+
+            helperTest.waitElementId(driver, 60, "configurable_img_0");
+            helperTest.JsClickElement(driver, "//*[text()='" + "Juzo® Soft 2000" + "']");
+
+            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
+            Assert.AreEqual(mainURLs + "product?productID=14463&Name=juzo®-soft-2000", driver.Url);
+
+            helperTest.InputStringXpath(driver, "1", "/html/body/app-root/div[1]/app-product/div[1]/div[3]/app-magento-attributes/div/div[1]/article[1]/div[5]/p/input");
+            helperTest.InputStringXpath(driver, "2", "/html/body/app-root/div[1]/app-product/div[1]/div[3]/app-magento-attributes/div/div[1]/article[2]/div[5]/p/input");
+            helperTest.InputStringXpath(driver, "3", "/html/body/app-root/div[1]/app-product/div[1]/div[3]/app-magento-attributes/div/div[1]/article[3]/div[5]/p/input");
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-product/div[1]/div[3]/app-magento-attributes/div/div[2]/ngb-pagination/ul/li[3]/a");
+
+            helperTest.waitElementId(driver, 60, "add_all_to_cart");
+
+            helperTest.InputStringXpath(driver, "4", "/html/body/app-root/div[1]/app-product/div[1]/div[3]/app-magento-attributes/div/div[1]/article[1]/div[5]/p/input");
+            helperTest.InputStringXpath(driver, "5", "/html/body/app-root/div[1]/app-product/div[1]/div[3]/app-magento-attributes/div/div[1]/article[2]/div[5]/p/input");
+            helperTest.InputStringXpath(driver, "6", "/html/body/app-root/div[1]/app-product/div[1]/div[3]/app-magento-attributes/div/div[1]/article[3]/div[5]/p/input");
+
+            Thread.Sleep(1000);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[13]/app-product/div[1]/div[3]/div[1]/article[7]/div[1]/p/span/span[3]/span[1]");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[13]/app-product/div[1]/div[3]/div[1]/article[7]/div[1]/p/span/span[5]/span");
+
+            helperTest.JsClickElementId(driver, "add_product_to_cart1");
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElementId(driver, "close_frequently_modal");
+            helperTest.waitElementId(driver, 60, "close_shopping_cart_preview_modal");
+            helperTest.JsClickElementId(driver, "close_shopping_cart_preview_modal");
+            Thread.Sleep(1000);
+
+            helperTest.JsClickElementId(driver, "add_product_to_cart5");
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElementId(driver, "close_frequently_modal");
+            helperTest.waitElementId(driver, 60, "close_shopping_cart_preview_modal");
+            helperTest.JsClickElementId(driver, "close_shopping_cart_preview_modal");
+            Thread.Sleep(1000);
+
+            helperTest.JsClickElementId(driver, "add_all_to_cart");
+
+            helperTest.JsClickElementId(driver, "close_frequently_modal");
+
+            helperTest.JsClickElementId(driver, "review_cart_button");
+
+            helperTest.waitElementId(driver, 60, "product-name-in-cart0");
+
+            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+
+            Assert.IsTrue(bodyTextProduct.Contains("WalkOn AFO LT SM"));
+            Assert.IsTrue(bodyTextProduct.Contains("WalkOn AFO LT MD"));
+            Assert.IsTrue(bodyTextProduct.Contains("WalkOn Trimable LT LG"));
+            Assert.IsTrue(bodyTextProduct.Contains("WalkOn Trimable RT XL"));
+            Assert.IsTrue(bodyTextProduct.Contains("WalkOn Trimable RT XL"));
+
+            helperTest.CheckInput(driver, "qty-in-cart0", 1);
+            helperTest.CheckInput(driver, "qty-in-cart1", 2);
+            helperTest.CheckInput(driver, "qty-in-cart2", 4);
+            helperTest.CheckInput(driver, "qty-in-cart3", 1);
+            helperTest.CheckInput(driver, "qty-in-cart4", 5);
+
+            Thread.Sleep(1000);
+
+            helperTest.JsClickElementId(driver, "remove-all");
+
+            helperTest.JsClickElementId(driver, "remove-all-confirm");
+
+            Thread.Sleep(3000);
+        }
+
         [Test]
         public void AddToCartFromPreview()
         {
@@ -349,7 +433,7 @@ namespace Selenium.Test
             }
         }
 
-        //[Test]
+        [Test]
         public void CMSpages()
         {
             IWebElement Img;
@@ -1267,7 +1351,7 @@ namespace Selenium.Test
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee"));
+            Assert.IsTrue(bodyTextProduct.Contains("Locking Knee"));
         }
 
         [Test]
@@ -2113,7 +2197,7 @@ namespace Selenium.Test
             Assert.IsTrue(bodyTextProduct.Contains(item2));
             Assert.IsTrue(bodyTextProduct.Contains(item3));
             Assert.IsTrue(bodyTextProduct.Contains("Aqua Knee"));
-            Assert.IsTrue(bodyTextProduct.Contains(item4));
+            //Assert.IsTrue(bodyTextProduct.Contains(item4));
 
             IWebElement RemoveList2 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/mdb-card/mdb-card-body/mdb-card-text/p/div/div/span[1]/span[2]/i[2]"));
             Actions RemoveTheList2 = new Actions(driver);
@@ -2125,7 +2209,7 @@ namespace Selenium.Test
         }
 
         [Test]
-        public void Step13AddToCart()
+        public void AddToCart1()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
             
@@ -2162,7 +2246,7 @@ namespace Selenium.Test
         }        
 
         [Test]
-        public void Step17AddToCart()
+        public void AddToCart2()
         {
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);            
 

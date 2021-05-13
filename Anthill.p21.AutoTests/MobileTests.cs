@@ -106,7 +106,7 @@ namespace Selenium.Test
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee"));            
+            Assert.IsTrue(bodyTextProduct.Contains("Locking Knee"));            
         }
 
         [Test]
@@ -230,9 +230,9 @@ namespace Selenium.Test
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
             Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee OFM2"));
-            Assert.IsTrue(bodyTextProduct.Contains("3R80 Modular Knee"));
-            Assert.IsTrue(bodyTextProduct.Contains("2000"));
-            Assert.IsTrue(bodyTextProduct.Contains("2100"));
+            Assert.IsTrue(bodyTextProduct.Contains("Total Knee® 2100"));
+            Assert.IsTrue(bodyTextProduct.Contains("Symphony Knee"));
+            Assert.IsTrue(bodyTextProduct.Contains("Total Knee® 2000"));
 
             SearchBox.Clear();
             SearchBox.SendKeys("L5988");
@@ -244,7 +244,7 @@ namespace Selenium.Test
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
             Assert.IsTrue(bodyTextProduct.Contains("MiniShock"));
-            Assert.IsTrue(bodyTextProduct.Contains("MiniShock Dampening Ring"));
+            Assert.IsTrue(bodyTextProduct.Contains("Pro-Flex® LP Torsion"));
         }
 
         [Test]
@@ -401,7 +401,7 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + " Apply " + "']");
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
-            Assert.IsTrue(bodyTextProduct.Contains("Alpha Classic®"));
+            Assert.IsTrue(bodyTextProduct.Contains("Evolution Liner"));
 
             Thread.Sleep(2000);
         }
@@ -768,7 +768,7 @@ namespace Selenium.Test
 
             Thread.Sleep(3000);
 
-            //helperTest.JsClickElementId(driver, "submit_order");
+            helperTest.JsClickElementId(driver, "submit_order");
 
             helperTest.waitElementId(driver, 60, "message_ok_button");
 
