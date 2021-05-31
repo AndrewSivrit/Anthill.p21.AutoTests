@@ -38,11 +38,11 @@ namespace Selenium.Test
             //login = "sergeycascade02@yandex.com";
             //password = "StevenGerrard_02";
 
+            //options.AddArguments("--no-sandbox");
+
             helperTest = new HelperTest();
 
             ChromeOptions options = new ChromeOptions();
-
-            //options.AddArguments("--no-sandbox");
             options.AddArguments("--headless");
             //options.AddArguments("--incognito");
 
@@ -229,7 +229,7 @@ namespace Selenium.Test
 
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
-            Assert.IsTrue(bodyTextProduct.Contains("Balance™ Knee OFM2"));
+            Assert.IsTrue(bodyTextProduct.Contains("Advanced Pneumatic Knee"));
             Assert.IsTrue(bodyTextProduct.Contains("Total Knee® 2100"));
             Assert.IsTrue(bodyTextProduct.Contains("Symphony Knee"));
             Assert.IsTrue(bodyTextProduct.Contains("Total Knee® 2000"));
@@ -760,15 +760,15 @@ namespace Selenium.Test
 
             Thread.Sleep(1000);
 
-            helperTest.JsClickElementId(driver, "submit_order");
+            //helperTest.JsClickElementId(driver, "submit_order");
 
-            helperTest.waitElementXpath(driver, 180, "/html/body/app-root/div/app-cart-root/div/div/app-review-cart/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card/article/div[2]/p[1]");
+            //helperTest.waitElementXpath(driver, 180, "/html/body/app-root/div/app-cart-root/div/div/app-review-cart/section/section/article/div[2]/app-cart-product-order/section/article[1]/app-product-card/article/div[2]/p[1]");
 
             Assert.AreEqual(mainURLs + "cart/review", driver.Url);
 
             Thread.Sleep(3000);
 
-            helperTest.JsClickElementId(driver, "submit_order");
+            //helperTest.JsClickElementId(driver, "submit_order");
 
             helperTest.waitElementId(driver, 60, "message_ok_button");
 

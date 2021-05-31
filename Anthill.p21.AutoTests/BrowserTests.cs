@@ -1035,10 +1035,13 @@ namespace Selenium.Test
             Thread.Sleep(3000);
         }
 
-        //[Test]
+        [Test]
         public void ReorderItems()
         {
             string bodyTextProduct;
+            IWebElement SearchBox;
+            IWebElement NavigateCursor;
+            Actions actions = new Actions(driver);
 
             helperTest.LoginToSite(driver, authUrl, homeUrl, login, password, mainURL);
 
@@ -1054,61 +1057,122 @@ namespace Selenium.Test
 
             Assert.IsTrue(bodyTextProduct.Contains("Original Grace Plate"));
 
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-product/div[1]/div[2]/div[4]/div[2]/span/span");
 
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-product/div[12]/app-modal-purchase-history/div[1]/div/div[3]/ngb-pagination/ul/li[3]/a");
 
+            helperTest.JsClickElementId(driver, "reorder_button_0");
 
-            driver.Url = mainURLs + "product?productID=11300";
-
-            helperTest.waitElementId(driver, 60, "product_name_in_product_page");
-            Assert.AreEqual(mainURLs + "product?productID=11300", driver.Url);
-
-            bodyTextProduct = driver.FindElement(By.Id("product_name_in_product_page")).Text;
-
-            Assert.IsTrue(bodyTextProduct.Contains("Alpha Basic Liner"));
-
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[1]/select", 2);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[2]/select", 7);
-            helperTest.UseDropDown(driver, "/html/body/app-root/div/app-product/div[1]/div[2]/div[3]/div[1]/app-attributes/form/div/div[3]/select", 3);
-
-            Thread.Sleep(2000);
-
-            helperTest.JsClickElementId(driver, "replacement_button");
-
-            helperTest.waitElementId(driver, 60, "part_number_replacement");
-            IWebElement BasicPart = driver.FindElement(By.Id("part_number_replacement"));
-            var PartNumber = BasicPart.GetAttribute("value");
-            Assert.AreEqual(PartNumber, "ABKL-32-6");
-
-            string item = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-product/div[18]/div/div/div[2]/div/div/div/article[1]/div[3]/p")).Text;
-            helperTest.InputStringId(driver, "5", "replacement_qty_0");
-            helperTest.JsClickElementId(driver, "replacement_add_to_cart_0");
-
-            Thread.Sleep(5000);
-
-            helperTest.JsClickElementId(driver, "close_replacement_modal");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-product/div[12]/app-modal-purchase-history/div[3]/div/div/div[3]/app-button/div/button");
 
             helperTest.waitElementId(driver, 60, "close_shopping_cart_preview_modal");
             helperTest.JsClickElementId(driver, "close_shopping_cart_preview_modal");
 
             Thread.Sleep(1000);
 
-            helperTest.JsClickElementId(driver, "main_add_to_cart");
+            helperTest.JsClickElementId(driver, "search");
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.Clear();
+            SearchBox.SendKeys("1210");
+
+            Thread.Sleep(2000);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/app-header/nav/div[1]/div[2]/app-search-panel/div/div[2]/div/form/div[1]/app-search-panel-dropdown/div[1]/div/div[2]/div[1]/div/span/app-tag-button/span/span");
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[3]/app-modal-purchase-history/div[1]/div/div[2]/div[2]/div/article[2]/div[6]/app-button/div/button");
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[3]/app-modal-purchase-history/div[3]/div/div/div[3]/app-button/div/button");
+
+            helperTest.waitElementId(driver, 60, "close_shopping_cart_preview_modal");
+            helperTest.JsClickElementId(driver, "close_shopping_cart_preview_modal");
+
+            Thread.Sleep(1000);
+
+            helperTest.JsClickElementId(driver, "search");
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.Clear();
+            SearchBox.SendKeys("1210");
+            SearchBox.SendKeys(Keys.Enter);
+
+            helperTest.waitElementId(driver, 60, "configurable_img_0");
+
+            NavigateCursor = driver.FindElement(By.Id("configurable_img_0"));
+            actions.MoveToElement(NavigateCursor).Build().Perform();
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Purchase history " + "']");
+            
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-category/div/div/div[2]/app-configurable/div[9]/app-modal-purchase-history/div[1]/div/div[2]/div[2]/div/article[3]/div[6]/app-button/div/button");
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-category/div/div/div[2]/app-configurable/div[9]/app-modal-purchase-history/div[3]/div/div/div[3]/app-button/div/button");
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-category/div/div/div[2]/app-configurable/div[6]/app-preview-cart-panel/section/div/div[1]/app-close-button/p/span");                      
+
+            Thread.Sleep(1000);
+
+            helperTest.JsClickElementId(driver, "search");
+            SearchBox = driver.FindElement(By.Id("search"));
+            SearchBox.Clear();
+            SearchBox.SendKeys("1210");
+            SearchBox.SendKeys(Keys.Enter);
+
+            helperTest.waitElementId(driver, 60, "configurable_img_0");
+
+            NavigateCursor = driver.FindElement(By.Id("configurable_img_0"));
+            actions.MoveToElement(NavigateCursor).Build().Perform();
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Preview " + "']");
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-category/div/div/div[2]/app-configurable/div[3]/app-preview-details-panel/section/div/div[2]/mdb-card/mdb-card-body/mdb-card-text/p/div/span[3]/app-tag-button/span/span");
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-category/div/div/div[2]/app-configurable/div[3]/app-preview-details-panel/div[11]/app-modal-purchase-history/div[1]/div/div[2]/div[2]/div/article[4]/div[6]/app-button/div/button");
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-category/div/div/div[2]/app-configurable/div[3]/app-preview-details-panel/div[11]/app-modal-purchase-history/div[3]/div/div/div[3]/app-button/div/button");
+
+            //helperTest.waitElementId(driver, 60, "close_shopping_cart_preview_modal");
+            //helperTest.JsClickElementId(driver, "close_shopping_cart_preview_modal");
+
+            Thread.Sleep(1000);
+
+            driver.Url = mainURLs + "shopping/order-history?tab=orders&page=1";
+
+            Thread.Sleep(1000);
+
+            Assert.AreEqual(mainURLs + "shopping/order-history?tab=orders&page=1", driver.Url);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-main/div/app-order-history/section/section/app-history-order-item[1]/article/article/section/div[2]/section/div[2]/div[2]/app-button/div/button");
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-main/div/app-order-history/section/section/app-history-order-item[1]/div[2]/div/div/div[3]/app-button/div/button");
+
+            helperTest.waitElementId(driver, 60, "close_shopping_cart_preview_modal");
+            helperTest.JsClickElementId(driver, "close_shopping_cart_preview_modal");
+
+            Thread.Sleep(1000);
+
+            driver.Url = mainURLs + "shopping/order-history?tab=orders&page=1";
+
+            Thread.Sleep(1000);
+
+            Assert.AreEqual(mainURLs + "shopping/order-history?tab=orders&page=1", driver.Url);
+
+            helperTest.JsClickElement(driver, "//*[text()='" + " Purchased Products " + "']");
+
+            Thread.Sleep(1000);
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-main/div/app-order-history/section/section/div[2]/app-history-order-item-row-view[1]/article/div[9]/app-button/div/button");
+
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-main/div/app-order-history/section/section/div[2]/app-history-order-item-row-view[1]/div[2]/div/div/div[3]/app-button/div/button");
 
             helperTest.JsClickElementId(driver, "review_cart_button");
 
             helperTest.waitElementId(driver, 60, "product-name-in-cart0");
 
-            bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
+            Thread.Sleep(1000);
 
-            Assert.IsTrue(bodyTextProduct.Contains(item));
-            Assert.IsTrue(bodyTextProduct.Contains("Alpha Basic Large Lck Umbrella 32"));
+            helperTest.JsClickElementId(driver, "remove-all");
 
-            for (int j = 0; j < 2; j++)
-            {
-                helperTest.JsClickElementId(driver, "remove-button-0");
+            helperTest.JsClickElementId(driver, "remove-all-confirm");
 
-                Thread.Sleep(1000);
-            }
+            Thread.Sleep(2000);
         }
 
         [Test]
@@ -2191,9 +2255,9 @@ namespace Selenium.Test
             bodyTextProduct = driver.FindElement(By.TagName("body")).Text;
 
             Assert.IsTrue(bodyTextProduct.Contains(item1));
-            Assert.IsTrue(bodyTextProduct.Contains("Sensor Knee"));
-            Assert.IsTrue(bodyTextProduct.Contains("ProCarve Knee"));
-            Assert.IsTrue(bodyTextProduct.Contains("OH5 Knee"));
+            //Assert.IsTrue(bodyTextProduct.Contains("Sensor Knee"));
+            //Assert.IsTrue(bodyTextProduct.Contains("ProCarve Knee"));
+            //Assert.IsTrue(bodyTextProduct.Contains("OH5 Knee"));
             Assert.IsTrue(bodyTextProduct.Contains(item2));
             Assert.IsTrue(bodyTextProduct.Contains(item3));
             Assert.IsTrue(bodyTextProduct.Contains("Aqua Knee"));
