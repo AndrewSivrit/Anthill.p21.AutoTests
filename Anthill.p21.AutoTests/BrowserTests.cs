@@ -44,7 +44,7 @@ namespace Selenium.Test
 
             //Chrome
             ChromeOptions options = new ChromeOptions();
-            //options.AddArguments("--headless");
+            options.AddArguments("--headless");
             driver = new ChromeDriver(pathDrivers, options);
 
             //Firefox
