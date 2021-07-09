@@ -44,7 +44,7 @@ namespace Selenium.Test
 
             //Chrome
             ChromeOptions options = new ChromeOptions();
-            options.AddArguments("--headless");
+            //options.AddArguments("--headless");
             driver = new ChromeDriver(pathDrivers, options);
 
             //Firefox
@@ -2226,7 +2226,7 @@ namespace Selenium.Test
             helperTest.JsClickElement(driver, "//*[text()='" + " Review Cart " + "']");
 
             helperTest.waitElementId(driver, 60, "product-name-in-cart0");
-            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/div/article[4]/div[3]/div/div/span");
+            helperTest.JsClickElement(driver, "/html/body/app-root/div[1]/app-cart-root/div/div/app-shopping-cart/app-shopping-cart-common/section/section/article/div[2]/app-cart-product-order/section/div/article[4]/div[4]/div/div/span");
             helperTest.JsClickElement(driver, "//*[text()='" + "test list" + "']");
 
             Thread.Sleep(1000);
@@ -2260,7 +2260,7 @@ namespace Selenium.Test
             //Assert.IsTrue(bodyTextProduct.Contains("OH5 Knee"));
             Assert.IsTrue(bodyTextProduct.Contains(item2));
             Assert.IsTrue(bodyTextProduct.Contains(item3));
-            Assert.IsTrue(bodyTextProduct.Contains("Aqua Knee"));
+            //Assert.IsTrue(bodyTextProduct.Contains("Aqua Knee"));
             //Assert.IsTrue(bodyTextProduct.Contains(item4));
 
             IWebElement RemoveList2 = driver.FindElement(By.XPath("/html/body/app-root/div[1]/app-main/div/app-shopping-list/div[1]/div/div[1]/app-my-shopping-list/mdb-card/mdb-card-body/mdb-card-text/p/div/div/span[1]/span[2]/i[2]"));

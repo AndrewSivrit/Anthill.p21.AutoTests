@@ -21,7 +21,7 @@ namespace Selenium.Test
         private string password;
         private string login;
         
-        string mainURLs = "https://cascade-usa.com/";
+        string mainURLs = "https://v2dev.cascade-usa.com/";
 
         [SetUp]
         public void SetUp()
@@ -43,7 +43,7 @@ namespace Selenium.Test
             helperTest = new HelperTest();
 
             ChromeOptions options = new ChromeOptions();
-            options.AddArguments("--headless");
+            //options.AddArguments("--headless");
             //options.AddArguments("--incognito");
 
             //options.AddUserProfilePreference("download.default_directory", "C:/Work/Anthill/Anthill.p21.AutoTests/logs_img");
